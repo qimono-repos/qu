@@ -7,4 +7,4 @@ Starter Repository for Quantum Computing
 ### Get started in Quantom programming using Q# in Azure
 [Quantum Coding](https://quantum.microsoft.com/en-us/tools/quantum-coding)
 
-![quantum-image](assets/quantum-image.png)
+![quantum-image](assets/qi-qu.png)
