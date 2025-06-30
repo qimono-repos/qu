@@ -1,4 +1,4 @@
-# QU is Quantum for Qimono 
+# QU is Quantum Computing by Qimono 
 Starter Repository for Quantum Computing
 ### Get into Quantum programming with Microsoft and Azure
 
