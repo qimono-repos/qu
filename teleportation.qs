@@ -1,6 +1,30 @@
 open Microsoft.Quantum.Canon;
 open Microsoft.Quantum.Intrinsic;
 // open Microsoft.Quantum.Teleportation;
+open Microsoft.Quantum.Measurement;
+
+operation Teleport(msg : Qubit, there : Qubit) : Unit {
+    use register = Qubit[1] {
+        // Ask for an auxiliary qubit that we can use to prepare
+        // for teleportation.
+        let here = register[0];
+
+        // Create some entanglement that we can use to send our message.
+        H(here);
+        CNOT(here, there);
+
+        // Move our message into the entangled pair.
+        CNOT(msg, here);
+        H(msg);
+
+        // Measure out the entanglement.
+        if (M(msg) == One) { Z(there); }
+        if (M(here) == One) { X(there); }
+
+        // Reset our "here" qubit before releasing it.
+        Reset(here);
+    }
+}
 
 /// Output
 /// The result of a Z-basis measurement on the teleported qubit,
