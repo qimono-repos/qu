@@ -2,7 +2,7 @@
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Diagnostics;
-    open RandomUtils;
+    open TrainingQsharp.RandomUtils;
 
     @EntryPoint()
     operation HelloQuantumWorld() : Int {

@@ -2,7 +2,7 @@ namespace TrainingQsharp {
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Measurement;
     open Microsoft.Quantum.Canon;
-    open RandomUtils;
+    open TrainingQsharp.RandomUtils;
 
     operation MainMeasure() : Int {
 
