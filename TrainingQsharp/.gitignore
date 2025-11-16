@@ -1,0 +1,15 @@
+# .gitignore for TrainingQsharp
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userosscache
+TestResults/
+*.log
+.ionide
+
+# NuGet
+*.nupkg
+# Visual Studio Code
+.vscode/
