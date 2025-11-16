@@ -13,3 +13,4 @@ TestResults/
 *.nupkg
 # Visual Studio Code
 .vscode/
+!.vscode/launch.json
