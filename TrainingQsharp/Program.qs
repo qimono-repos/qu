@@ -2,27 +2,12 @@
     open Microsoft.Quantum.Canon;
     open Microsoft.Quantum.Intrinsic;
     open Microsoft.Quantum.Diagnostics;
+    open RandomUtils;
 
     @EntryPoint()
-    operation HelloQuantumWorld() : Result {
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        Message("-  ");
-        use q = Qubit();
-        H(q);
-        let result = M(q);
-        Reset(q);
-        Message("Hello quantum world!!!!");
-        return result;
+    operation HelloQuantumWorld() : Int {
+        let max = 100;
+        Message($"Generating a random number between 0 and {max}: ");
+        return GenerateRandomNumberInRange(max);
     }
 }
-
