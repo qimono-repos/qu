@@ -12,7 +12,11 @@ namespace TrainingQsharp.RandomUtils {
             set bits += [GenerateRandomBit()];
         }
         let sample = ResultArrayAsInt(bits);
-        return sample > max ? GenerateRandomNumberInRange(max) | sample;
+        if (sample > max) {
+            return GenerateRandomNumberInRange(max);
+        } else {
+            return sample;
+        }
     }
 
     operation GenerateRandomBit() : Result {
