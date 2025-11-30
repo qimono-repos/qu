@@ -7,7 +7,7 @@
     @EntryPoint()
     operation HelloQuantumWorld() : Int {
         let max = 100;
-        Message($"Generating a random number between 0 and {max}: ");
-        return GenerateRandomNumberInRange(max);
+        // Message($"Generating a random number between 0 and {max}: ");
+        // return GenerateRandomNumberInRange(max);
     }
 }
