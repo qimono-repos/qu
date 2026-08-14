@@ -1,0 +1,17 @@
+.venv/
+.uv/
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.python-version
+.DS_Store
+*.png
+!assets/**
+.jupyter/

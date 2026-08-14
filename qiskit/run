@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Run a command with Guix python/uv and the profile on LD_LIBRARY_PATH.
+# Examples:
+#   ./run python basic/logic-gates/logic_gates.py
+#   ./run jupyter notebook
+set -euo pipefail
+cd "$(dirname "$0")"
+exec guix shell -m manifest.scm -- bash -c '
+  set -euo pipefail
+  . ./env.sh
+  exec uv run "$@"
+' bash "$@"
