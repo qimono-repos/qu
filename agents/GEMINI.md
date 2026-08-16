@@ -46,6 +46,7 @@ only (no numbers), for example `qiskit/basic/logic-gates` and
 | `qiskit/basic/toffoli` | CCX / reversible AND |
 | `qiskit/algorithms/shor` | Period finding, factor 15 |
 | `qiskit/algorithms/grover` | Grover search for `\|101>` |
+| `qiskit/algorithms/deutsch-jozsa` | Deutsch–Jozsa, constant vs balanced |
 | `qiskit/hybrid/qaoa` | QAOA MaxCut on a 4-cycle |
 | `qiskit/hybrid/tsp` | 4-city traveling salesperson |
 | `qiskit/hybrid/quantum-machine-learning` | Hybrid VQC on XOR |
@@ -73,13 +74,13 @@ From `qiskit/`, on the Ubuntu + Guix host:
 ```bash
 guix shell -m manifest.scm
 uv sync --python python3
-source env.sh
+exit
 ./run python basic/logic-gates/logic_gates.py
 ./run jupyter notebook
 ```
 
-`env.sh` is required: Guix Python cannot see host `libz` / `libstdc++`,
-which the uv wheels need. Prefer `./run` so that path is set for you.
+Prefer `./run` so `env.sh` runs only in a child process. Do not
+`source env.sh` in an interactive shell (breaks Ubuntu `ls`).
 Use the **Qiskit workspace** Jupyter kernel. No IBM Quantum token.
 
 Expected smoke-test results:

@@ -20,6 +20,7 @@ basic/
 algorithms/
   shor/                     Shor period-finding, factor 15
   grover/                   Grover search
+  deutsch-jozsa/            constant vs balanced, n=2
 hybrid/
   qaoa/                     QAOA MaxCut
   tsp/                      traveling salesperson as a QUBO
@@ -28,24 +29,31 @@ hybrid/
 
 ## Setup
 
-From this directory:
+From **this directory** (`qiskit/`, next to `pyproject.toml`):
 
 ```bash
+export UV_PYTHON_PREFERENCE=only-system   # never let uv download a CPython
 guix shell -m manifest.scm
 uv sync --python python3
-source env.sh
+# still inside the guix shell, still *without* sourcing env.sh:
 python -m ipykernel install --prefix=.venv --name=qiskit-workspace \
     --display-name="Qiskit workspace"
+exit    # leave guix shell; host ls stays healthy
 ```
 
 `uv sync` creates `.venv/` using the Guix `python3` and installs the
-packages listed in `pyproject.toml`. `env.sh` puts the Guix profile on
-`LD_LIBRARY_PATH` so NumPy / Aer (installed by uv as ordinary wheels)
-can see `libz` and `libstdc++`.
+packages listed in `pyproject.toml`.
+
+**Do not `source env.sh` in an interactive shell.** That file puts the
+Guix profile on `LD_LIBRARY_PATH` so NumPy / Aer can see `libz` and
+`libstdc++`. Ubuntu `ls` then loads Guix `libm` and dies with
+`GLIBC_2.43 not found`. `./run` sources `env.sh` only in a throwaway
+child process, then `uv run` — your prompt is never polluted. `exit`
+from a broken `guix shell` restores `ls`.
 
 ## Run a script
 
-Shortcut (enters the Guix shell, sources `env.sh`, then `uv run`):
+Preferred (Guix + `env.sh` + venv, no prompt side effects):
 
 ```bash
 chmod +x run
@@ -54,15 +62,19 @@ chmod +x run
 ./run python basic/toffoli/toffoli.py
 ./run python algorithms/shor/shor.py
 ./run python algorithms/grover/grover.py
+./run python algorithms/deutsch-jozsa/deutsch_jozsa.py
 ./run python hybrid/qaoa/qaoa.py
 ./run python hybrid/tsp/tsp.py
 ./run python hybrid/quantum-machine-learning/vqc.py
 ```
 
-Or, by hand, still inside `guix shell -m manifest.scm` after `source env.sh`:
+Optional conda-style prompt (does **not** set `LD_LIBRARY_PATH`):
 
 ```bash
-uv run python basic/logic-gates/logic_gates.py
+source .venv/bin/activate    # prompt becomes (qiskit-workspace)
+# still run code with ./run, not bare `python`, so Aer sees Guix libs
+./run python basic/logic-gates/logic_gates.py
+deactivate
 ```
 
 ## Notebooks

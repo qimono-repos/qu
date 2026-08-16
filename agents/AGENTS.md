@@ -45,13 +45,14 @@ From `qiskit/`:
 ```bash
 guix shell -m manifest.scm
 uv sync --python python3
-source env.sh
 python -m ipykernel install --prefix=.venv --name=qiskit-workspace \
     --display-name="Qiskit workspace"
+exit
 ```
 
-Guix Python does **not** search `/usr/lib`. Always source `env.sh` (or
-use `./run`) so NumPy / Aer can see `libz` and `libstdc++`:
+Guix Python does **not** search `/usr/lib`. Use `./run` so NumPy / Aer
+see `libz` and `libstdc++`. Do **not** `source env.sh` in an interactive
+shell (Ubuntu `ls` then dies with `GLIBC_2.43 not found`):
 
 ```bash
 ./run python basic/logic-gates/logic_gates.py
@@ -87,6 +88,7 @@ These are easy to get wrong. Follow them exactly.
   qiskit/basic/toffoli
   qiskit/algorithms/shor          # factor 15
   qiskit/algorithms/grover        # search |101>
+  qiskit/algorithms/deutsch-jozsa # constant vs balanced, n=2
   qiskit/hybrid/qaoa              # MaxCut on C4
   qiskit/hybrid/tsp               # 4-city traveling salesperson
   qiskit/hybrid/quantum-machine-learning
@@ -118,7 +120,8 @@ These are easy to get wrong. Follow them exactly.
 There is no repo-wide test runner.
 
 - Qiskit scripts: `qiskit/run python <path>` and confirm the printed
-  result (Shor → `15 = 3 x 5`, Grover peaks on `|101>`, QAOA cut 4,
+  result (Shor → `15 = 3 x 5`, Grover peaks on `|101>`, Deutsch–Jozsa
+  constants give `|00>` / balanced does not, QAOA cut 4,
   TSP length 7, VQC accuracy 1.0 on XOR).
 - Qiskit notebooks: execute with kernel `qiskit-workspace`
   (`jupyter nbconvert --execute --ExecutePreprocessor.kernel_name=qiskit-workspace`).

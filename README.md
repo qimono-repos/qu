@@ -30,6 +30,7 @@ Each topic is its own folder with a `.py` script **and** a matching
 | [`qiskit/basic/toffoli`](qiskit/basic/toffoli) | Toffoli (CCX) |
 | [`qiskit/algorithms/shor`](qiskit/algorithms/shor) | Shor period finding, factor 15 |
 | [`qiskit/algorithms/grover`](qiskit/algorithms/grover) | Grover search |
+| [`qiskit/algorithms/deutsch-jozsa`](qiskit/algorithms/deutsch-jozsa) | Deutsch–Jozsa, constant vs balanced |
 | [`qiskit/hybrid/qaoa`](qiskit/hybrid/qaoa) | QAOA MaxCut |
 | [`qiskit/hybrid/tsp`](qiskit/hybrid/tsp) | Traveling salesperson |
 | [`qiskit/hybrid/quantum-machine-learning`](qiskit/hybrid/quantum-machine-learning) | Hybrid variational classifier |
@@ -41,7 +42,7 @@ Short version:
 cd qiskit
 guix shell -m manifest.scm
 uv sync --python python3
-source env.sh
+exit
 ./run python basic/logic-gates/logic_gates.py
 ./run jupyter notebook
 ```
