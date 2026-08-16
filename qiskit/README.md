@@ -87,6 +87,34 @@ Open the `.ipynb` next to each script and pick the **Qiskit workspace**
 kernel (it is the uv virtualenv). Each notebook is self-contained; it
 does not import the sibling `.py` file.
 
+### VS Code (Jupyter extension)
+
+The notebook JSON only stores a **name** (`qiskit-workspace`). It does
+not contain Qiskit. The packages live in `qiskit/.venv/`.
+
+After `uv sync` on this machine, register the kernel once (not committed):
+
+```bash
+cd qiskit
+.venv/bin/python -m ipykernel install --user --name=qiskit-workspace \
+    --display-name="Qimono Jupyter Kernel"
+```
+
+That writes `~/.local/share/jupyter/kernels/qiskit-workspace/` and
+points at **this** clone’s `.venv`. Reload the VS Code window.
+
+In **Select Another Kernel**:
+
+| Menu | Pick | What you get |
+|------|------|----------------|
+| **Jupyter Kernel…** | **Qiskit workspace** | the venv (Qiskit, Aer, …) |
+| **Python Environments…** | `qiskit/.venv/bin/python` | same venv, unlabeled |
+| Python Environments… | `/gnu/store/…/python3` | Guix Python **without** Qiskit |
+| Python Environments… | `/usr/bin/python3` | Ubuntu OS Python, no Qiskit |
+
+Do **not** pick the raw `/gnu/store` interpreter. It is the same 3.11
+as the venv, but the wheels are only inside `.venv`.
+
 ## Notes
 
 - All circuits run locally on Aer (or exact `Statevector` simulation).
