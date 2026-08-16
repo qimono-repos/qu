@@ -28,6 +28,7 @@ Each topic is its own folder with a `.py` script **and** a matching
 | [`qiskit/basic/logic-gates`](qiskit/basic/logic-gates) | Pauli, H, S, T, CX, SWAP |
 | [`qiskit/basic/superposition`](qiskit/basic/superposition) | Hadamard + CX, Bell pairs |
 | [`qiskit/basic/toffoli`](qiskit/basic/toffoli) | Toffoli (CCX) |
+| [`qiskit/big-o`](qiskit/big-o) | Classical Big O: $O(1)$ vs $O(\\log n)$ |
 | [`qiskit/algorithms/shor`](qiskit/algorithms/shor) | Shor period finding, factor 15 |
 | [`qiskit/algorithms/grover`](qiskit/algorithms/grover) | Grover search |
 | [`qiskit/algorithms/deutsch-jozsa`](qiskit/algorithms/deutsch-jozsa) | Deutsch–Jozsa, constant vs balanced |

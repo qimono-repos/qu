@@ -44,6 +44,7 @@ only (no numbers), for example `qiskit/basic/logic-gates` and
 | `qiskit/basic/logic-gates` | X, Y, Z, H, S, T, CX, SWAP |
 | `qiskit/basic/superposition` | Hadamard + CX, Bell pairs |
 | `qiskit/basic/toffoli` | CCX / reversible AND |
+| `qiskit/big-o` | Classical Big O: O(1) vs O(log n) |
 | `qiskit/algorithms/shor` | Period finding, factor 15 |
 | `qiskit/algorithms/grover` | Grover search for `\|101>` |
 | `qiskit/algorithms/deutsch-jozsa` | Deutsch–Jozsa, constant vs balanced |

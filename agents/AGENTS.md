@@ -86,6 +86,7 @@ These are easy to get wrong. Follow them exactly.
   qiskit/basic/logic-gates
   qiskit/basic/superposition      # Hadamard + CX / Bell
   qiskit/basic/toffoli
+  qiskit/big-o                    # O(1) and O(log n) gallery
   qiskit/algorithms/shor          # factor 15
   qiskit/algorithms/grover        # search |101>
   qiskit/algorithms/deutsch-jozsa # constant vs balanced, n=2

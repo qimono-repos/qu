@@ -17,6 +17,9 @@ basic/
   logic-gates/              Pauli, phase, Hadamard, CX, SWAP
   superposition/            Hadamard + CX (Bell pair)
   toffoli/                  CCX / controlled-controlled-NOT
+big-o/
+  constant.py / .ipynb      O(1) list/dict access
+  logarithm.py / .ipynb     O(log n) binary search
 algorithms/
   shor/                     Shor period-finding, factor 15
   grover/                   Grover search
@@ -60,6 +63,8 @@ chmod +x run
 ./run python basic/logic-gates/logic_gates.py
 ./run python basic/superposition/superposition.py
 ./run python basic/toffoli/toffoli.py
+./run python big-o/constant.py
+./run python big-o/logarithm.py
 ./run python algorithms/shor/shor.py
 ./run python algorithms/grover/grover.py
 ./run python algorithms/deutsch-jozsa/deutsch_jozsa.py
