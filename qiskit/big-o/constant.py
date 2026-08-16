@@ -22,7 +22,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-NS = [2**k for k in range(0, 17)]  # 1 … 65536
+# Linear x so O(log n) looks like the familiar curve, not a ruler.
+NS = [1, *range(100, 2001, 100)]  # 1, 100, 200, … 2000
 
 
 def list_get(items: list[int], index: int) -> int:
@@ -70,8 +71,7 @@ def main() -> None:
     fig, ax = plt.subplots(figsize=(7, 4))
     ax.plot(NS, ones, "o-", label="O(1)  list[i]")
     ax.plot(NS, logs, "s--", label="O(log n)  binary search")
-    ax.set_xscale("log", base=2)
-    ax.set_xlabel("n  (log scale)")
+    ax.set_xlabel("n  (size of the input)")
     ax.set_ylabel("elementary steps")
     ax.set_title("Constant vs logarithmic growth")
     ax.legend()

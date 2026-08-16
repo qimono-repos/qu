@@ -22,7 +22,8 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
-NS = [2**k for k in range(0, 17)]  # 1 … 65536
+# Linear x so O(log n) looks like the familiar curve, not a ruler.
+NS = [1, *range(100, 2001, 100)]  # 1, 100, 200, … 2000
 
 
 def binary_search(sorted_items: list[int], target: int) -> tuple[int | None, int]:
@@ -77,8 +78,7 @@ def main() -> None:
     ax.plot(NS, ones, "o-", label="O(1)  list[i]")
     ax.plot(NS, measured, "s--", label="binary search (measured)")
     ax.plot(NS, theory, "x:", label="ceil(log2 n)")
-    ax.set_xscale("log", base=2)
-    ax.set_xlabel("n  (log scale)")
+    ax.set_xlabel("n  (size of the input)")
     ax.set_ylabel("elementary steps")
     ax.set_title("O(1) vs O(log n) — measured binary search")
     ax.legend()
