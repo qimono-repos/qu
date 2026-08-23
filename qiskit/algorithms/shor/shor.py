@@ -12,7 +12,7 @@ from __future__ import annotations
 import math
 from fractions import Fraction
 
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, transpile
+import qiskit as qk
 from qiskit_aer import AerSimulator
 
 
@@ -26,7 +26,7 @@ def coprime_ok(a: int, n: int) -> None:
         raise ValueError(f"{a} shares a factor with {n}; pick another base")
 
 
-def multiply_amod15(a: int) -> QuantumCircuit:
+def multiply_amod15(a: int) -> qk.QuantumCircuit:
     """Unitary that sends |k> to |a*k mod 15> on four qubits.
 
     Only the bases coprime to 15 that the usual textbook circuit covers
@@ -34,7 +34,7 @@ def multiply_amod15(a: int) -> QuantumCircuit:
     """
     if a not in (2, 4, 7, 8, 11, 13):
         raise ValueError("this demo circuit only knows a in {2,4,7,8,11,13}")
-    u = QuantumCircuit(4, name=f"*{a} mod 15")
+    u = qk.QuantumCircuit(4, name=f"*{a} mod 15")
     if a in (2, 13):
         u.swap(2, 3)
         u.swap(1, 2)
@@ -52,9 +52,9 @@ def multiply_amod15(a: int) -> QuantumCircuit:
     return u
 
 
-def controlled_power(a: int, exponent: int) -> QuantumCircuit:
+def controlled_power(a: int, exponent: int) -> qk.QuantumCircuit:
     """Controlled multiplication by a^{exponent} mod 15."""
-    body = QuantumCircuit(4, name=f"{a}^{exponent} mod 15")
+    body = qk.QuantumCircuit(4, name=f"{a}^{exponent} mod 15")
     for _ in range(exponent):
         body.compose(multiply_amod15(a), inplace=True)
     gate = body.to_gate()
@@ -62,9 +62,9 @@ def controlled_power(a: int, exponent: int) -> QuantumCircuit:
     return gate.control(1)
 
 
-def inverse_qft(n: int) -> QuantumCircuit:
+def inverse_qft(n: int) -> qk.QuantumCircuit:
     """Hand-rolled inverse QFT on n qubits (swap-endian, then inverse phases)."""
-    iqft = QuantumCircuit(n, name="IQFT")
+    iqft = qk.QuantumCircuit(n, name="IQFT")
     for i in range(n // 2):
         iqft.swap(i, n - 1 - i)
     for j in range(n):
@@ -74,11 +74,11 @@ def inverse_qft(n: int) -> QuantumCircuit:
     return iqft
 
 
-def period_finding_circuit(a: int, counting_qubits: int) -> QuantumCircuit:
-    counting = QuantumRegister(counting_qubits, "phase")
-    work = QuantumRegister(4, "work")
-    bits = ClassicalRegister(counting_qubits, "m")
-    qc = QuantumCircuit(counting, work, bits, name="shor15")
+def period_finding_circuit(a: int, counting_qubits: int) -> qk.QuantumCircuit:
+    counting = qk.QuantumRegister(counting_qubits, "phase")
+    work = qk.QuantumRegister(4, "work")
+    bits = qk.ClassicalRegister(counting_qubits, "m")
+    qc = qk.QuantumCircuit(counting, work, bits, name="shor15")
 
     qc.h(counting)
     qc.x(work[0])  # work register starts at |1>
@@ -140,7 +140,7 @@ def main() -> None:
     print(qc.draw(output="text", fold=-1))
 
     backend = AerSimulator()
-    counts = backend.run(transpile(qc, backend), shots=128).result().get_counts()
+    counts = backend.run(qk.transpile(qc, backend), shots=128).result().get_counts()
     print("\nmeasured phases (top 8):")
     for bitstring, shots in sorted(counts.items(), key=lambda kv: -kv[1])[:8]:
         value = int(bitstring, 2)

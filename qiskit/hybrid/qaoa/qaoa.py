@@ -11,8 +11,7 @@ from __future__ import annotations
 import math
 
 import numpy as np
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import Statevector
+import qiskit as qk
 from scipy.optimize import minimize
 
 
@@ -28,9 +27,9 @@ def maxcut_value(bitstring: str, edges: tuple[tuple[int, int], ...]) -> int:
     return sum(bits[i] != bits[j] for i, j in edges)
 
 
-def cost_layer(gamma: float, edges: tuple[tuple[int, int], ...]) -> QuantumCircuit:
+def cost_layer(gamma: float, edges: tuple[tuple[int, int], ...]) -> qk.QuantumCircuit:
     """exp(-i gamma sum_{(i,j) in E} Z_i Z_j) via CNOT-RZ-CNOT."""
-    layer = QuantumCircuit(N_QUBITS, name="cost")
+    layer = qk.QuantumCircuit(N_QUBITS, name="cost")
     for i, j in edges:
         layer.cx(i, j)
         layer.rz(2.0 * gamma, j)
@@ -38,18 +37,18 @@ def cost_layer(gamma: float, edges: tuple[tuple[int, int], ...]) -> QuantumCircu
     return layer
 
 
-def mixer_layer(beta: float) -> QuantumCircuit:
+def mixer_layer(beta: float) -> qk.QuantumCircuit:
     """exp(-i beta sum_i X_i)."""
-    layer = QuantumCircuit(N_QUBITS, name="mixer")
+    layer = qk.QuantumCircuit(N_QUBITS, name="mixer")
     for q in range(N_QUBITS):
         layer.rx(2.0 * beta, q)
     return layer
 
 
-def qaoa_circuit(params: np.ndarray, edges: tuple[tuple[int, int], ...], p: int) -> QuantumCircuit:
+def qaoa_circuit(params: np.ndarray, edges: tuple[tuple[int, int], ...], p: int) -> qk.QuantumCircuit:
     gammas = params[:p]
     betas = params[p:]
-    qc = QuantumCircuit(N_QUBITS, name="qaoa")
+    qc = qk.QuantumCircuit(N_QUBITS, name="qaoa")
     qc.h(range(N_QUBITS))
     for k in range(p):
         qc.compose(cost_layer(float(gammas[k]), edges), inplace=True)
@@ -58,7 +57,7 @@ def qaoa_circuit(params: np.ndarray, edges: tuple[tuple[int, int], ...], p: int)
 
 
 def expected_cut(params: np.ndarray, edges: tuple[tuple[int, int], ...], p: int) -> float:
-    sv = Statevector.from_instruction(qaoa_circuit(params, edges, p))
+    sv = qk.quantum_info.Statevector.from_instruction(qaoa_circuit(params, edges, p))
     probs = sv.probabilities_dict()
     return sum(prob * maxcut_value(bits, edges) for bits, prob in probs.items())
 
@@ -69,7 +68,7 @@ def energy_to_minimize(params: np.ndarray, edges: tuple[tuple[int, int], ...], p
 
 
 def decode_best(params: np.ndarray, edges: tuple[tuple[int, int], ...], p: int) -> tuple[str, int, float]:
-    sv = Statevector.from_instruction(qaoa_circuit(params, edges, p))
+    sv = qk.quantum_info.Statevector.from_instruction(qaoa_circuit(params, edges, p))
     probs = sv.probabilities_dict()
     best_bits, best_p = max(probs.items(), key=lambda kv: kv[1])
     return best_bits, maxcut_value(best_bits, edges), float(best_p)

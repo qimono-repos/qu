@@ -7,33 +7,32 @@ any helpers from the logic-gates or toffoli folders.
 
 from __future__ import annotations
 
-from qiskit import QuantumCircuit, transpile
-from qiskit.quantum_info import Statevector, partial_trace, entropy
+import qiskit as qk
 from qiskit_aer import AerSimulator
 
 
 SHOTS = 4096
 
 
-def single_qubit_superposition() -> QuantumCircuit:
+def single_qubit_superposition() -> qk.QuantumCircuit:
     """Put one qubit on the equator of the Bloch sphere: H|0> = |+>."""
-    qc = QuantumCircuit(1, 1, name="plus")
+    qc = qk.QuantumCircuit(1, 1, name="plus")
     qc.h(0)
     qc.measure(0, 0)
     return qc
 
 
-def bell_phi_plus() -> QuantumCircuit:
+def bell_phi_plus() -> qk.QuantumCircuit:
     """Build |Phi+> = (|00> + |11>)/sqrt(2) with H then CX."""
-    qc = QuantumCircuit(2, name="phi_plus")
+    qc = qk.QuantumCircuit(2, name="phi_plus")
     qc.h(0)
     qc.cx(0, 1)
     return qc
 
 
-def bell_psi_minus() -> QuantumCircuit:
+def bell_psi_minus() -> qk.QuantumCircuit:
     """A different Bell state, built from scratch: (|01> - |10>)/sqrt(2)."""
-    qc = QuantumCircuit(2, name="psi_minus")
+    qc = qk.QuantumCircuit(2, name="psi_minus")
     qc.x(1)
     qc.h(0)
     qc.z(0)
@@ -41,23 +40,23 @@ def bell_psi_minus() -> QuantumCircuit:
     return qc
 
 
-def show_state(title: str, qc: QuantumCircuit) -> None:
-    sv = Statevector.from_instruction(qc)
+def show_state(title: str, qc: qk.QuantumCircuit) -> None:
+    sv = qk.quantum_info.Statevector.from_instruction(qc)
     print(title)
     print(qc.draw(output="text"))
     for bits, amp in sv.to_dict().items():
         if abs(amp) > 1e-12:
             print(f"  {amp.real:+.4f}{amp.imag:+.4f}j  |{bits}>")
-    reduced = partial_trace(sv, [1])
-    print(f"  von Neumann entropy of qubit 0: {entropy(reduced, base=2):.4f} bits")
+    reduced = qk.quantum_info.partial_trace(sv, [1])
+    print(f"  von Neumann entropy of qubit 0: {qk.quantum_info.entropy(reduced, base=2):.4f} bits")
     print()
 
 
-def sample_bell(qc: QuantumCircuit) -> dict[str, int]:
+def sample_bell(qc: qk.QuantumCircuit) -> dict[str, int]:
     measured = qc.copy()
     measured.measure_all()
     backend = AerSimulator()
-    compiled = transpile(measured, backend)
+    compiled = qk.transpile(measured, backend)
     return backend.run(compiled, shots=SHOTS).result().get_counts()
 
 
@@ -79,7 +78,7 @@ def main() -> None:
     print("=== single-qubit superposition (Hadamard) ===")
     print(plus.draw(output="text"))
     backend = AerSimulator()
-    plus_counts = backend.run(transpile(plus, backend), shots=SHOTS).result().get_counts()
+    plus_counts = backend.run(qk.transpile(plus, backend), shots=SHOTS).result().get_counts()
     print(f"shots={SHOTS}: {plus_counts}")
     print("expect roughly half |0> and half |1>\n")
 

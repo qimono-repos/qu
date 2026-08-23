@@ -14,8 +14,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from qiskit import QuantumCircuit, transpile
-from qiskit.quantum_info import Statevector
+import qiskit as qk
 from qiskit_aer import AerSimulator
 
 
@@ -23,34 +22,34 @@ N_BITS = 2
 ANCILLA = N_BITS  # last qubit of the register of size N_BITS + 1
 
 
-def oracle_constant_0() -> QuantumCircuit:
+def oracle_constant_0() -> qk.QuantumCircuit:
     """f(x) = 0. Identity on |x>|y>."""
-    return QuantumCircuit(N_BITS + 1, name="f=0")
+    return qk.QuantumCircuit(N_BITS + 1, name="f=0")
 
 
-def oracle_constant_1() -> QuantumCircuit:
+def oracle_constant_1() -> qk.QuantumCircuit:
     """f(x) = 1. Flip the ancilla for every x."""
-    qc = QuantumCircuit(N_BITS + 1, name="f=1")
+    qc = qk.QuantumCircuit(N_BITS + 1, name="f=1")
     qc.x(ANCILLA)
     return qc
 
 
-def oracle_lsb() -> QuantumCircuit:
+def oracle_lsb() -> qk.QuantumCircuit:
     """Balanced: f(x) = x_0 (Qiskit qubit 0, rightmost bit)."""
-    qc = QuantumCircuit(N_BITS + 1, name="f=x0")
+    qc = qk.QuantumCircuit(N_BITS + 1, name="f=x0")
     qc.cx(0, ANCILLA)
     return qc
 
 
-def oracle_parity() -> QuantumCircuit:
+def oracle_parity() -> qk.QuantumCircuit:
     """Balanced: f(x) = x_0 XOR x_1."""
-    qc = QuantumCircuit(N_BITS + 1, name="f=x0⊕x1")
+    qc = qk.QuantumCircuit(N_BITS + 1, name="f=x0⊕x1")
     qc.cx(0, ANCILLA)
     qc.cx(1, ANCILLA)
     return qc
 
 
-ORACLES: dict[str, tuple[str, Callable[[], QuantumCircuit]]] = {
+ORACLES: dict[str, tuple[str, Callable[[], qk.QuantumCircuit]]] = {
     "constant-0": ("constant", oracle_constant_0),
     "constant-1": ("constant", oracle_constant_1),
     "balanced-lsb": ("balanced", oracle_lsb),
@@ -58,9 +57,9 @@ ORACLES: dict[str, tuple[str, Callable[[], QuantumCircuit]]] = {
 }
 
 
-def deutsch_jozsa_circuit(oracle: QuantumCircuit) -> QuantumCircuit:
+def deutsch_jozsa_circuit(oracle: qk.QuantumCircuit) -> qk.QuantumCircuit:
     """Full DJ circuit: H^n XH-ancilla, U_f, H^n, measure the n inputs."""
-    qc = QuantumCircuit(N_BITS + 1, N_BITS, name="deutsch-jozsa")
+    qc = qk.QuantumCircuit(N_BITS + 1, N_BITS, name="deutsch-jozsa")
     qc.x(ANCILLA)
     qc.h(range(N_BITS + 1))
     qc.compose(oracle, inplace=True)
@@ -69,14 +68,14 @@ def deutsch_jozsa_circuit(oracle: QuantumCircuit) -> QuantumCircuit:
     return qc
 
 
-def all_zero_probability(oracle: QuantumCircuit) -> float:
+def all_zero_probability(oracle: qk.QuantumCircuit) -> float:
     """P(measure 0...0 on the n input bits), from a statevector."""
-    qc = QuantumCircuit(N_BITS + 1)
+    qc = qk.QuantumCircuit(N_BITS + 1)
     qc.x(ANCILLA)
     qc.h(range(N_BITS + 1))
     qc.compose(oracle, inplace=True)
     qc.h(range(N_BITS))
-    probs = Statevector.from_instruction(qc).probabilities_dict()
+    probs = qk.quantum_info.Statevector.from_instruction(qc).probabilities_dict()
     # Little-endian: input bits are the rightmost N_BITS of the (n+1)-bit string.
     p = 0.0
     for bits, pr in probs.items():
@@ -101,7 +100,7 @@ def main() -> None:
         print(f"{name:18} promise={promise:8}  P(|00>)={p0:.3f}  guess={guess:8}  {flag}")
 
         qc = deutsch_jozsa_circuit(oracle)
-        counts = backend.run(transpile(qc, backend), shots=1024).result().get_counts()
+        counts = backend.run(qk.transpile(qc, backend), shots=1024).result().get_counts()
         top = sorted(counts.items(), key=lambda kv: -kv[1])[:4]
         hist = "  ".join(f"|{bits}> {n}" for bits, n in top)
         print(f"{'':18} shots: {hist}")

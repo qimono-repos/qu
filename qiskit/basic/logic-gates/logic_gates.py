@@ -8,12 +8,11 @@ on Aer. Nothing here is imported from the other example folders.
 
 from __future__ import annotations
 
-from qiskit import QuantumCircuit, transpile
-from qiskit.quantum_info import Statevector
+import qiskit as qk
 from qiskit_aer import AerSimulator
 
 
-def ket_label(sv: Statevector, cutoff: float = 1e-10) -> str:
+def ket_label(sv: qk.quantum_info.Statevector, cutoff: float = 1e-10) -> str:
     """Pretty-print a statevector as a sum of computational-basis kets."""
     pieces: list[str] = []
     for bitstring, amp in sv.to_dict().items():
@@ -23,22 +22,22 @@ def ket_label(sv: Statevector, cutoff: float = 1e-10) -> str:
     return " + ".join(pieces) if pieces else "0"
 
 
-def run_statevector(qc: QuantumCircuit) -> Statevector:
-    return Statevector.from_instruction(qc)
+def run_statevector(qc: qk.QuantumCircuit) -> qk.quantum_info.Statevector:
+    return qk.quantum_info.Statevector.from_instruction(qc)
 
 
-def run_shots(qc: QuantumCircuit, shots: int = 1024) -> dict[str, int]:
+def run_shots(qc: qk.QuantumCircuit, shots: int = 1024) -> dict[str, int]:
     measured = qc.copy()
     if measured.num_clbits == 0:
         measured.measure_all()
     backend = AerSimulator()
-    compiled = transpile(measured, backend)
+    compiled = qk.transpile(measured, backend)
     return backend.run(compiled, shots=shots).result().get_counts()
 
 
 def demo_pauli_x() -> None:
     print("=== Pauli-X (NOT) on |0> ===")
-    qc = QuantumCircuit(1)
+    qc = qk.QuantumCircuit(1)
     qc.x(0)
     print(qc.draw(output="text"))
     print("state:", ket_label(run_statevector(qc)))
@@ -47,15 +46,15 @@ def demo_pauli_x() -> None:
 
 def demo_pauli_y_and_z() -> None:
     print("=== Pauli-Y on |0> and Pauli-Z on |+> ===")
-    y_on_zero = QuantumCircuit(1)
+    y_on_zero = qk.QuantumCircuit(1)
     y_on_zero.y(0)
     print("Y|0> =", ket_label(run_statevector(y_on_zero)))
 
-    plus = QuantumCircuit(1)
+    plus = qk.QuantumCircuit(1)
     plus.h(0)
     print("H|0> = |+> =", ket_label(run_statevector(plus)))
 
-    z_on_plus = QuantumCircuit(1)
+    z_on_plus = qk.QuantumCircuit(1)
     z_on_plus.h(0)
     z_on_plus.z(0)
     print("Z|+> = |-> =", ket_label(run_statevector(z_on_plus)))
@@ -64,12 +63,12 @@ def demo_pauli_y_and_z() -> None:
 
 def demo_phase_gates() -> None:
     print("=== S and T phase gates on |+> ===")
-    s_circ = QuantumCircuit(1)
+    s_circ = qk.QuantumCircuit(1)
     s_circ.h(0)
     s_circ.s(0)
     print("S|+> =", ket_label(run_statevector(s_circ)))
 
-    t_circ = QuantumCircuit(1)
+    t_circ = qk.QuantumCircuit(1)
     t_circ.h(0)
     t_circ.t(0)
     print("T|+> =", ket_label(run_statevector(t_circ)))
@@ -78,11 +77,11 @@ def demo_phase_gates() -> None:
 
 def demo_hadamard() -> None:
     print("=== Hadamard on |0> and |1> ===")
-    h0 = QuantumCircuit(1)
+    h0 = qk.QuantumCircuit(1)
     h0.h(0)
     print("H|0> =", ket_label(run_statevector(h0)))
 
-    h1 = QuantumCircuit(1)
+    h1 = qk.QuantumCircuit(1)
     h1.x(0)
     h1.h(0)
     print("H|1> =", ket_label(run_statevector(h1)))
@@ -93,7 +92,7 @@ def demo_hadamard() -> None:
 def demo_cx_truth_table() -> None:
     print("=== CX truth table (control=q1, target=q0; Qiskit prints q1 q0) ===")
     for control, target in ((0, 0), (0, 1), (1, 0), (1, 1)):
-        qc = QuantumCircuit(2)
+        qc = qk.QuantumCircuit(2)
         if target:
             qc.x(0)
         if control:
@@ -106,7 +105,7 @@ def demo_cx_truth_table() -> None:
 
 def demo_swap() -> None:
     print("=== SWAP of |10> ===")
-    qc = QuantumCircuit(2)
+    qc = qk.QuantumCircuit(2)
     qc.x(1)
     print("before:", ket_label(run_statevector(qc)))
     qc.swap(0, 1)

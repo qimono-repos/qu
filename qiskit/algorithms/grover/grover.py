@@ -11,8 +11,7 @@ from __future__ import annotations
 
 import math
 
-from qiskit import QuantumCircuit, transpile
-from qiskit.quantum_info import Statevector
+import qiskit as qk
 from qiskit_aer import AerSimulator
 
 
@@ -20,11 +19,11 @@ N_QUBITS = 3
 MARKED = "101"
 
 
-def phase_oracle(marked: str) -> QuantumCircuit:
+def phase_oracle(marked: str) -> qk.QuantumCircuit:
     """Phase-flip the single marked computational-basis state."""
     if len(marked) != N_QUBITS or any(ch not in "01" for ch in marked):
         raise ValueError(f"marked state must be a {N_QUBITS}-bit string")
-    oracle = QuantumCircuit(N_QUBITS, name="oracle")
+    oracle = qk.QuantumCircuit(N_QUBITS, name="oracle")
     # Qiskit qubit 0 is the rightmost character of the bitstring.
     zeros = [i for i, bit in enumerate(reversed(marked)) if bit == "0"]
     for q in zeros:
@@ -37,9 +36,9 @@ def phase_oracle(marked: str) -> QuantumCircuit:
     return oracle
 
 
-def diffuser(n: int) -> QuantumCircuit:
+def diffuser(n: int) -> qk.QuantumCircuit:
     """Reflection about the uniform superposition: 2|s><s| - I."""
-    diff = QuantumCircuit(n, name="diffuser")
+    diff = qk.QuantumCircuit(n, name="diffuser")
     diff.h(range(n))
     diff.x(range(n))
     diff.h(n - 1)
@@ -50,8 +49,8 @@ def diffuser(n: int) -> QuantumCircuit:
     return diff
 
 
-def grover_circuit(marked: str, iterations: int) -> QuantumCircuit:
-    qc = QuantumCircuit(N_QUBITS, N_QUBITS, name="grover")
+def grover_circuit(marked: str, iterations: int) -> qk.QuantumCircuit:
+    qc = qk.QuantumCircuit(N_QUBITS, N_QUBITS, name="grover")
     qc.h(range(N_QUBITS))
     oracle = phase_oracle(marked)
     spread = diffuser(N_QUBITS)
@@ -63,14 +62,14 @@ def grover_circuit(marked: str, iterations: int) -> QuantumCircuit:
 
 
 def success_probability(marked: str, iterations: int) -> float:
-    qc = QuantumCircuit(N_QUBITS)
+    qc = qk.QuantumCircuit(N_QUBITS)
     qc.h(range(N_QUBITS))
     oracle = phase_oracle(marked)
     spread = diffuser(N_QUBITS)
     for _ in range(iterations):
         qc.compose(oracle, inplace=True)
         qc.compose(spread, inplace=True)
-    probs = Statevector.from_instruction(qc).probabilities_dict()
+    probs = qk.quantum_info.Statevector.from_instruction(qc).probabilities_dict()
     return float(probs.get(marked, 0.0))
 
 
@@ -91,7 +90,7 @@ def main() -> None:
     print(qc.draw(output="text"))
 
     backend = AerSimulator()
-    counts = backend.run(transpile(qc, backend), shots=2048).result().get_counts()
+    counts = backend.run(qk.transpile(qc, backend), shots=2048).result().get_counts()
     print("\nshot histogram:")
     for bits, n in sorted(counts.items(), key=lambda kv: -kv[1]):
         flag = "  <-- marked" if bits == MARKED else ""

@@ -11,8 +11,7 @@ from __future__ import annotations
 import itertools
 
 import numpy as np
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import Statevector
+import qiskit as qk
 from scipy.optimize import minimize
 
 
@@ -90,9 +89,9 @@ def qubo_energy(bits: str) -> float:
     return tour_length(tour)
 
 
-def hardware_efficient_ansatz(params: np.ndarray) -> QuantumCircuit:
+def hardware_efficient_ansatz(params: np.ndarray) -> qk.QuantumCircuit:
     thetas = params.reshape(ANSATZ_LAYERS + 1, N_QUBITS)
-    qc = QuantumCircuit(N_QUBITS, name="tsp_ansatz")
+    qc = qk.QuantumCircuit(N_QUBITS, name="tsp_ansatz")
     for layer in range(ANSATZ_LAYERS):
         for q in range(N_QUBITS):
             qc.ry(float(thetas[layer, q]), q)
@@ -104,14 +103,16 @@ def hardware_efficient_ansatz(params: np.ndarray) -> QuantumCircuit:
 
 
 def expected_energy(params: np.ndarray) -> float:
-    sv = Statevector.from_instruction(hardware_efficient_ansatz(params))
+    sv = qk.quantum_info.Statevector.from_instruction(hardware_efficient_ansatz(params))
     return float(
         sum(prob * qubo_energy(bits) for bits, prob in sv.probabilities_dict().items())
     )
 
 
 def most_likely_tour(params: np.ndarray) -> tuple[str, float, tuple[int, ...] | None, float]:
-    probs = Statevector.from_instruction(hardware_efficient_ansatz(params)).probabilities_dict()
+    probs = qk.quantum_info.Statevector.from_instruction(
+        hardware_efficient_ansatz(params)
+    ).probabilities_dict()
     bits, prob = max(probs.items(), key=lambda kv: kv[1])
     tour = decode_one_hot(bits)
     length = tour_length(tour) if tour is not None else float("nan")

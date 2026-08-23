@@ -9,8 +9,7 @@ The quantum piece never talks to the QAOA or TSP snippets.
 from __future__ import annotations
 
 import numpy as np
-from qiskit import QuantumCircuit
-from qiskit.quantum_info import SparsePauliOp, Statevector
+import qiskit as qk
 from scipy.optimize import minimize
 
 
@@ -27,14 +26,14 @@ LABELS = np.array([0, 1, 1, 0])
 N_QUBITS = 2
 N_PARAMS = 8
 # ZZ is the parity observable: +1 when the two bits agree, -1 when they differ.
-PARITY = SparsePauliOp("ZZ")
+PARITY = qk.quantum_info.SparsePauliOp("ZZ")
 
 
-def feature_map(x: np.ndarray) -> QuantumCircuit:
+def feature_map(x: np.ndarray) -> qk.QuantumCircuit:
     """ZZ feature map: Hadamards, data phases, then an entangling product phase."""
     x0 = np.pi * float(x[0])
     x1 = np.pi * float(x[1])
-    qc = QuantumCircuit(N_QUBITS, name="fmap")
+    qc = qk.QuantumCircuit(N_QUBITS, name="fmap")
     qc.h(0)
     qc.h(1)
     qc.rz(x0, 0)
@@ -45,9 +44,9 @@ def feature_map(x: np.ndarray) -> QuantumCircuit:
     return qc
 
 
-def variational_block(theta: np.ndarray) -> QuantumCircuit:
+def variational_block(theta: np.ndarray) -> qk.QuantumCircuit:
     """Hardware-efficient ansatz: RY layers separated by CX, 8 angles."""
-    qc = QuantumCircuit(N_QUBITS, name="ansatz")
+    qc = qk.QuantumCircuit(N_QUBITS, name="ansatz")
     qc.ry(float(theta[0]), 0)
     qc.ry(float(theta[1]), 1)
     qc.cx(0, 1)
@@ -62,8 +61,8 @@ def variational_block(theta: np.ndarray) -> QuantumCircuit:
     return qc
 
 
-def bound_circuit(x: np.ndarray, theta: np.ndarray) -> QuantumCircuit:
-    qc = QuantumCircuit(N_QUBITS)
+def bound_circuit(x: np.ndarray, theta: np.ndarray) -> qk.QuantumCircuit:
+    qc = qk.QuantumCircuit(N_QUBITS)
     qc.compose(feature_map(x), inplace=True)
     qc.compose(variational_block(theta), inplace=True)
     return qc
@@ -71,7 +70,9 @@ def bound_circuit(x: np.ndarray, theta: np.ndarray) -> QuantumCircuit:
 
 def predict_score(x: np.ndarray, theta: np.ndarray) -> float:
     """Map <ZZ> in [-1, 1] to a [0, 1] XOR score (1 means the bits differ)."""
-    exp_zz = Statevector.from_instruction(bound_circuit(x, theta)).expectation_value(PARITY)
+    exp_zz = qk.quantum_info.Statevector.from_instruction(
+        bound_circuit(x, theta)
+    ).expectation_value(PARITY)
     return 0.5 * (1.0 - float(np.real(exp_zz)))
 
 
