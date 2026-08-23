@@ -13,13 +13,15 @@ this plot is the baseline we will overlay on O(log n).
 
 from __future__ import annotations
 
-import math
-from pathlib import Path
-
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+
+class std:
+    import math
+    import pathlib
 
 
 # Linear x so O(log n) looks like the familiar curve, not a ruler.
@@ -45,7 +47,7 @@ def log2_steps(n: int) -> int:
     """Closed form for binary-search comparisons (ceil log2 n), n>=1."""
     if n <= 1:
         return 1
-    return math.ceil(math.log2(n))
+    return std.math.ceil(std.math.log2(n))
 
 
 def main() -> None:
@@ -77,7 +79,7 @@ def main() -> None:
     ax.legend()
     ax.grid(True, which="both", linestyle=":")
     fig.tight_layout()
-    out = Path(__file__).with_name("constant-vs-log.png")
+    out = std.pathlib.Path(__file__).with_name("constant-vs-log.png")
     fig.savefig(out, dpi=120)
     print(f"\nwrote {out.name}  (gitignored)")
 

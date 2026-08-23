@@ -9,11 +9,13 @@ classical post-processing (continued fractions + gcd) lives here too.
 
 from __future__ import annotations
 
-import math
-from fractions import Fraction
-
 import qiskit as qk
-from qiskit_aer import AerSimulator
+import qiskit_aer as qka
+
+
+class std:
+    import math
+    import fractions
 
 
 N = 15
@@ -22,7 +24,7 @@ COUNTING_QUBITS = 8
 
 
 def coprime_ok(a: int, n: int) -> None:
-    if math.gcd(a, n) != 1:
+    if std.math.gcd(a, n) != 1:
         raise ValueError(f"{a} shares a factor with {n}; pick another base")
 
 
@@ -69,7 +71,7 @@ def inverse_qft(n: int) -> qk.QuantumCircuit:
         iqft.swap(i, n - 1 - i)
     for j in range(n):
         for k in range(j):
-            iqft.cp(-math.pi / 2 ** (j - k), k, j)
+            iqft.cp(-std.math.pi / 2 ** (j - k), k, j)
         iqft.h(j)
     return iqft
 
@@ -96,7 +98,7 @@ def continued_fraction_period(measured: int, counting_qubits: int, n: int) -> in
     if measured == 0:
         return None
     phase = measured / (2**counting_qubits)
-    approx = Fraction(phase).limit_denominator(n)
+    approx = std.fractions.Fraction(phase).limit_denominator(n)
     r = approx.denominator
     if r == 0 or r > n:
         return None
@@ -109,8 +111,8 @@ def factors_from_period(a: int, r: int, n: int) -> tuple[int, int] | None:
     x = pow(a, r // 2, n)
     if x in (1, n - 1):
         return None
-    p = math.gcd(x - 1, n)
-    q = math.gcd(x + 1, n)
+    p = std.math.gcd(x - 1, n)
+    q = std.math.gcd(x + 1, n)
     if p * q == n and 1 < p < n and 1 < q < n:
         return (p, q)
     if 1 < p < n:
@@ -139,7 +141,7 @@ def main() -> None:
     qc = period_finding_circuit(A, COUNTING_QUBITS)
     print(qc.draw(output="text", fold=-1))
 
-    backend = AerSimulator()
+    backend = qka.AerSimulator()
     counts = backend.run(qk.transpile(qc, backend), shots=128).result().get_counts()
     print("\nmeasured phases (top 8):")
     for bitstring, shots in sorted(counts.items(), key=lambda kv: -kv[1])[:8]:

@@ -9,7 +9,7 @@ on Aer. Nothing here is imported from the other example folders.
 from __future__ import annotations
 
 import qiskit as qk
-from qiskit_aer import AerSimulator
+import qiskit_aer as qka
 
 
 def ket_label(sv: qk.quantum_info.Statevector, cutoff: float = 1e-10) -> str:
@@ -30,7 +30,7 @@ def run_shots(qc: qk.QuantumCircuit, shots: int = 1024) -> dict[str, int]:
     measured = qc.copy()
     if measured.num_clbits == 0:
         measured.measure_all()
-    backend = AerSimulator()
+    backend = qka.AerSimulator()
     compiled = qk.transpile(measured, backend)
     return backend.run(compiled, shots=shots).result().get_counts()
 

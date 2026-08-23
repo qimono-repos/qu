@@ -8,11 +8,13 @@ QML examples use different graphs, encodings, and ansatze on purpose.
 
 from __future__ import annotations
 
-import math
-
 import numpy as np
 import qiskit as qk
-from scipy.optimize import minimize
+import scipy as scp
+
+
+class std:
+    import math
 
 
 # Cycle graph C4: vertices 0-1-2-3-0.
@@ -80,7 +82,7 @@ def main() -> None:
     print("optimal cut size on a 4-cycle is 4 (any balanced 2-2 colouring)\n")
 
     rng = np.random.default_rng(7)
-    seed = rng.uniform(0.0, math.pi, size=2 * LAYERS)
+    seed = rng.uniform(0.0, std.math.pi, size=2 * LAYERS)
 
     history: list[float] = []
 
@@ -88,7 +90,7 @@ def main() -> None:
         cut = -float(intermediate_result.fun)
         history.append(cut)
 
-    result = minimize(
+    result = scp.optimize.minimize(
         energy_to_minimize,
         seed,
         args=(EDGES, LAYERS),

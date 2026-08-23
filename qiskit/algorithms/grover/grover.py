@@ -9,10 +9,12 @@ this file; nothing is imported from the other algorithm folders.
 
 from __future__ import annotations
 
-import math
-
 import qiskit as qk
-from qiskit_aer import AerSimulator
+import qiskit_aer as qka
+
+
+class std:
+    import math
 
 
 N_QUBITS = 3
@@ -75,7 +77,7 @@ def success_probability(marked: str, iterations: int) -> float:
 
 def main() -> None:
     n_items = 2**N_QUBITS
-    optimal = int(math.floor(math.pi / 4 * math.sqrt(n_items)))
+    optimal = int(std.math.floor(std.math.pi / 4 * std.math.sqrt(n_items)))
     print(f"Grover search, {n_items} items, marked state |{MARKED}>")
     print(f"optimal iterations ≈ π/4 √N = {optimal}\n")
 
@@ -89,7 +91,7 @@ def main() -> None:
     print("\nfull circuit")
     print(qc.draw(output="text"))
 
-    backend = AerSimulator()
+    backend = qka.AerSimulator()
     counts = backend.run(qk.transpile(qc, backend), shots=2048).result().get_counts()
     print("\nshot histogram:")
     for bits, n in sorted(counts.items(), key=lambda kv: -kv[1]):

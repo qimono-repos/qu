@@ -13,13 +13,15 @@ O(√n) with Grover.
 
 from __future__ import annotations
 
-import math
-from pathlib import Path
-
 import matplotlib
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+
+class std:
+    import math
+    import pathlib
 
 
 # Linear x so O(log n) looks like the familiar curve, not a ruler.
@@ -49,7 +51,7 @@ def binary_search(sorted_items: list[int], target: int) -> tuple[int | None, int
 def log2_steps(n: int) -> int:
     if n <= 1:
         return 1
-    return math.ceil(math.log2(n))
+    return std.math.ceil(std.math.log2(n))
 
 
 def main() -> None:
@@ -84,7 +86,7 @@ def main() -> None:
     ax.legend()
     ax.grid(True, which="both", linestyle=":")
     fig.tight_layout()
-    out = Path(__file__).with_name("logarithm-vs-constant.png")
+    out = std.pathlib.Path(__file__).with_name("logarithm-vs-constant.png")
     fig.savefig(out, dpi=120)
     print(f"\nwrote {out.name}  (gitignored)")
 

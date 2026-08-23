@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import numpy as np
 import qiskit as qk
-from scipy.optimize import minimize
+import scipy as scp
 
 
 # XOR: linearly inseparable, so a classical perceptron cannot solve it.
@@ -101,7 +101,7 @@ def main() -> None:
     seed = rng.uniform(0.0, 2.0 * np.pi, size=N_PARAMS)
     print(f"initial loss={mse_loss(seed):.4f}  acc={accuracy(seed):.2f}")
 
-    result = minimize(
+    result = scp.optimize.minimize(
         mse_loss,
         seed,
         method="COBYLA",

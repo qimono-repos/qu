@@ -9,7 +9,7 @@ stored reversibly. This file does not share code with the other examples.
 from __future__ import annotations
 
 import qiskit as qk
-from qiskit_aer import AerSimulator
+import qiskit_aer as qka
 
 
 def toffoli_on(controls: tuple[int, int], target: int) -> qk.QuantumCircuit:
@@ -60,7 +60,7 @@ def superposition_controls() -> None:
 
     print("\n=== CCX with controls in equal superposition ===")
     print(qc.draw(output="text"))
-    backend = AerSimulator()
+    backend = qka.AerSimulator()
     counts = backend.run(qk.transpile(qc, backend), shots=2048).result().get_counts()
     print("counts (bitstring = q2 q1 q0):")
     for bits, n in sorted(counts.items()):

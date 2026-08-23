@@ -12,10 +12,12 @@ the other algorithm folders.
 
 from __future__ import annotations
 
-from collections.abc import Callable
-
 import qiskit as qk
-from qiskit_aer import AerSimulator
+import qiskit_aer as qka
+
+
+class std:
+    import collections.abc
 
 
 N_BITS = 2
@@ -49,7 +51,7 @@ def oracle_parity() -> qk.QuantumCircuit:
     return qc
 
 
-ORACLES: dict[str, tuple[str, Callable[[], qk.QuantumCircuit]]] = {
+ORACLES: dict[str, tuple[str, std.collections.abc.Callable[[], qk.QuantumCircuit]]] = {
     "constant-0": ("constant", oracle_constant_0),
     "constant-1": ("constant", oracle_constant_1),
     "balanced-lsb": ("balanced", oracle_lsb),
@@ -90,7 +92,7 @@ def verdict(zero_prob: float) -> str:
 
 def main() -> None:
     print(f"Deutsch–Jozsa, n={N_BITS} (one query vs ≤ {2 ** (N_BITS - 1) + 1} classically)\n")
-    backend = AerSimulator()
+    backend = qka.AerSimulator()
 
     for name, (promise, factory) in ORACLES.items():
         oracle = factory()

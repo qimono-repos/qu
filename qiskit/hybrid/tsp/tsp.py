@@ -8,11 +8,13 @@ RY–CZ ladder, not QAOA, so this file stays independent of hybrid/qaoa.
 
 from __future__ import annotations
 
-import itertools
-
 import numpy as np
 import qiskit as qk
-from scipy.optimize import minimize
+import scipy as scp
+
+
+class std:
+    import itertools
 
 
 CITIES = ("depot", "harbor", "market", "tower")
@@ -50,7 +52,7 @@ def tour_length(order: tuple[int, ...]) -> float:
 def classical_best() -> tuple[tuple[int, ...], float]:
     best: tuple[int, ...] | None = None
     best_len = float("inf")
-    for tail in itertools.permutations((1, 2, 3)):
+    for tail in std.itertools.permutations((1, 2, 3)):
         order = (0, *tail)
         length = tour_length(order)
         if length < best_len:
@@ -132,7 +134,7 @@ def main() -> None:
     n_params = (ANSATZ_LAYERS + 1) * N_QUBITS
     seed = rng.normal(0.0, 0.4, size=n_params)
 
-    result = minimize(
+    result = scp.optimize.minimize(
         expected_energy,
         seed,
         method="COBYLA",

@@ -8,7 +8,7 @@ any helpers from the logic-gates or toffoli folders.
 from __future__ import annotations
 
 import qiskit as qk
-from qiskit_aer import AerSimulator
+import qiskit_aer as qka
 
 
 SHOTS = 4096
@@ -55,7 +55,7 @@ def show_state(title: str, qc: qk.QuantumCircuit) -> None:
 def sample_bell(qc: qk.QuantumCircuit) -> dict[str, int]:
     measured = qc.copy()
     measured.measure_all()
-    backend = AerSimulator()
+    backend = qka.AerSimulator()
     compiled = qk.transpile(measured, backend)
     return backend.run(compiled, shots=SHOTS).result().get_counts()
 
@@ -77,7 +77,7 @@ def main() -> None:
     plus = single_qubit_superposition()
     print("=== single-qubit superposition (Hadamard) ===")
     print(plus.draw(output="text"))
-    backend = AerSimulator()
+    backend = qka.AerSimulator()
     plus_counts = backend.run(qk.transpile(plus, backend), shots=SHOTS).result().get_counts()
     print(f"shots={SHOTS}: {plus_counts}")
     print("expect roughly half |0> and half |1>\n")
