@@ -10,6 +10,7 @@ dependencies = [
     "matplotlib>=3.8",
     "notebook>=7.2",
     "numpy>=1.26",
+    "pylatexenc>=2.10",
     "qiskit>=1.2",
     "qiskit-aer>=0.14",
     "scipy>=1.11",
