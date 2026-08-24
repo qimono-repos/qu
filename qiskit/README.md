@@ -39,8 +39,8 @@ export UV_PYTHON_PREFERENCE=only-system   # never let uv download a CPython
 guix shell -m manifest.scm
 uv sync --python python3
 # still inside the guix shell, still *without* sourcing env.sh:
-python -m ipykernel install --prefix=.venv --name=qiskit-workspace \
-    --display-name="Qiskit workspace"
+python -m ipykernel install --prefix=.venv --name=qimono-kernel-python-3 \
+    --display-name="Qimono Kernel UV Python"
 exit    # leave guix shell; host ls stays healthy
 ```
 
@@ -73,10 +73,10 @@ chmod +x run
 ./run python hybrid/quantum-machine-learning/vqc.py
 ```
 
-Optional conda-style prompt (does **not** set `LD_LIBRARY_PATH`):
+Optional activated-shell prompt (does **not** set `LD_LIBRARY_PATH`):
 
 ```bash
-source .venv/bin/activate    # prompt becomes (qiskit-workspace)
+source .venv/bin/activate    # prompt becomes (qimono-kernel-python-3)
 # still run code with ./run, not bare `python`, so Aer sees Guix libs
 ./run python basic/logic-gates/logic_gates.py
 deactivate
@@ -88,31 +88,31 @@ deactivate
 ./run jupyter notebook
 ```
 
-Open the `.ipynb` next to each script and pick the **Qiskit workspace**
-kernel (it is the uv virtualenv). Each notebook is self-contained; it
-does not import the sibling `.py` file.
+Open the `.ipynb` next to each script and pick the **Qimono Kernel UV
+Python** kernel (it is the uv virtualenv). Each notebook is
+self-contained; it does not import the sibling `.py` file.
 
 ### VS Code (Jupyter extension)
 
-The notebook JSON only stores a **name** (`qiskit-workspace`). It does
-not contain Qiskit. The packages live in `qiskit/.venv/`.
+The notebook JSON only stores a **name** (`qimono-kernel-python-3`). It
+does not contain Qiskit. The packages live in `qiskit/.venv/`.
 
 After `uv sync` on this machine, register the kernel once (not committed):
 
 ```bash
 cd qiskit
-.venv/bin/python -m ipykernel install --user --name=qiskit-workspace \
-    --display-name="Qimono Jupyter Kernel"
+.venv/bin/python -m ipykernel install --user --name=qimono-kernel-python-3 \
+    --display-name="Qimono Kernel UV Python"
 ```
 
-That writes `~/.local/share/jupyter/kernels/qiskit-workspace/` and
+That writes `~/.local/share/jupyter/kernels/qimono-kernel-python-3/` and
 points at **this** clone’s `.venv`. Reload the VS Code window.
 
 In **Select Another Kernel**:
 
 | Menu | Pick | What you get |
 |------|------|----------------|
-| **Jupyter Kernel…** | **Qiskit workspace** | the venv (Qiskit, Aer, …) |
+| **Jupyter Kernel…** | **Qimono Kernel UV Python** | the venv (Qiskit, Aer, …) |
 | **Python Environments…** | `qiskit/.venv/bin/python` | same venv, unlabeled |
 | Python Environments… | `/gnu/store/…/python3` | Guix Python **without** Qiskit |
 | Python Environments… | `/usr/bin/python3` | Ubuntu OS Python, no Qiskit |

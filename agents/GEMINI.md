@@ -82,7 +82,8 @@ exit
 
 Prefer `./run` so `env.sh` runs only in a child process. Do not
 `source env.sh` in an interactive shell (breaks Ubuntu `ls`).
-Use the **Qiskit workspace** Jupyter kernel. No IBM Quantum token.
+Use the **Qimono Kernel UV Python** Jupyter kernel
+(`name=qimono-kernel-python-3`). No IBM Quantum token.
 
 Expected smoke-test results:
 

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Run a command with Guix python/uv and the profile on LD_LIBRARY_PATH.
+# Examples:
+#   ./run python cirq-demo.py
+#   ./run jupyter notebook
+set -euo pipefail
+cd "$(dirname "$0")"
+exec guix shell -m manifest.scm -- bash -c '
+  set -euo pipefail
+  # The venv must stay on the Guix Python. A global
+  # UV_PYTHON_PREFERENCE=only-managed (see dotfiles 20-uv-python.zsh)
+  # would make uv swap .venv to its own CPython.
+  export UV_PYTHON_PREFERENCE=only-system
+  . ./env.sh
+  exec uv run "$@"
+' bash "$@"

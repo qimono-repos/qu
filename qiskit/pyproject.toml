@@ -1,5 +1,5 @@
 [project]
-name = "qiskit-workspace"
+name = "qimono-kernel-python-3"
 version = "0.1.0"
 description = "Standalone Qiskit snippets: gates, algorithms, and hybrid workflows"
 readme = "README.md"

@@ -17,7 +17,7 @@ side by side and do **not** share a build.
 | Area | Stack | Where |
 |---|---|---|
 | Q# / Azure Quantum | Q# + C# host, `Microsoft.Quantum.Sdk` 0.28, `net8.0` | `TrainingQsharp/`, `teleportation.qs`, `main.qs`, `porgram.cs` |
-| Cirq | Python demos (Google Cirq, Foxtail device names) | `cirq-demo.py`, `cirq-fox.py`, `cirq-demo.ipynb` |
+| Cirq | Python demos (Google Cirq, Foxtail device names) | `cirq/` |
 | Stim | Error-correction experiments | `Stim/` |
 | Qiskit | Standalone `.py` + `.ipynb` snippets | `qiskit/` |
 
@@ -45,8 +45,8 @@ From `qiskit/`:
 ```bash
 guix shell -m manifest.scm
 uv sync --python python3
-python -m ipykernel install --prefix=.venv --name=qiskit-workspace \
-    --display-name="Qiskit workspace"
+python -m ipykernel install --prefix=.venv --name=qimono-kernel-python-3 \
+    --display-name="Qimono Kernel UV Python"
 exit
 ```
 
@@ -64,11 +64,22 @@ replace Guix Python with a `uv`-downloaded CPython unless the user asks.
 
 Full human docs: [`qiskit/README.md`](../qiskit/README.md).
 
-### Cirq
+### Cirq (Guix Python + uv)
 
-There is no lockfile. Run with whatever Cirq the current environment
-provides (`import cirq`). Newer Cirq splits `cirq.google` into
-`cirq_google`.
+From `cirq/`:
+
+```bash
+guix shell -m manifest.scm
+uv sync --python python3
+python -m ipykernel install --prefix=.venv --name=qimono-kernel-cirq \
+    --display-name="Qimono Kernel UV Cirq"
+exit
+```
+
+Same Guix + uv rules as the Qiskit workspace: run scripts with
+`./run python cirq-demo.py`, notebooks use kernel `qimono-kernel-cirq`.
+Newer Cirq splits `cirq.google` into the separate `cirq_google`
+package; the demo script falls back automatically.
 
 ## Qiskit subproject rules
 
@@ -110,7 +121,8 @@ These are easy to get wrong. Follow them exactly.
 - Python: 4-space indent, type hints on new public functions, run under
   `if __name__ == "__main__":` for scripts.
 - Notebooks: markdown for the idea, code cells self-contained, kernel
-  name `qiskit-workspace`.
+  `name` `qimono-kernel-python-3`, `display_name` "Qimono Kernel UV
+  Python".
 - Q#: namespaces + operations; `@EntryPoint()` marks the runnable
   operation. Target framework is `net8.0`.
 - Do not "clean up" historical typos (`porgram.cs`, `Quantom` in the
@@ -124,8 +136,8 @@ There is no repo-wide test runner.
   result (Shor → `15 = 3 x 5`, Grover peaks on `|101>`, Deutsch–Jozsa
   constants give `|00>` / balanced does not, QAOA cut 4,
   TSP length 7, VQC accuracy 1.0 on XOR).
-- Qiskit notebooks: execute with kernel `qiskit-workspace`
-  (`jupyter nbconvert --execute --ExecutePreprocessor.kernel_name=qiskit-workspace`).
+- Qiskit notebooks: execute with kernel `qimono-kernel-python-3`
+  (`jupyter nbconvert --execute --ExecutePreprocessor.kernel_name=qimono-kernel-python-3`).
 - Q#: `dotnet build` must succeed; `dotnet run` prints simulator output.
 - After a Qiskit dependency change: `uv sync --python python3` and
   re-run the touched scripts.

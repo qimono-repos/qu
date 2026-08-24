@@ -48,6 +48,28 @@ exit
 ./run jupyter notebook
 ```
 
+## Cirq
+
+The [`cirq/`](cirq/) folder is a standalone Python + Jupyter workspace
+for Google Cirq. It uses the same Guix + uv toolchain as `qiskit/`:
+no shared package, no cross-imports.
+
+| Folder | Topic |
+|---|---|
+| [`cirq/cirq-demo.ipynb`](cirq/cirq-demo.ipynb) | Explore `cirq.google` / `cirq_google` |
+| [`cirq/cirq-fox.py`](cirq/cirq-fox.py) | Foxtail device grid |
+
+Short version (full docs in [`cirq/README.md`](cirq/README.md)):
+
+```bash
+cd cirq
+guix shell -m manifest.scm
+uv sync --python python3
+exit
+./run python cirq-demo.py
+./run jupyter notebook
+```
+
 ## Agents
 
 Coding-agent instructions live in [`agents/`](agents/). That folder is
