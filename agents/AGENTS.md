@@ -321,6 +321,9 @@ These are easy to get wrong. Follow them exactly.
   pennylane/features/gradients
   pennylane/features/qml-classifier
   pennylane/features/qml-regression
+  pennylane/machinelearning/qml-classifier
+  pennylane/machinelearning/qml-regression
+  pennylane/machinelearning/quantum-kernel
   pennylane/number-theory/order-finding
   pennylane/number-theory/prime-identification
   pennylane/optimization/qaoa
@@ -329,6 +332,9 @@ These are easy to get wrong. Follow them exactly.
 
 - Use `import pennylane as qml` (modern v0.45+ convention).
 - PennyLane's `qml.QNode` uses `diff_method` for gradient computation.
+- Prefer `diff_method="backprop"` with `default.qubit`; use
+  `qml.math.stack` / `qml.math.mean` (not `np.*`) inside cost
+  functions so autograd traces correctly.
 - Prefer local simulation (`default.qubit` device).
 - Keep instances tiny (2–4 qubits).
 - `.venv/` stays untracked. Commit `pennylane/uv.lock` once created.
