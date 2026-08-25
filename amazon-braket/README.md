@@ -69,6 +69,18 @@ amazon-braket/
 ├── pyproject.toml
 ├── run                          # wrapper (do not source)
 ├── env.sh                       # Guix shell env (do not source interactively)
+├── basic/
+│   ├── computational-basis/     |0> and |1> states, measure
+│   ├── statevectors/            |+> state, inspect amplitudes
+│   ├── logic-gates/             X, Y, Z, H, S, T gates
+│   ├── phase/                   Phase shifts (S, T)
+│   ├── superposition/           Hadamard, measurement statistics
+│   ├── bloch-sphere/            Single-qubit rotations
+│   ├── measurement/             Measure in different bases
+│   ├── tensor-products/         2-qubit tensor product states
+│   ├── controlled-gates/        CNOT, CZ gates
+│   ├── entanglement/            Bell state, correlations
+│   └── toffoli/                 Toffoli gate
 ├── local-simulators/
 │   ├── bell-state/              Bell pair on LocalSVSimulator
 │   └── ghz-state/               4-qubit GHZ on LocalSVSimulator

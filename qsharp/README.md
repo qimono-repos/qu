@@ -62,16 +62,27 @@ qsharp/
 ├── qsharp.csproj              # For resource estimation / Azure Quantum only
 ├── basic/                     # Fundamental quantum concepts
 │   ├── computational-basis/
+│   │   └── computational_basis.qs   # |0⟩ and |1⟩ states, measure, print
 │   ├── statevectors/
+│   │   └── statevectors.qs          # |+⟩, |−⟩ via H, DumpMachine()
 │   ├── logic-gates/
+│   │   └── logic_gates.qs           # X, Y, Z, H, S, T gates
 │   ├── phase/
+│   │   └── phase.qs                 # S, T, S†, T† phase changes
 │   ├── superposition/
+│   │   └── superposition.qs         # Hadamard + 10 repeated measurements
 │   ├── bloch-sphere/
+│   │   └── bloch_sphere.qs          # Rx, Ry, Rz rotations
 │   ├── measurement/
+│   │   └── measurement.qs           # Z-basis vs X-basis measurement
 │   ├── tensor-products/
+│   │   └── tensor_products.qs       # 2-qubit combined states
 │   ├── controlled-gates/
+│   │   └── controlled_gates.qs      # CNOT, CZ, CH
 │   ├── entanglement/
+│   │   └── entanglement.qs          # Bell states |Φ+⟩, |Φ−⟩, |Ψ+⟩
 │   └── toffoli/
+│       └── toffoli.qs               # CCX (Toffoli) gate, AND demo
 └── algorithms/                # Quantum algorithms
     ├── oracle-basics/
     ├── phase-kickback/

@@ -37,6 +37,24 @@ to run CUDA-Q workloads remotely.
 
 ## Workspace
 
+### Basic
+
+| Topic | What it shows |
+|---|---|
+| `basic/computational-basis/` | |0> and |1> states |
+| `basic/statevectors/` | Inspect amplitudes with `cudaq.get_state()` |
+| `basic/logic-gates/` | X, Y, Z, H, S, T gates |
+| `basic/phase/` | Rz phase shifts |
+| `basic/superposition/` | Hadamard, measurement statistics |
+| `basic/bloch-sphere/` | Rx, Ry, Rz rotations |
+| `basic/measurement/` | |+>, |->, |i> in computational basis |
+| `basic/tensor-products/` | 2-qubit product states |
+| `basic/controlled-gates/` | CNOT, CZ gates |
+| `basic/entanglement/` | Bell state, 3-qubit GHZ |
+| `basic/toffoli/` | Toffoli (CCX) gate |
+
+### Examples
+
 | Topic | What it shows |
 |---|---|
 | `bell-state/` | Bell state with `@cudaq.kernel` + `cudaq.sample()` |
@@ -45,6 +63,7 @@ to run CUDA-Q workloads remotely.
 Run any script:
 
 ```bash
+python basic/computational-basis/computational_basis.py
 python bell-state/bell_state.py
 ```
 

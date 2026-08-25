@@ -8,6 +8,22 @@ Standalone Google Cirq snippets for this repo. Separate from the
 | [`cirq-demo.py`](cirq-demo.py) / [`cirq-demo.ipynb`](cirq-demo.ipynb) | Explore `cirq.google` / `cirq_google` |
 | [`cirq-fox.py`](cirq-fox.py) | Foxtail device grid |
 
+### Basic topics
+
+| Topic | Files | Description |
+|---|---|---|
+| [`basic/computational-basis/`](basic/computational-basis/) | `.py` + `.ipynb` | \|0⟩ and \|1⟩ states, measurement |
+| [`basic/statevectors/`](basic/statevectors/) | `.py` + `.ipynb` | \|+⟩ state, state vector inspection, amplitudes |
+| [`basic/logic-gates/`](basic/logic-gates/) | `.py` + `.ipynb` | X, Y, Z, H, S, T gates |
+| [`basic/phase/`](basic/phase/) | `.py` + `.ipynb` | Global and relative phase |
+| [`basic/superposition/`](basic/superposition/) | `.py` + `.ipynb` | Hadamard, 50/50 statistics, Bell pair |
+| [`basic/bloch-sphere/`](basic/bloch-sphere/) | `.py` + `.ipynb` | Bloch sphere coordinates, rotations |
+| [`basic/measurement/`](basic/measurement/) | `.py` + `.ipynb` | Z and X basis measurement |
+| [`basic/tensor-products/`](basic/tensor-products/) | `.py` + `.ipynb` | 2-qubit tensor product states |
+| [`basic/controlled-gates/`](basic/controlled-gates/) | `.py` + `.ipynb` | CNOT, CZ with truth tables |
+| [`basic/entanglement/`](basic/entanglement/) | `.py` + `.ipynb` | Bell states, correlation measurements |
+| [`basic/toffoli/`](basic/toffoli/) | `.py` + `.ipynb` | CCX gate, 3-qubit truth table |
+
 ## Setup
 
 From **this directory** (`cirq/`, next to `pyproject.toml`):

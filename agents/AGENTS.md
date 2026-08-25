@@ -353,6 +353,17 @@ These are easy to get wrong. Follow them exactly.
 - Current topics:
 
   ```
+  amazon-braket/basic/computational-basis
+  amazon-braket/basic/statevectors
+  amazon-braket/basic/logic-gates
+  amazon-braket/basic/phase
+  amazon-braket/basic/superposition
+  amazon-braket/basic/bloch-sphere
+  amazon-braket/basic/measurement
+  amazon-braket/basic/tensor-products
+  amazon-braket/basic/controlled-gates
+  amazon-braket/basic/entanglement
+  amazon-braket/basic/toffoli
   amazon-braket/local-simulators/bell-state
   amazon-braket/local-simulators/ghz-state
   amazon-braket/hybrid/variational
@@ -361,7 +372,7 @@ These are easy to get wrong. Follow them exactly.
 - ALL examples use `LocalSimulator()` — no AWS credentials required.
 - Use `from braket.circuit import Circuit` and
   `from braket.devices import LocalSimulator`.
-- Keep circuits small (2–4 qubits).
+- Keep circuits small (1–3 qubits for basic, 2–4 for others).
 - `.venv/` stays untracked. Commit `amazon-braket/uv.lock` once created.
 
 ## Bloqade subproject rules
@@ -394,6 +405,17 @@ These are easy to get wrong. Follow them exactly.
   ```
   pyquil/basics/bell-state
   pyquil/basics/ghz-state
+  pyquil/basics/computational-basis
+  pyquil/basics/statevectors
+  pyquil/basics/logic-gates
+  pyquil/basics/phase
+  pyquil/basics/superposition
+  pyquil/basics/bloch-sphere
+  pyquil/basics/measurement
+  pyquil/basics/tensor-products
+  pyquil/basics/controlled-gates
+  pyquil/basics/entanglement
+  pyquil/basics/toffoli
   pyquil/circuits/parameterized
   ```
 
@@ -410,6 +432,17 @@ These are easy to get wrong. Follow them exactly.
 - Current topics:
 
   ```
+  cuda-q/basic/computational-basis
+  cuda-q/basic/statevectors
+  cuda-q/basic/logic-gates
+  cuda-q/basic/phase
+  cuda-q/basic/superposition
+  cuda-q/basic/bloch-sphere
+  cuda-q/basic/measurement
+  cuda-q/basic/tensor-products
+  cuda-q/basic/controlled-gates
+  cuda-q/basic/entanglement
+  cuda-q/basic/toffoli
   cuda-q/bell-state
   cuda-q/gpu-simulation
   ```
