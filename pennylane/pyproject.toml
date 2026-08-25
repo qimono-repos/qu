@@ -1,0 +1,11 @@
+[project]
+name = "qimono-kernel-pennylane"
+version = "0.1.0"
+description = "Standalone PennyLane snippets: QML, gradients, and framework interop"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.uv]
+dynamic-dependencies = ["requirements.txt"]
+package = false

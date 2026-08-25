@@ -1,0 +1,5 @@
+cirq>=1.4
+cirq-google>=1.4
+numpy>=1.26
+ipykernel>=6.29
+notebook>=7.2

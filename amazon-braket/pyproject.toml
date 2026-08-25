@@ -1,0 +1,11 @@
+[project]
+name = "qimono-kernel-braket"
+version = "0.1.0"
+description = "Standalone Amazon Braket snippets: local simulators and hybrid workflows"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.uv]
+dynamic-dependencies = ["requirements.txt"]
+package = false

@@ -4,18 +4,8 @@ version = "0.1.0"
 description = "Standalone Qiskit snippets: gates, algorithms, and hybrid workflows"
 readme = "README.md"
 requires-python = ">=3.11"
-dependencies = [
-    "ipykernel>=6.29",
-    "jupyter>=1.1",
-    "matplotlib>=3.8",
-    "notebook>=7.2",
-    "numpy>=1.26",
-    "pylatexenc>=2.10",
-    "qiskit>=1.2",
-    "qiskit-aer>=0.14",
-    "scipy>=1.11",
-    "sympy>=1.14.0",
-]
+dynamic = ["dependencies"]
 
 [tool.uv]
+dynamic-dependencies = ["requirements.txt"]
 package = false

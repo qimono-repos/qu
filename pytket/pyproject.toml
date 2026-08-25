@@ -1,0 +1,11 @@
+[project]
+name = "qimono-kernel-pytket"
+version = "0.1.0"
+description = "Standalone pytket snippets: circuit optimization across frameworks"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.uv]
+dynamic-dependencies = ["requirements.txt"]
+package = false

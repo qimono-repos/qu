@@ -1,0 +1,11 @@
+[project]
+name = "qimono-kernel-bloqade"
+version = "0.1.0"
+description = "Standalone Bloqade snippets: neutral atom quantum computing"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.uv]
+dynamic-dependencies = ["requirements.txt"]
+package = false

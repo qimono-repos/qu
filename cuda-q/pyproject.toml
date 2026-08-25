@@ -1,0 +1,11 @@
+[project]
+name = "qimono-kernel-cudaq"
+version = "0.1.0"
+description = "Standalone CUDA-Q snippets: GPU-accelerated quantum computing"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.uv]
+dynamic-dependencies = ["requirements.txt"]
+package = false

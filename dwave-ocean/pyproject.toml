@@ -1,0 +1,11 @@
+[project]
+name = "qimono-kernel-dwave"
+version = "0.1.0"
+description = "Standalone D-Wave Ocean snippets: quantum annealing and optimization"
+readme = "README.md"
+requires-python = ">=3.11"
+dynamic = ["dependencies"]
+
+[tool.uv]
+dynamic-dependencies = ["requirements.txt"]
+package = false

@@ -1,0 +1,6 @@
+bloqade>=0.15
+numpy>=1.26
+matplotlib>=3.8
+ipykernel>=6.29
+jupyter>=1.1
+notebook>=7.2
