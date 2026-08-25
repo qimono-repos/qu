@@ -445,6 +445,13 @@ These are easy to get wrong. Follow them exactly.
   cuda-q/basic/toffoli
   cuda-q/bell-state
   cuda-q/gpu-simulation
+  cuda-q/algorithms/oracle-basics
+  cuda-q/algorithms/phase-kickback
+  cuda-q/algorithms/deutsch-jozsa
+  cuda-q/algorithms/qft
+  cuda-q/algorithms/phase-estimation
+  cuda-q/algorithms/shor
+  cuda-q/algorithms/grover
   ```
 
 - CUDA-Q runs **natively on Ubuntu** with NVIDIA GPU, not through Guix.
@@ -456,7 +463,7 @@ These are easy to get wrong. Follow them exactly.
 ## QClojure subproject rules
 
 - Clojure, not Python. No `.ipynb` files.
-- Files live in `qclojure/examples/`.
+- Files live in `qclojure/examples/` and `qclojure/algorithms/`.
 - Current examples:
 
   ```
@@ -465,9 +472,21 @@ These are easy to get wrong. Follow them exactly.
   qclojure/examples/qaoa.clj
   ```
 
+- Algorithm topics (each self-contained, loadable via `load-file`):
+
+  ```
+  qclojure/algorithms/oracle_basics/oracle_basics.clj
+  qclojure/algorithms/phase_kickback/phase_kickback.clj
+  qclojure/algorithms/deutsch_jozsa/deutsch_jozsa.clj
+  qclojure/algorithms/qft/qft.clj
+  qclojure/algorithms/phase_estimation/phase_estimation.clj
+  qclojure/algorithms/shor/shor.clj
+  qclojure/algorithms/grover/grover.clj
+  ```
+
 - Requires JVM 21+ and Leiningen (both in shared Guix manifest).
-- Run with `lein repl` then `(load-file "examples/bell_state.clj")`.
-- Use QClojure API: `qclojure.quantum.*` namespace.
+- Run with `lein repl` then `(load-file "algorithms/grover/grover.clj")`.
+- Use QClojure API: `org.soulspace.qclojure.*` namespaces.
 
 ## Code style
 
@@ -495,7 +514,7 @@ There is no repo-wide test runner.
 - Bloqade scripts: `bloqade/run python <path>` and confirm printed result.
 - PyQuil scripts: `pyquil/run python <path>` (requires quilc + QVM running).
 - CUDA-Q scripts: `python cuda-q/<path>` (requires NVIDIA GPU).
-- QClojure: `cd qclojure && lein repl`, then load example files.
+- QClojure: `cd qclojure && lein repl`, then load example or algorithm files.
 - Q#: `qsharp run qsharp/main.qs` prints simulator output.
 - After any dependency change: `uv sync --python python3` in the
   affected workspace and re-run the touched scripts.
