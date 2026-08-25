@@ -34,11 +34,18 @@ And notebooks with:
 ./run jupyter notebook
 ```
 
+## Start here
+
+**New to D-Wave?** Begin with `basics/annealing-vs-gate/` — it directly compares
+quantum annealing (D-Wave Ocean) with gate-model QAOA (Qiskit) on the same
+MaxCut problem. This is the best way to understand the fundamental difference
+between the two quantum computing paradigms before diving into the rest.
+
 ## Topics
 
 ```
+basics/annealing-vs-gate  Start here — annealing vs gate-model comparison
 basics/bqm-formulation    Binary Quadratic Model construction
-basics/annealing-vs-gate  Simulated annealer vs Qiskit QAOA
 problems/max-cut          MaxCut on C4 with Ocean
 problems/tsp              4-city TSP as QUBO
 ```

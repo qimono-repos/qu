@@ -2,9 +2,24 @@
 
 Quantum programs in Microsoft's standalone Q# language.
 
-## Quick start
+## Modern standalone Q#
 
-Modern Q# runs as a standalone compiler — no `.csproj` or C# host needed.
+This workspace uses **modern standalone Q#** — no `.csproj` or C# host needed.
+Each `.qs` file is self-contained with `import Std.*` namespaces and top-level
+`operation` declarations.
+
+### What was removed
+
+The legacy files (`Main.qs`, `Program.qs`, `porgram.cs`, `qsharp.sln`) have been
+removed. They used the old Q# SDK syntax (`namespace TrainingQsharp { ... }` with
+`open Microsoft.Quantum.*` imports) and required a C# host project. Modern Q#
+does not need any of that.
+
+### Run a program
+
+```bash
+qsharp run main.qs
+```
 
 ### Install Q# (pick one)
 
@@ -13,7 +28,7 @@ Modern Q# runs as a standalone compiler — no `.csproj` or C# host needed.
 pip install qsharp
 ```
 
-**Option B — npm (if you prefer Node):**
+**Option B — npm:**
 ```bash
 npm install -g qsharp
 ```
@@ -24,7 +39,6 @@ Download from https://github.com/microsoft/qdk/releases
 ### Install .NET 10 SDK (for resource estimation / Azure Quantum)
 
 > .NET 10 is currently **preview** (stable: November 2026).
-> Use .NET 9 LTS if you need stability today.
 
 **Flatpak (preferred):**
 ```bash
@@ -32,44 +46,48 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 flatpak install flathub com.microsoft.dotnet.Extension.Sdk
 ```
 
-**Microsoft install script (more reliable on Ubuntu):**
+**Microsoft install script:**
 ```bash
 wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh
 chmod +x dotnet-install.sh
 ./dotnet-install.sh --channel 10.0 --install-dir $HOME/.dotnet
 ```
 
-### Run a program
+## Project structure
 
-```bash
-qsharp run main.qs
-# or
-python -c "import qsharp; qsharp.reload(); from qsharp import Result; print(Result)"
 ```
-
-## Files
-
-| File | Description |
-|---|---|
-| `main.qs` | Hello World — random bit via superposition |
-| `teleportation.qs` | Quantum teleportation protocol |
-| `BellState_OmegaPlus.qs` | Bell state preparation |
-| `Main.qs` | Legacy entry point (old SDK syntax) |
-| `Program.qs` | Legacy C# host bridge |
-| `porgram.cs` | Historical C# host (typo preserved) |
-
-## Legacy files
-
-`Main.qs`, `Program.qs`, `BellState_OmegaPlus.qs`, `MeasureOneQubit.qs`,
-and `RandomUtils.qs` use the **old** Q# SDK syntax
-(`Microsoft.Quantum.*` namespaces). They still compile with the legacy
-SDK but are not idiomatic modern Q#. The newer files (`main.qs`,
-`teleportation.qs`) use the modern `import Std.*` syntax.
+qsharp/
+├── main.qs                    # Hello World — random bit via superposition
+├── teleportation.qs           # Quantum teleportation protocol
+├── qsharp.csproj              # For resource estimation / Azure Quantum only
+├── basic/                     # Fundamental quantum concepts
+│   ├── computational-basis/
+│   ├── statevectors/
+│   ├── logic-gates/
+│   ├── phase/
+│   ├── superposition/
+│   ├── bloch-sphere/
+│   ├── measurement/
+│   ├── tensor-products/
+│   ├── controlled-gates/
+│   ├── entanglement/
+│   └── toffoli/
+└── algorithms/                # Quantum algorithms
+    ├── oracle-basics/
+    ├── phase-kickback/
+    ├── deutsch-jozsa/
+    ├── qft/
+    ├── phase-estimation/
+    ├── shor/
+    └── grover/
+```
 
 ## Notes
 
 - All circuits run on the **Q# simulator** — no Azure Quantum token needed.
-- The `.csproj` and `.sln` files are kept for reference but are not
-  required for modern standalone Q#.
+- The `.csproj` file is kept for reference but is **not required** for modern
+  standalone Q#. It is only needed for resource estimation or Azure Quantum
+  submission.
 - To target real Azure Quantum hardware, use the `qsharp` package's
   Azure Quantum submission API.
+- Q# uses **big-endian** qubit ordering (qubit 0 is the leftmost bit).
