@@ -79,6 +79,31 @@ chmod +x dotnet-install.sh
 
 Full docs: [`qsharp/README.md`](../qsharp/README.md).
 
+Current Q# topics:
+
+```
+qsharp/basic/computational-basis
+qsharp/basic/statevectors
+qsharp/basic/superposition
+qsharp/basic/phase
+qsharp/basic/measurement
+qsharp/basic/tensor-products
+qsharp/basic/controlled-gates
+qsharp/basic/entanglement
+qsharp/basic/toffoli
+qsharp/basic/bloch-sphere
+qsharp/basic/logic-gates
+qsharp/algorithms/oracle-basics
+qsharp/algorithms/phase-kickback
+qsharp/algorithms/deutsch-jozsa
+qsharp/algorithms/qft
+qsharp/algorithms/phase-estimation
+qsharp/algorithms/shor
+qsharp/algorithms/grover
+qsharp/optimization/qaoa
+qsharp/optimization/tsp
+```
+
 ### Qiskit (Guix Python + uv)
 
 From `qiskit/`:
@@ -298,6 +323,8 @@ These are easy to get wrong. Follow them exactly.
   pennylane/features/qml-regression
   pennylane/number-theory/order-finding
   pennylane/number-theory/prime-identification
+  pennylane/optimization/qaoa
+  pennylane/optimization/tsp
   ```
 
 - Use `import pennylane as qml` (modern v0.45+ convention).
@@ -336,6 +363,7 @@ These are easy to get wrong. Follow them exactly.
   ```
   dwave-ocean/basics/bqm-formulation
   dwave-ocean/basics/annealing-vs-gate
+  dwave-ocean/basics/adiabatic
   dwave-ocean/problems/max-cut
   dwave-ocean/problems/tsp
   ```
@@ -482,6 +510,13 @@ These are easy to get wrong. Follow them exactly.
   qclojure/algorithms/phase_estimation/phase_estimation.clj
   qclojure/algorithms/shor/shor.clj
   qclojure/algorithms/grover/grover.clj
+  ```
+
+- Optimization topics:
+
+  ```
+  qclojure/optimization/qaoa/qaoa.clj
+  qclojure/optimization/tsp/tsp.clj
   ```
 
 - Requires JVM 21+ and Leiningen (both in shared Guix manifest).

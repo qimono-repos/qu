@@ -70,6 +70,13 @@ lein run -m algorithms.shor
 | `algorithms/shor/shor.clj` | Shor's algorithm factoring 15 = 3 × 5 |
 | `algorithms/grover/grover.clj` | Grover search on 3 qubits for \|101⟩ |
 
+## Optimization
+
+| File | What it does |
+|---|---|
+| `optimization/qaoa/qaoa.clj` | QAOA for MaxCut on a 4-vertex cycle graph |
+| `optimization/tsp/tsp.clj` | 4-city TSP as QUBO with penalty constraints |
+
 ## Useful links
 
 * QClojure source: <https://github.com/lsolbach/qclojure>

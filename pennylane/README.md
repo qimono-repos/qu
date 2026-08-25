@@ -38,6 +38,9 @@ features/
 number-theory/
   order-finding/          period finding via QFT (core of Shor)
   prime-identification/   VQE-style prime identification
+optimization/
+  qaoa/                   QAOA MaxCut on C4
+  tsp/                    4-city TSP with variational circuit
 ```
 
 ## Notebooks

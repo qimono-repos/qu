@@ -91,6 +91,9 @@ qsharp/
     ├── phase-estimation/
     ├── shor/
     └── grover/
+└── optimization/              # Combinatorial optimisation
+    ├── qaoa/
+    └── tsp/
 ```
 
 ## Notes

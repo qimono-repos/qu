@@ -45,6 +45,7 @@ between the two quantum computing paradigms before diving into the rest.
 
 ```
 basics/annealing-vs-gate  Start here — annealing vs gate-model comparison
+basics/adiabatic           Adiabatic quantum computation concept demo
 basics/bqm-formulation    Binary Quadratic Model construction
 problems/max-cut          MaxCut on C4 with Ocean
 problems/tsp              4-city TSP as QUBO
