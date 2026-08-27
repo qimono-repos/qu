@@ -4,8 +4,18 @@ version = "0.1.0"
 description = "Standalone pytket snippets: circuit optimization across frameworks"
 readme = "README.md"
 requires-python = ">=3.11"
-dynamic = ["dependencies"]
+dependencies = [
+    "pytket>=1.30",
+    "pytket-qiskit>=0.60",
+    "qiskit>=2.0",
+    "pennylane>=0.45",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "ipykernel>=6.29",
+    "jupyter>=1.1",
+    "notebook>=7.2",
+]
 
 [tool.uv]
-dynamic-dependencies = ["requirements.txt"]
 package = false
+python-preference = "only-system"

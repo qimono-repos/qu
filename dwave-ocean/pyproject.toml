@@ -4,8 +4,19 @@ version = "0.1.0"
 description = "Standalone D-Wave Ocean snippets: quantum annealing and optimization"
 readme = "README.md"
 requires-python = ">=3.11"
-dynamic = ["dependencies"]
+dependencies = [
+    "dwave-ocean-sdk>=6.0",
+    "dimod>=0.12",
+    "dwave-system>=1.0",
+    "dwave-neal>=0.6",
+    "networkx>=3.0",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "ipykernel>=6.29",
+    "jupyter>=1.1",
+    "notebook>=7.2",
+]
 
 [tool.uv]
-dynamic-dependencies = ["requirements.txt"]
 package = false
+python-preference = "only-system"

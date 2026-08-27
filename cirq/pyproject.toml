@@ -4,8 +4,14 @@ version = "0.1.0"
 description = "Standalone Cirq snippets: Google device exploration and demos"
 readme = "README.md"
 requires-python = ">=3.11"
-dynamic = ["dependencies"]
+dependencies = [
+    "cirq>=1.4",
+    "cirq-google>=1.4",
+    "numpy>=1.26",
+    "ipykernel>=6.29",
+    "notebook>=7.2",
+]
 
 [tool.uv]
-dynamic-dependencies = ["requirements.txt"]
 package = false
+python-preference = "only-system"

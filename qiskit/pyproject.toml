@@ -19,3 +19,4 @@ dependencies = [
 
 [tool.uv]
 package = false
+python-preference = "only-system"

@@ -4,8 +4,15 @@ version = "0.1.0"
 description = "Standalone Bloqade snippets: neutral atom quantum computing"
 readme = "README.md"
 requires-python = ">=3.11"
-dynamic = ["dependencies"]
+dependencies = [
+    "bloqade>=0.15",
+    "numpy>=1.26",
+    "matplotlib>=3.8",
+    "ipykernel>=6.29",
+    "jupyter>=1.1",
+    "notebook>=7.2",
+]
 
 [tool.uv]
-dynamic-dependencies = ["requirements.txt"]
 package = false
+python-preference = "only-system"

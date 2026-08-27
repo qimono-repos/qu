@@ -1,6 +1,0 @@
-# Machine-level uv behavior for this workspace.
-#
-# The venv must be built on the Guix Python (PATH inside `guix shell`),
-# never on uv-managed CPython downloads: mixing a non-Guix interpreter
-# with the Guix LD_LIBRARY_PATH set by ./run segfaults at startup.
-python-preference = "only-system"
