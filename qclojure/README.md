@@ -13,9 +13,12 @@ frontend work — same JVM, different language.
 * **JVM 21+** (`java -version` should show 21 or later)
 * **[Leiningen](https://leiningen.org/)** (`lein version`)
 
+Both are provided by the workspace-local Guix manifest.
+
 ## Setup
 
 ```bash
+guix shell -m manifest.scm
 lein deps
 ```
 

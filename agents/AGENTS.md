@@ -44,7 +44,10 @@ guix shell -m manifest.scm
 
 Per-workspace `manifest.scm` files are **symlinks** to `../manifest.scm`.
 The manifest provides: `python`, `uv`, `gcc-toolchain`, `pkg-config`,
-`openssl`, `zlib`, `openjdk21`, `leiningen`, `rust`, `cargo`.
+`openssl`, `zlib`.
+
+QClojure is the exception — it uses its own local `manifest.scm` with
+`openjdk` + `leiningen` only (no Python needed).
 
 CUDA-Q is the exception — it runs natively on Ubuntu with NVIDIA drivers,
 not through Guix.
@@ -263,12 +266,14 @@ See [`cuda-q/README.md`](../cuda-q/README.md) for full GPU setup.
 From `qclojure/`:
 
 ```bash
+guix shell -m manifest.scm
 lein deps
 lein repl
 user=> (load-file "examples/bell_state.clj")
 ```
 
-Requires JVM 21+ and Leiningen (both provided by shared Guix manifest).
+Requires JVM 21+ and Leiningen (both provided by the workspace-local
+`qclojure/manifest.scm`, not the shared Python manifest).
 
 Full docs: [`qclojure/README.md`](../qclojure/README.md).
 
