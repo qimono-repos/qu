@@ -44,7 +44,9 @@ guix shell -m manifest.scm
 
 Per-workspace `manifest.scm` files are **symlinks** to `../manifest.scm`.
 The manifest provides: `python`, `uv`, `gcc-toolchain`, `pkg-config`,
-`openssl`, `zlib`.
+`openssl`, `zlib`, plus human tooling: `tectonic` (TeX engine),
+`pandoc` (markdown conversion), `vscodium` (libre VSCode fork), and
+`neovim`. First realization downloads ~200 MB of substitutes.
 
 QClojure is the exception — it uses its own local `manifest.scm` with
 `openjdk` + `leiningen` only (no Python needed).
