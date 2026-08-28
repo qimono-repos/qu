@@ -63,6 +63,7 @@ error-correction/ stabilizer-codes, surface-codes, noise-models
 | Topic | Where |
 |---|---|
 | [`big-o/`](big-o/) | Root — O(1) and O(log n) in Q# and Clojure |
+| [`math/`](math/) | Root — shared math backbone (complex numbers, linear algebra, bra-ket algebra), referenced by every stack |
 | [`utilities/python/visualization/`](utilities/python/visualization/) | Root — shared circuit/Bloch/distribution savers |
 
 ## Setup (Python stacks)
