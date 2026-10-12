@@ -164,3 +164,21 @@ Albert clarified that this is a living, append-only log (bitacora), not a static
 Albert, ChatGPT, and Claude collaborate against the same live working branch: `trunk`. Before each write, fetch the latest version from `trunk` and append to it so teammates' changes are preserved. Commit directly to `trunk`. No feature branch or pull request is needed for this text-only experiment.
 
 The log records the real experience and cost of completing Week 2, including setup and coordination performed inside the session window. Use Git commit metadata for committed checkpoint timestamps; label user-reported clock readings with their timezone. Never invent timestamps or equate elapsed wall-clock time with focused study time.
+
+
+### Checkpoint — Monday 2026-10-12, learner reports 10:12 UTC−3 (Claude)
+Timestamp: this entry's Git commit metadata (UTC) is authoritative.
+
+**Session 1 end time: NOT recorded.** The last Sunday-night checkpoint is the 22:00–22:22 UTC−3 work on Section 1 (Q1 Physical Requirements loaded, no-spoiler). Work resumed Monday morning; Claude chat message timestamps show the first Monday message at 06:59 UTC−3. The overnight gap is not study time. If Albert supplies the Sunday stop time, append it as a correction.
+
+**Monday work so far (chat timestamps, UTC−3):**
+- 06:59 · Recovered the lost forum-participation discussion (ChatGPT handoff); record delivered in chat.
+- 07:02 → ~07:55 · Forum post: Discussion "Randomized Benchmarking and Gate Fidelity". Radar chart `assets/Figure_gate_fidelity.png`. Final thesis: RB vs process tomography are complementary on paper but compete for lab time and budget in practice. Citation Magesan et al. PRL 106, 180504 (2011).
+- Voice session: moonshot conversation (coherent vs incoherent errors, T1/T2, crosstalk, leakage); `moonshot.md` created ~11:24 UTC.
+- Q1 Physical Requirements: correct (A, C). Logged in `week-2-quiz-log.md`.
+- 08:45 → 08:53 · Section 3 Q1 NV Centers: correct 1/1, first attempt (B, C, D) after catching a C-without-B miss against transcript Q1M2V4a. Logged in `week-2-quiz-log.md` (commit 1533779, 11:53:19Z).
+- 10:12 · Learner checkpoint. Now on Discussion: "Trapped Ions in Quantum Computation".
+
+**Breaks:** a gap exists between 08:53 and 10:12 UTC−3; whether it was a break or offline video watching is not confirmed.
+
+**Next:** Trapped-ion forum post, then remaining Qubit Modalities practice questions (neutral atoms / trapped ions / superconducting + other).
