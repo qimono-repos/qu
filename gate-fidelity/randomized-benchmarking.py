@@ -90,7 +90,7 @@ def make_radar_chart(data_path: Path, output: Path, show: bool = False) -> Path:
 
     ax.set_xticks(angles)
     labels = [
-        label.replace(" ", "\\n", 1) if len(label) > 17 else label
+        label.replace(" ", "\n", 1) if len(label) > 17 else label
         for label in criteria
     ]
     ax.set_xticklabels(labels, color="#f1eef6", fontsize=11)
