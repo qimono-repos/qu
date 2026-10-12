@@ -1,0 +1,6 @@
+criterion,randomized_benchmarking,process_tomography,higher_is_better,notes
+Efficiency,5,2,true,"Illustrative rating: course describes randomized benchmarking as much more efficient"
+Scalability,5,1,true,"Illustrative rating: process tomography scales poorly as qubit count grows"
+Diagnostic detail,2,5,true,"Illustrative rating: tomography gives a more complete error characterization; randomized benchmarking gives aggregate error"
+SPAM-error robustness,4,1,true,"Illustrative rating: randomized benchmarking is described as insensitive to state-preparation and measurement errors"
+Routine monitoring,4,3,true,"Illustrative judgment for discussion; not directly quantified by the course material"
