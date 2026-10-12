@@ -1,76 +1,99 @@
 #!/usr/bin/env python3
-"""Generate a radar-chart comparison of process tomography and randomized benchmarking.
+"""Generate a Qimono radar chart comparing gate-fidelity methods.
 
-Qimono / Gate Fidelity study artifact
-=====================================
+The ratings are qualitative teaching illustrations, not experimental data or a
+universal ranking. Edit aspects.csv to change criteria and scores.
 
-IMPORTANT INTERPRETATION NOTE
------------------------------
-The scores in this chart are qualitative, illustrative ratings used to visualize
-the trade-offs described in the MIT xPRO Introduction to Quantum Computing
-course material. They are NOT experimental measurements, a literature-derived
-benchmark, or a universal ranking of these techniques. In particular, the chart
-does not imply a fixed qubit-count threshold at which one method should replace
-the other.
-
-Course-grounded distinctions represented here:
-- Randomized benchmarking (RB) is presented as more efficient than process
-  tomography and insensitive to state-preparation and measurement (SPAM) errors.
-- RB estimates aggregate/net error but does not identify individual error
-  channels.
-- Process tomography provides a more complete characterization of gate errors,
-  but its measurement requirements scale poorly as the number of qubits grows,
-  and it is sensitive to state-preparation and measurement errors.
-
-Install dependencies:
+Install:
     python -m pip install matplotlib numpy
 
-Run:
+Run from the repository root:
     python gate-fidelity/randomized-benchmarking.py
+    python gate-fidelity/randomized-benchmarking.py --data gate-fidelity/aspects.csv
     python gate-fidelity/randomized-benchmarking.py --output gate-fidelity/radar.png
 """
 
 from __future__ import annotations
 
 import argparse
+import csv
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 
 
-# Qualitative ratings on a 1-5 scale, based on the course's stated trade-offs.
-# These are author-assigned illustrative values, not measured facts.
-CRITERIA = [
-    "Efficiency",
-    "Scalability",
-    "Diagnostic\ndetail",
-    "SPAM-error\nrobustness",
-    "Routine\nmonitoring",
-]
-
-RATINGS = {
-    "Randomized benchmarking": [5, 5, 2, 4, 4],
-    "Process tomography": [2, 1, 5, 1, 3],
+METHODS = {
+    "Randomized benchmarking": {
+        "column": "randomized_benchmarking",
+        "color": "#f27fc3",
+        "alpha": 0.19,
+    },
+    "Process tomography": {
+        "column": "process_tomography",
+        "color": "#5b9cff",
+        "alpha": 0.17,
+    },
 }
 
 
-def make_radar_chart(output: Path, show: bool = False) -> Path:
-    """Create and save the radar chart, returning the output path."""
-    count = len(CRITERIA)
+def load_chart_data(data_path: Path) -> tuple[list[str], dict[str, list[float]]]:
+    """Read criteria and scores from CSV; reject malformed or out-of-range data."""
+    criteria: list[str] = []
+    ratings = {name: [] for name in METHODS}
+    required = {"criterion", *(item["column"] for item in METHODS.values())}
+
+    with data_path.open("r", newline="", encoding="utf-8-sig") as csv_file:
+        reader = csv.DictReader(csv_file)
+        if reader.fieldnames is None or not required.issubset(reader.fieldnames):
+            missing = required - set(reader.fieldnames or [])
+            raise ValueError(
+                f"CSV is missing required column(s): {', '.join(sorted(missing))}"
+            )
+
+        for line_number, row in enumerate(reader, start=2):
+            criterion = (row.get("criterion") or "").strip()
+            if not criterion:
+                raise ValueError(f"CSV line {line_number}: criterion cannot be blank.")
+
+            criteria.append(criterion)
+            for method, settings in METHODS.items():
+                try:
+                    score = float(row[settings["column"]])
+                except (TypeError, ValueError) as exc:
+                    raise ValueError(
+                        f"CSV line {line_number}: {settings['column']} must be numeric."
+                    ) from exc
+                if not 1 <= score <= 5:
+                    raise ValueError(
+                        f"CSV line {line_number}: scores must be between 1 and 5."
+                    )
+                ratings[method].append(score)
+
+    if len(criteria) < 3:
+        raise ValueError("A radar chart needs at least three criteria.")
+    return criteria, ratings
+
+
+def make_radar_chart(data_path: Path, output: Path, show: bool = False) -> Path:
+    """Generate and save the chart from CSV data."""
+    criteria, ratings = load_chart_data(data_path)
+    count = len(criteria)
     angles = np.linspace(0, 2 * np.pi, count, endpoint=False).tolist()
     closed_angles = angles + angles[:1]
 
     fig, ax = plt.subplots(figsize=(9.5, 7.2), subplot_kw={"polar": True})
     fig.patch.set_facecolor("#08090d")
     ax.set_facecolor("#08090d")
-
-    # Start at the top and proceed clockwise.
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
 
     ax.set_xticks(angles)
-    ax.set_xticklabels(CRITERIA, color="#f1eef6", fontsize=11)
+    labels = [
+        label.replace(" ", "\\n", 1) if len(label) > 17 else label
+        for label in criteria
+    ]
+    ax.set_xticklabels(labels, color="#f1eef6", fontsize=11)
     ax.tick_params(axis="x", pad=16)
     ax.set_ylim(0, 5)
     ax.set_yticks([1, 2, 3, 4, 5])
@@ -80,42 +103,26 @@ def make_radar_chart(output: Path, show: bool = False) -> Path:
     ax.spines["polar"].set_color("#686371")
     ax.spines["polar"].set_alpha(0.5)
 
-    styles = {
-        "Randomized benchmarking": {
-            "color": "#f27fc3",
-            "marker": "o",
-            "linewidth": 2.6,
-            "alpha": 0.19,
-        },
-        "Process tomography": {
-            "color": "#5b9cff",
-            "marker": "o",
-            "linewidth": 2.6,
-            "alpha": 0.17,
-        },
-    }
-
-    for name, values in RATINGS.items():
-        style = styles[name]
+    for name, settings in METHODS.items():
+        values = ratings[name]
         closed_values = values + values[:1]
         ax.plot(
             closed_angles,
             closed_values,
-            color=style["color"],
-            linewidth=style["linewidth"],
-            marker=style["marker"],
+            color=settings["color"],
+            linewidth=2.6,
+            marker="o",
             markersize=6,
             label=name,
         )
         ax.fill(
             closed_angles,
             closed_values,
-            color=style["color"],
-            alpha=style["alpha"],
+            color=settings["color"],
+            alpha=settings["alpha"],
         )
 
-    # Reserve explicit space so the title/subtitle cannot collide with the
-    # top (Efficiency) axis label.
+    # Reserve space so the title and top axis label do not collide.
     fig.subplots_adjust(top=0.78, bottom=0.27, left=0.08, right=0.92)
     fig.suptitle(
         "GATE FIDELITY  /  METHOD TRADE-OFFS",
@@ -163,7 +170,13 @@ def make_radar_chart(output: Path, show: bool = False) -> Path:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Generate the Qimono gate-fidelity radar chart."
+        description="Generate the Qimono gate-fidelity radar chart from CSV."
+    )
+    parser.add_argument(
+        "--data",
+        type=Path,
+        default=Path(__file__).with_name("aspects.csv"),
+        help="CSV data file (default: aspects.csv next to this script).",
     )
     parser.add_argument(
         "--output",
@@ -181,7 +194,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    output = make_radar_chart(args.output, show=args.show)
+    output = make_radar_chart(args.data, args.output, show=args.show)
     print(f"Radar chart saved to: {output}")
 
 
