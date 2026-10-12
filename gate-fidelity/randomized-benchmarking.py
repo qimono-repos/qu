@@ -114,16 +114,19 @@ def make_radar_chart(output: Path, show: bool = False) -> Path:
             alpha=style["alpha"],
         )
 
+    # Reserve explicit space so the title/subtitle cannot collide with the
+    # top (Efficiency) axis label.
+    fig.subplots_adjust(top=0.78, bottom=0.27, left=0.08, right=0.92)
     fig.suptitle(
         "GATE FIDELITY  /  METHOD TRADE-OFFS",
         color="#f7f3fb",
         fontsize=16,
         fontweight="bold",
-        y=0.98,
+        y=0.975,
     )
     fig.text(
         0.5,
-        0.925,
+        0.90,
         "Qualitative teaching illustration • scale 1–5 • higher is more favorable",
         ha="center",
         color="#bdb8c7",
@@ -132,7 +135,7 @@ def make_radar_chart(output: Path, show: bool = False) -> Path:
 
     legend = ax.legend(
         loc="lower center",
-        bbox_to_anchor=(0.5, -0.20),
+        bbox_to_anchor=(0.5, -0.16),
         ncol=2,
         frameon=False,
         fontsize=10,
@@ -143,7 +146,7 @@ def make_radar_chart(output: Path, show: bool = False) -> Path:
 
     fig.text(
         0.5,
-        0.025,
+        0.035,
         "Illustrative ratings, not experimental data. Suitability depends on the measurement goal and setup.",
         ha="center",
         color="#ffb98f",
