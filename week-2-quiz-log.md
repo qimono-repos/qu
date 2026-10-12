@@ -19,13 +19,19 @@ Reasoning lock: DiVincenzo's seven split into five physical-realization + two co
 
 ## Section 3 — Qubit Modalities (Electron and Nuclear Spins)
 
-### Q: NV-center advantages (multiple-answer) — OPEN, no-spoiler mode, awaiting Albert's picks
+### Q1: NV Centers (graded practice, select all that apply) — RESOLVED, CORRECT (1/1, first attempt)
 
-Prompt: "The advantage(s) of qubits made using nitrogen-vacancy (NV) centers as presented in the video are:"
+Prompt: "The advantage(s) of qubits made using nitrogen vacancy centers, as presented in the video, are ___."
 
-1. They leverage advanced silicon fabrication technology
-2. They have the ability to interconvert stationary and flying qubits
-3. They have the ability to communicate quantum information
-4. They can be operated at room temperature
+- A. They leverage advanced silicon fabrication technology — NOT an NV advantage (video assigns this to quantum dots and phosphorus-doped silicon)
+- B. They have the ability to interconvert stationary and flying qubits — CORRECT
+- C. They have the ability to communicate quantum information — CORRECT
+- D. They can be operated at room temperature — CORRECT (video: "albeit with some lower coherence")
 
-Status: Albert is watching the videos. Claude is holding its answer. To be resolved and logged on his return.
+Final answer: B, C, D. Submitted 2026-10-12 ~08:53 UTC−3. Result: 1/1 on attempt 1 of 3.
+
+Failure caught before submit: Albert's first saved pick was C + D only (B omitted). Claude flagged that C without B is inconsistent (interconversion is the mechanism behind communication). Verified against transcript Q1M2V4a_REV_02_2026_FINAL-en.txt, lines 100–104, which names both "interconversion and communication" as NV advantages in one sentence.
+
+Lesson: when a question says "as presented in the video", the video's wording is the answer key. Option A is a near-neighbor distractor: true of a different spin modality in the same video.
+
+Quiz-likely details from the same video: NV centers "really shine as quantum sensors" of magnetic fields; main challenge is scalability (can't place high-coherence NVs precisely for large arrays). Quantum dots: silicon fab, small area, gate-voltage control; challenge = many gates per qubit, needs 3D integration. Phosphorus donors: silicon fab + very long coherence; challenge = ~10 nm dopant spacing, crosstalk, precise implantation. Nuclear spins: extremely long coherence, slow gates.
