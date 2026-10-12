@@ -154,3 +154,13 @@ _(none yet)_
 
 ### Repo note
 Claude's earlier copies of this log went to `main` (commits 97ecc3e, 1043549) before `trunk` was designated the working branch. `trunk` is canonical. `main` and `master` still exist; deleting/merging them is the learner's call.
+
+
+### Bitacora convention clarification
+Timestamp: use this entry's Git commit metadata (UTC) as the authoritative timestamp.
+
+Albert clarified that this is a living, append-only log (bitacora), not a static document to rewrite. Preserve all existing entries. Add new timestamped commentaries, observations, insights, decisions, corrections, and checkpoints at the bottom in chronological order. Correct historical statements by appending a dated correction, not by silently editing the earlier entry.
+
+Albert, ChatGPT, and Claude collaborate against the same live working branch: `trunk`. Before each write, fetch the latest version from `trunk` and append to it so teammates' changes are preserved. Commit directly to `trunk`. No feature branch or pull request is needed for this text-only experiment.
+
+The log records the real experience and cost of completing Week 2, including setup and coordination performed inside the session window. Use Git commit metadata for committed checkpoint timestamps; label user-reported clock readings with their timezone. Never invent timestamps or equate elapsed wall-clock time with focused study time.
