@@ -51,6 +51,8 @@ Learner-provided start reference for this Week 2 session:
 
 The learner later reported the current time as **09:38 Halifax/Paramaribo**. The date was not explicitly restated in that message. Do not calculate elapsed session time from the 21:00 start until the date and whether this is the same uninterrupted session can be established. If the 09:38 reading refers to the following local morning, it is 12 hours 38 minutes after 21:00 by wall clock, but that is not evidence of 12 hours 38 minutes of studying. Confirm the date and interpret the continuity carefully before logging a precise interval.
 
+> **Resolved (Claude, see Session Log):** "09:38" = **21:38 the same evening** (2026-10-11 local / 2026-10-12 00:38 UTC). Evidence: the commit creating this file (218a777) is stamped 2026-10-12T00:39:35Z, i.e. 21:39 local — one minute after the reported reading. The learner also confirmed a continuous session starting at 21:00.
+
 Use date-specific timezone offsets for all future conversions. Halifax and Paramaribo should not be treated as interchangeable year-round without verifying the date-specific offset. In this stated session reference, the learner explicitly specified UTC−3.
 
 ## Required question-defense protocol
@@ -113,3 +115,42 @@ At every model handoff, update this file or provide a compact appended session e
 - next action.
 
 Do not reset the session clock during a model handoff. Do not infer elapsed study time from wall-clock time alone.
+
+---
+
+## Session Log
+
+### Timing method (agreed with learner)
+
+Every checkpoint is committed to this file on `trunk`. **The git commit timestamp is the authoritative clock**; times written in entries are learner reports. If they disagree, the commit timestamp wins for elapsed-time math. Both Claude and ChatGPT write here — read the latest version before editing, append rather than overwrite.
+
+**What counts as study time:** everything inside the session window, including building the "lab" (handoff specs, chatting with Claude/ChatGPT, this log). The learner deliberately did the setup inside the window, not beforehand, so the measured total reflects the real cost of a course week.
+
+Videos were binge-watched before this session and are not counted in this session's clock.
+
+### Session 1 — 2026-10-11 local (UTC−3) / 2026-10-12 UTC
+
+| Event | Local (UTC−3) | UTC | Source |
+|---|---|---|---|
+| Session start (confirmed actual) | 2026-10-11 21:00 | 2026-10-12 00:00 | learner |
+| Lab setup with Claude + ChatGPT (counts as study) | 21:00 → ~21:43 | 00:00 → ~00:43 | learner + commits |
+| ChatGPT creates this file on trunk | 21:39:35 | 00:39:35 | commit 218a777 |
+| Learner reports "09:38" (= 21:38) | 21:38 | 00:38 | learner |
+| Start confirmed as continuous; Claude log merged here | ~21:44 | ~00:44 | this commit |
+
+Course status at session open (from screenshot): Key Images ✅ · Discussion: Randomized Benchmarking ✅ · Qubit Robustness, Trapped-Ion, Superconducting partially complete · What Makes a Good Qubit Modality?, Qubit Modalities, Week 2 Quiz not started.
+
+Next planned break: ~00:00 local (≈3 h after start).
+Next: Section 1 — What Makes a Good Qubit Modality? (1 question).
+
+#### Questions reviewed
+_(none yet)_
+
+#### Misconceptions / failure log
+_(none yet)_
+
+#### Breaks
+_(none yet)_
+
+### Repo note
+Claude's earlier copies of this log went to `main` (commits 97ecc3e, 1043549) before `trunk` was designated the working branch. `trunk` is canonical. `main` and `master` still exist; deleting/merging them is the learner's call.
