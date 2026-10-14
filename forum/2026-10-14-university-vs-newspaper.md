@@ -6,6 +6,7 @@
 - Status: draft, ready to post
 - Origin: Albert's question, "are we asking MIT to do the role of the newspapers?"
 - Revision: proposal paragraph rewritten after reading the Module 2 transcripts (V11a to V13b)
+- Revision 2 (2026-10-14): source attribution corrected. The V10 intro is Prof. William Oliver and is current for 2026; only the Lincoln Lab videos (V11-V13) are the 2018 recordings. The public post must target only the clearly-dated 2018 figures, never the intro.
 
 ---
 
@@ -23,7 +24,14 @@ Curious what others think: where's the line for you between content that's genui
 
 ---
 
-## Footnote map (Module 2 transcripts, video order)
+## Source attribution (read before editing this post)
+
+Two different speakers, two different dates. Do NOT conflate them.
+
+- **V10, Superconducting Qubits: Introduction** - Prof. William Oliver. Current for 2026 (file is REV_2026_v2). His figures (e.g. processors "pushing 1,000 qubits") are his present-day framing, not stale. **The public post must never point at the intro as outdated.** Treating the professor's current line as a dated error would be both inaccurate and a bad look on his own board.
+- **V11-V13, the fabrication / scaling videos** - Lincoln Lab scientists, clearly recorded in 2018 (several already carry explicit "As of 2018" stamps). These, and only these, are what the public post targets.
+
+## Footnote map (public: Lincoln Lab 2018 videos only)
 
 Source: course transcripts Q1M2V11a to Q1M2V13b (REV_2026, English .srt), read 2026-10-14.
 
@@ -41,9 +49,16 @@ V13a at 00:00 is the highest-priority spot: it opens the scaling video, frames e
 
 V11a, V12c: no time-sensitive figures needing a stamp (V11a's dilution-fridge note is already phrased as a historical change).
 
+## Private notes - DO NOT raise on the forum
+
+These concern Prof. Oliver's intro (V10), which is current. Challenging the professor's own framing publicly is not worth it. Hold these; raise only through a proper channel if ever, never as a board callout.
+
+- V10 ~01:36: "pushing 1,000 qubits" is fine. IBM Condor crossed 1,121 superconducting qubits in Dec 2023; the field has since prioritized error rates over raw count (IBM Heron, 133 qubits, ~3x lower error). So the number is not stale, it is just no longer the headline metric.
+- V10 ~01:49: the intro frames quantum supremacy as a future event reached at ~1,000 qubits. Strictly, supremacy was first claimed by Google in 2019 with a 53-qubit processor. This may be a deliberate pedagogical framing by Oliver rather than an error. Note only; not a public correction.
+
 ## Notes for verification
 
-- The post itself only proposes date stamps, so it is safe to publish as is.
+- The post itself only proposes date stamps on the 2018 Lincoln Lab videos, so it is safe to publish as is.
 - The "today" numbers in the footnote column (coherence of several hundred µs, two-qubit fidelity 99.7% to 99.9%, 1,000+ physical qubits) are from general knowledge, not sources checked on 2026-10-14. Source them before sending the table to course staff.
 
 ## Idea behind it
@@ -51,4 +66,4 @@ V11a, V12c: no time-sensitive figures needing a stamp (V11a's dilution-fridge no
 - Durable content (frameworks, criteria, mechanisms) is the university's job; freshness is the press's job.
 - Distinction that keeps the complaint valid: "old" vs "old in a way that builds a wrong mental model".
 - Finding from the transcripts: the course already date-stamps some figures; the fix is consistency, not a new practice.
-- Proposal: date-stamp the expiring figures, don't rewrite the module.
+- Proposal: date-stamp the expiring 2018 figures, don't rewrite the module, and don't touch the professor's current intro.
