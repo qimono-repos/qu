@@ -1,7 +1,7 @@
 # Forum reply: superconducting module thread (teammates)
 
 - Course: MIT xPRO QCFx1, superconducting qubits module discussion
-- Type: reply in Leonardo Devia's thread
+- Type: reply in thread
 - Drafted: 2026-10-14, Albert with Claude
 - Status: draft, ready to post
 
