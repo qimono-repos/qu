@@ -1,4 +1,4 @@
-# Forum reply: superconducting module thread (Leonardo, Cyril, Kirubakaran)
+# Forum reply: superconducting module thread (teammates)
 
 - Course: MIT xPRO QCFx1, superconducting qubits module discussion
 - Type: reply in Leonardo Devia's thread
