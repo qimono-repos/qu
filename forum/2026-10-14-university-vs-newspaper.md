@@ -7,6 +7,7 @@
 - Origin: Albert's question, "are we asking MIT to do the role of the newspapers?"
 - Revision: proposal paragraph rewritten after reading the Module 2 transcripts (V11a to V13b)
 - Revision 2 (2026-10-14): source attribution corrected. The V10 intro is Prof. William Oliver and is current for 2026; only the Lincoln Lab videos (V11-V13) are the 2018 recordings. The public post must target only the clearly-dated 2018 figures, never the intro.
+- Revision 3 (2026-10-14): added four-tier remediation ladder and edX platform mechanics. Tier 3 (Lincoln Lab first-party data) is the primary ask.
 
 ---
 
@@ -49,6 +50,26 @@ V13a at 00:00 is the highest-priority spot: it opens the scaling video, frames e
 
 V11a, V12c: no time-sensitive figures needing a stamp (V11a's dilution-fridge note is already phrased as a historical change).
 
+## Remediation options for course staff (cheapest first)
+
+Four tiers, ordered from "anyone can do it today" to "only MIT can do it, and it's hard". The point of the ladder: each tier delivers most of the next tier's value at a fraction of the cost, and Tier 3 is the one worth asking for.
+
+**Tier 1 - Students gather the secondary data (our side of the bargain).**
+We collect current public figures from IBM, Google, IonQ, D-Wave: coherence times, gate fidelities, qubit counts, with sources and dates. This is the "newspaper" layer - public, second-hand, and we can do it without troubling anyone at MIT. We hand it over ready to paste.
+
+**Tier 2 - Staff add text/transcript footnotes (platform-native, no footage touched).**
+Two edX mechanisms already support this:
+- A **Text (HTML) component** placed above or below the video in the unit (Studio > the unit page > Add New Component). Same component type the course already uses elsewhere. Instant, zero editing.
+- A **transcript correction**: in the video component, the transcript menu (...) has a Replace option to upload an edited .srt for the same language, and there is now an in-browser transcript editor, so a dated on-screen line can be fixed without the download-edit-reupload round trip. Audio and footage stay untouched.
+
+**Tier 3 - PRIMARY ASK: Lincoln Lab supplies updated first-party data (text only, no filming).**
+This is the real value and the whole reason to involve MIT. Everything in Tier 1 is second-hand. Lincoln Lab is an MIT-operated FFRDC, and the V11-V13 presenters are speaking from inside their own 70,000 sq ft microelectronics lab. When a Lincoln Lab scientist states "our devices now reach X coherence", that is a primary measurement from their own machinery - not a citation of someone else's chip. No amount of us scraping press releases reproduces it. The ask is narrow and cheap: a short written update on the current state of their hardware and research (current coherence numbers, where the 3D-stack / TSV / SFQ work went, current wafer and device status). No camera, no re-entering the lab, no disrupting people at work - just their current numbers in text. This gives MIT nearly all the value of fresh footage at almost none of the cost.
+
+**Tier 4 - Fresh footage from the Lab (gold standard, aspirational last resort).**
+New video shot inside Lincoln Lab. Highest value, but the hardest: it means a presenter re-entering a working laboratory where real research is ongoing, plus production. The original 2018 presenter may no longer be there. Worth naming as the ideal, but explicitly the last resort precisely because of that difficulty.
+
+Framing for the post: we happily own Tiers 1-2; Tier 3 is what we're really asking MIT for; Tier 4 is the dream, not the demand.
+
 ## Private notes - DO NOT raise on the forum
 
 These concern Prof. Oliver's intro (V10), which is current. Challenging the professor's own framing publicly is not worth it. Hold these; raise only through a proper channel if ever, never as a board callout.
@@ -56,14 +77,21 @@ These concern Prof. Oliver's intro (V10), which is current. Challenging the prof
 - V10 ~01:36: "pushing 1,000 qubits" is fine. IBM Condor crossed 1,121 superconducting qubits in Dec 2023; the field has since prioritized error rates over raw count (IBM Heron, 133 qubits, ~3x lower error). So the number is not stale, it is just no longer the headline metric.
 - V10 ~01:49: the intro frames quantum supremacy as a future event reached at ~1,000 qubits. Strictly, supremacy was first claimed by Google in 2019 with a 53-qubit processor. This may be a deliberate pedagogical framing by Oliver rather than an error. Note only; not a public correction.
 
+## References (edX platform mechanics)
+
+- Text components in edX Studio (Add New Component > Text/HTML): https://docs.openedx.org/en/latest/educators/how-tos/course_development/manage_video_transcripts.html and the edX "Working with Text Components" docs.
+- Replace/upload an edited .srt transcript for the same language; in-browser transcript editor (frontend-app-authoring PR #3215): https://docs.openedx.org/en/latest/educators/how-tos/course_development/manage_video_transcripts.html
+
 ## Notes for verification
 
 - The post itself only proposes date stamps on the 2018 Lincoln Lab videos, so it is safe to publish as is.
 - The "today" numbers in the footnote column (coherence of several hundred µs, two-qubit fidelity 99.7% to 99.9%, 1,000+ physical qubits) are from general knowledge, not sources checked on 2026-10-14. Source them before sending the table to course staff.
+- Lincoln Lab = MIT-operated FFRDC (federally funded R&D center). Confirm exact wording before stating in public.
 
 ## Idea behind it
 
 - Durable content (frameworks, criteria, mechanisms) is the university's job; freshness is the press's job.
 - Distinction that keeps the complaint valid: "old" vs "old in a way that builds a wrong mental model".
 - Finding from the transcripts: the course already date-stamps some figures; the fix is consistency, not a new practice.
-- Proposal: date-stamp the expiring 2018 figures, don't rewrite the module, and don't touch the professor's current intro.
+- Secondary data (IBM/Google/IonQ/D-Wave) is the newspaper layer we can supply; Lincoln Lab first-party data is the one input only MIT has.
+- Proposal: date-stamp the expiring 2018 figures, don't rewrite the module, don't touch the professor's current intro, and ask Lincoln Lab for updated primary data (Tier 3) as the real win.
