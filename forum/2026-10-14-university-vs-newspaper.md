@@ -8,6 +8,7 @@
 - Revision: proposal paragraph rewritten after reading the Module 2 transcripts (V11a to V13b)
 - Revision 2 (2026-10-14): source attribution corrected. The V10 intro is Prof. William Oliver and is current for 2026; only the Lincoln Lab videos (V11-V13) are the 2018 recordings. The public post must target only the clearly-dated 2018 figures, never the intro.
 - Revision 3 (2026-10-14): added four-tier remediation ladder and edX platform mechanics. Tier 3 (Lincoln Lab first-party data) is the primary ask.
+- Revision 4 (2026-10-14): Lincoln Lab status verified - MIT-managed FFRDC (see Notes for verification).
 
 ---
 
@@ -63,7 +64,7 @@ Two edX mechanisms already support this:
 - A **transcript correction**: in the video component, the transcript menu (...) has a Replace option to upload an edited .srt for the same language, and there is now an in-browser transcript editor, so a dated on-screen line can be fixed without the download-edit-reupload round trip. Audio and footage stay untouched.
 
 **Tier 3 - PRIMARY ASK: Lincoln Lab supplies updated first-party data (text only, no filming).**
-This is the real value and the whole reason to involve MIT. Everything in Tier 1 is second-hand. Lincoln Lab is an MIT-operated FFRDC, and the V11-V13 presenters are speaking from inside their own 70,000 sq ft microelectronics lab. When a Lincoln Lab scientist states "our devices now reach X coherence", that is a primary measurement from their own machinery - not a citation of someone else's chip. No amount of us scraping press releases reproduces it. The ask is narrow and cheap: a short written update on the current state of their hardware and research (current coherence numbers, where the 3D-stack / TSV / SFQ work went, current wafer and device status). No camera, no re-entering the lab, no disrupting people at work - just their current numbers in text. This gives MIT nearly all the value of fresh footage at almost none of the cost.
+This is the real value and the whole reason to involve MIT. Everything in Tier 1 is second-hand. Lincoln Lab is an MIT-managed federally funded research and development center (FFRDC), and the V11-V13 presenters are speaking from inside their own 70,000 sq ft microelectronics lab. When a Lincoln Lab scientist states "our devices now reach X coherence", that is a primary measurement from their own machinery - not a citation of someone else's chip. No amount of us scraping press releases reproduces it. The ask is narrow and cheap: a short written update on the current state of their hardware and research (current coherence numbers, where the 3D-stack / TSV / SFQ work went, current wafer and device status). No camera, no re-entering the lab, no disrupting people at work - just their current numbers in text. This gives MIT nearly all the value of fresh footage at almost none of the cost.
 
 **Tier 4 - Fresh footage from the Lab (gold standard, aspirational last resort).**
 New video shot inside Lincoln Lab. Highest value, but the hardest: it means a presenter re-entering a working laboratory where real research is ongoing, plus production. The original 2018 presenter may no longer be there. Worth naming as the ideal, but explicitly the last resort precisely because of that difficulty.
@@ -86,7 +87,7 @@ These concern Prof. Oliver's intro (V10), which is current. Challenging the prof
 
 - The post itself only proposes date stamps on the 2018 Lincoln Lab videos, so it is safe to publish as is.
 - The "today" numbers in the footnote column (coherence of several hundred µs, two-qubit fidelity 99.7% to 99.9%, 1,000+ physical qubits) are from general knowledge, not sources checked on 2026-10-14. Source them before sending the table to course staff.
-- Lincoln Lab = MIT-operated FFRDC (federally funded R&D center). Confirm exact wording before stating in public.
+- **CONFIRMED 2026-10-14:** Lincoln Lab is a federally funded research and development center (FFRDC) MANAGED/OPERATED BY MIT (on behalf of the US defense establishment; cost-reimbursement, no-fee; operating contract held with the US Air Force). Located at Hanscom Air Force Base, Lexington, MA. Public wording to use: "an MIT-managed FFRDC" or "run by MIT" - NOT "part of MIT" (it is not an academic department). Omit the sponsoring-agency name: their own pages are inconsistent (some say Department of Defense, newer ones say U.S. Department of War / DoW). Sources: en.wikipedia.org/wiki/MIT_Lincoln_Laboratory; ll.mit.edu/about/organization/federally-funded-research-and-development-centers; facts.mit.edu/lincoln-laboratory.
 
 ## Idea behind it
 
@@ -94,4 +95,4 @@ These concern Prof. Oliver's intro (V10), which is current. Challenging the prof
 - Distinction that keeps the complaint valid: "old" vs "old in a way that builds a wrong mental model".
 - Finding from the transcripts: the course already date-stamps some figures; the fix is consistency, not a new practice.
 - Secondary data (IBM/Google/IonQ/D-Wave) is the newspaper layer we can supply; Lincoln Lab first-party data is the one input only MIT has.
-- Proposal: date-stamp the expiring 2018 figures, don't rewrite the module, don't touch the professor's current intro, and ask Lincoln Lab for updated primary data (Tier 3) as the real win.
+- Proposal: date-stamp the expiring 2018 figures, don't rewrite the module, don't touch the professor's current intro, and ask Lincoln Lab (an MIT-managed FFRDC) for updated primary data (Tier 3) as the real win.
