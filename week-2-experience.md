@@ -182,3 +182,34 @@ Timestamp: this entry's Git commit metadata (UTC) is authoritative.
 **Breaks:** a gap exists between 08:53 and 10:12 UTC−3; whether it was a break or offline video watching is not confirmed.
 
 **Next:** Trapped-ion forum post, then remaining Qubit Modalities practice questions (neutral atoms / trapped ions / superconducting + other).
+
+
+### Week 2 Quiz result and postmortem — recorded Wednesday 2026-10-14 ~00:10 UTC−3 (Claude, from Albert's completion record)
+Timestamp: this entry's Git commit metadata (UTC) is authoritative.
+
+**Result:** Week 2 Quiz 9.75/10 (97.5%). Week 1 was 9/10.
+
+**Completion time (as recorded by Albert):** Tuesday 2026-10-13. Reference clock reading: a conversation screenshot showing 00:05 GMT−3. This is a conversation clock reading, not a verified quiz-submission timestamp. Keep the two separate unless the platform confirms they are the same.
+
+**Question 7:** −0.25, partial credit on a "Select all that apply" question. Not established whether the response omitted a correct option, included an incorrect one, or both. Recorded as a partial-credit loss, not a confirmed wrong answer.
+
+**What went well:**
+- Bloch sphere question solved by voice alone, without the visual material.
+- Careful reading of the qubit-modality comparison table, in particular two-qubit gate fidelity vs gate-operation time.
+
+**Lessons:**
+- Source material and exact question wording are the primary evidence.
+- Distinguish an incomplete answer from one containing a wrong selection.
+- Record observed scores separately from hypotheses about the grading algorithm.
+- Keep strategies that worked, including audio-only Bloch sphere reasoning.
+- A statement can be technically true and still not answer what the course asks; check wording and context.
+
+**Open items:**
+- Ask the course team how multi-select partial credit is computed when correct and incorrect selections are combined.
+- Session 1 end time and total study time still not recorded.
+- Case Study: Superconducting, 2 Study Concept Questions (Superconducting Qubits, Josephson Junction): status not reported here; last snapshot 0/2. Platform due date 2026-11-02 20:30 −03.
+- The 24 h target (wrap by 20:55 UTC−3 on 2026-10-12) was not met: the quiz completion date is 2026-10-13.
+
+**Discrepancies flagged by Claude, not silently corrected (Albert to confirm):**
+1. The completion record says "19 questions". The course page shows "Week 2 Quiz (30 min) (10 Questions)" and the score is out of 10. Probably a typo for 10.
+2. The record pairs "00:05 GMT−3" with "Tuesday October 13". The message delivering the record arrived Wednesday 2026-10-14 00:09 UTC−3, so the 00:05 reading may be Wednesday 00:05 (quiz finished late Tuesday) rather than Tuesday 00:05. Confirm which.

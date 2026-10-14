@@ -69,3 +69,15 @@ Stoplight chart (V5): NV centers yellow on initialization (laser can ionize the 
 | Week 2 Quiz | 0/10 (not started) |
 
 Remaining: 2 superconducting questions + 10-question quiz. Target: wrap by 20:55 UTC−3 on 2026-10-12 (inside 24 h of the 21:00 Sunday start).
+
+## Section 5 — Case Study: Superconducting Qubit Quantum Computers
+
+Study Concept Questions "Superconducting Qubits" and "Josephson Junction" (select all that apply, 3 attempts each, due 2026-11-02 20:30 −03). Loaded 2026-10-13 ~02:09 UTC−3 in no-spoiler mode; sources are transcripts Q1M2V11a and Q1M2V11b. Albert's picks and results not yet reported.
+
+## Week 2 Quiz — 9.75/10 (97.5%)
+
+Recorded 2026-10-14 ~00:10 UTC−3 from Albert's completion record (completion date given as Tuesday 2026-10-13). Questions were not reviewed in this chat.
+
+- Q7: −0.25, partial credit on a select-all-that-apply. Cause not established (missed correct option, extra wrong option, or both). Open: ask the course team how multi-select partial credit is scored.
+- Bloch sphere question solved by voice alone.
+- Flag: the record says "19 questions"; the course page and score show 10.
