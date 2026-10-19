@@ -53,3 +53,16 @@ Note: "11:45" is recorded as stated and read as 11:45 a.m. If it meant 23:45, ap
 ## Questions
 
 Question bank (questions and options only): `week-3-quiz-log.md`.
+
+### Correction: Week 3 start is 23:45, not 11:45 (Claude, Mon 2026-10-19 ~04:06 UTC−3)
+Timestamp: this entry's Git commit metadata (UTC) is authoritative.
+
+Albert confirmed the official start was **11:45 PM**. Corrected values:
+
+| Event | Local (UTC−3) | UTC |
+|---|---|---|
+| Week 3 clock start (official) | Sun 2026-10-18 23:45 | Mon 2026-10-19 02:45 |
+| Quiz window opens (+48 h) | Tue 2026-10-20 23:45 | Wed 2026-10-21 02:45 |
+| Quiz window closes (+72 h) | Wed 2026-10-21 23:45 | Thu 2026-10-22 02:45 |
+
+The 11:45 a.m. values in the Session 1 table and Target line above are superseded.
