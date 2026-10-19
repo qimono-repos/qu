@@ -2,56 +2,48 @@
 
 A dated record of practice/graded questions worked in session. Separate from week-2-experience.md (the timing + session log) so neither clobbers the other.
 
+**Publication rule (2026-10-19):** this repository is public. Questions and options only; answers, correct options and Albert's selections are never published. Earlier versions of this file contained answers; they were removed from the current version on 2026-10-19 (git history not rewritten, by Albert's decision).
+
 ## Section 1 — What Makes a Good Qubit Modality?
 
-### Q: Physical Requirements (graded practice, select all that apply) — RESOLVED, CORRECT
+### Q: Physical Requirements (graded practice, select all that apply) — completed, 1/1
 
-Prompt: "Identify which of the following are requirements for the physical realization of a quantum computer."
+Prompt: "David Divincenzo proposed five requirements for the physical realization of a quantum computer and two requirements for communicating quantum information. Identify which of the following are requirements for the physical realization of a quantum computer."
 
-- A. Ability to measure the qubit state — CORRECT (one of the five physical-realization requirements)
-- B. Ability to interconvert stationary and flying qubits — NOT selected (communication requirement #6)
-- C. Ability to robustly represent quantum information — CORRECT (physical-realization: coherence)
-- D. Ability to transmit flying qubits faithfully — NOT selected (communication requirement #7)
+- Ability to measure the qubit state
+- Ability to interconvert stationary and flying qubits
+- Ability to robustly represent quantum information
+- Ability to transmit flying qubits faithfully between two locations
 
-Albert's answer: A and C. Saved. Result: correct.
-
-Reasoning lock: DiVincenzo's seven split into five physical-realization + two communication (the quantum interconnect, #6 and #7). B and D are the communication pair and are the trap in this question. Uses COURSE numbering.
+Study note: the course numbers DiVincenzo's criteria differently from the 2000 paper; use the course numbering.
 
 ## Section 3 — Qubit Modalities (Electron and Nuclear Spins)
 
-### Q1: NV Centers (graded practice, select all that apply) — RESOLVED, CORRECT (1/1, first attempt)
+### Q1: NV Centers (graded practice, select all that apply) — completed, 1/1 on attempt 1 of 3 (2026-10-12 ~08:53 UTC−3)
 
 Prompt: "The advantage(s) of qubits made using nitrogen vacancy centers, as presented in the video, are ___."
 
-- A. They leverage advanced silicon fabrication technology — NOT an NV advantage (video assigns this to quantum dots and phosphorus-doped silicon)
-- B. They have the ability to interconvert stationary and flying qubits — CORRECT
-- C. They have the ability to communicate quantum information — CORRECT
-- D. They can be operated at room temperature — CORRECT (video: "albeit with some lower coherence")
+- They leverage advanced silicon fabrication technology
+- They have the ability to interconvert stationary and flying qubits
+- They have the ability to communicate quantum information
+- They can be operated at room temperature
 
-Final answer: B, C, D. Submitted 2026-10-12 ~08:53 UTC−3. Result: 1/1 on attempt 1 of 3.
+Lesson: when a question says "as presented in the video", the video's wording is the answer key. Watch for near-neighbor distractors: statements true of a different modality in the same video.
 
-Failure caught before submit: Albert's first saved pick was C + D only (B omitted). Claude flagged that C without B is inconsistent (interconversion is the mechanism behind communication). Verified against transcript Q1M2V4a_REV_02_2026_FINAL-en.txt, lines 100–104, which names both "interconversion and communication" as NV advantages in one sentence.
-
-Lesson: when a question says "as presented in the video", the video's wording is the answer key. Option A is a near-neighbor distractor: true of a different spin modality in the same video.
-
-Quiz-likely details from the same video: NV centers "really shine as quantum sensors" of magnetic fields; main challenge is scalability (can't place high-coherence NVs precisely for large arrays). Quantum dots: silicon fab, small area, gate-voltage control; challenge = many gates per qubit, needs 3D integration. Phosphorus donors: silicon fab + very long coherence; challenge = ~10 nm dopant spacing, crosstalk, precise implantation. Nuclear spins: extremely long coherence, slow gates.
+Study notes from the same video (transcript Q1M2V4a): NV centers "really shine as quantum sensors" of magnetic fields; main challenge is scalability. Quantum dots: silicon fab, small area, gate-voltage control; challenge = many gates per qubit, needs 3D integration. Phosphorus donors: silicon fab + very long coherence; challenge = ~10 nm dopant spacing, crosstalk, precise implantation. Nuclear spins: extremely long coherence, slow gates.
 
 Note: the remaining Qubit Modalities questions (and the Qubit Robustness pair) were completed without being reviewed in this chat; only the platform scores are known (see scoreboard below).
 
 ## Section 4 — Case Study: Trapped-Ion Quantum Computers
 
-### Measuring Ions — Q1 Ion States + Q2 Ion Measurement — RESOLVED, CORRECT (2/2)
+### Measuring Ions — Q1 Ion States + Q2 Ion Measurement — completed, 2/2 (reported 2026-10-12 ~12:33 UTC−3)
 
-Setup: energy-level diagram with an Auxiliary level; Drive arrow up from the bottom-left level to Auxiliary, wavy Detect arrow back down to the same level; separate level on the right labelled A; bottom-left level labelled B.
+Setup: energy-level diagram with an Auxiliary level; a Drive arrow up to Auxiliary and a wavy Detect arrow back down; two boxes, A and B, on the lower levels.
 
-- Q1 "The atom in the diagram will be:" → **Bright** (it is shown cycling Drive → Detect).
-- Q2 box A → **|0⟩** (level not coupled by the readout laser: dark).
-- Q2 box B → **|1⟩** (the cycling level: bright).
+- Q1 "The atom in the diagram will be:" options: Dark / Bright.
+- Q2 "Which of the below belongs in the 'A' box?" and "...in the 'B' box?" options: |1⟩ / (|0⟩ + |1⟩) / |0⟩ / (|0⟩ − |1⟩).
 
-Albert's picks matched before Claude's explanation. Result: 2/2, reported 2026-10-12 ~12:33 UTC−3.
-
-Source: transcript Q1M2V7b lines 58–73: ion absorbs/re-emits "if it is measured in one state"; "zero state… the ion will be dark"; state is projected to 0 or 1 and stays (quantum non-demolition); photon-count threshold gives high-fidelity readout.
-Distractor lesson: (|0⟩ ± |1⟩) options are wrong for both boxes. Levels in an energy diagram are basis states, and measurement projects; it never outputs a superposition.
+Study note: transcript Q1M2V7b, lines 58–73, covers ion readout (fluorescence, quantum non-demolition measurement, photon-count threshold).
 
 Trapped-ion facts likely on the quiz (V5–V9): coherence ~10 min; single-qubit error ~1e-6 (microwave); two-qubit fidelity 99.9%; two-qubit gates via shared vibrational mode ("quantum bus"); ~500× (1q) / ~1000× (2q) slower than superconducting, similar 2q fidelity; larger connectivity may offset slow speed; surface traps on silicon, CMOS-compatible (DACs, APDs, integrated photonics); shuttling "quite unique to the ion qubit modality"; challenge = scaling from 1–10 ions to thousands–millions without room-sized bulk optics.
 

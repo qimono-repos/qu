@@ -175,8 +175,8 @@ Timestamp: this entry's Git commit metadata (UTC) is authoritative.
 - 06:59 · Recovered the lost forum-participation discussion (ChatGPT handoff); record delivered in chat.
 - 07:02 → ~07:55 · Forum post: Discussion "Randomized Benchmarking and Gate Fidelity". Radar chart `assets/Figure_gate_fidelity.png`. Final thesis: RB vs process tomography are complementary on paper but compete for lab time and budget in practice. Citation Magesan et al. PRL 106, 180504 (2011).
 - Voice session: moonshot conversation (coherent vs incoherent errors, T1/T2, crosstalk, leakage); `moonshot.md` created ~11:24 UTC.
-- Q1 Physical Requirements: correct (A, C). Logged in `week-2-quiz-log.md`.
-- 08:45 → 08:53 · Section 3 Q1 NV Centers: correct 1/1, first attempt (B, C, D) after catching a C-without-B miss against transcript Q1M2V4a. Logged in `week-2-quiz-log.md` (commit 1533779, 11:53:19Z).
+- Q1 Physical Requirements: 1/1. Logged in `week-2-quiz-log.md`.
+- 08:45 → 08:53 · Section 3 Q1 NV Centers: 1/1, first attempt, after checking the draft selection against transcript Q1M2V4a before submitting. Logged in `week-2-quiz-log.md` (commit 1533779, 11:53:19Z).
 - 10:12 · Learner checkpoint. Now on Discussion: "Trapped Ions in Quantum Computation".
 
 **Breaks:** a gap exists between 08:53 and 10:12 UTC−3; whether it was a break or offline video watching is not confirmed.
@@ -213,3 +213,9 @@ Timestamp: this entry's Git commit metadata (UTC) is authoritative.
 **Discrepancies flagged by Claude, not silently corrected (Albert to confirm):**
 1. The completion record says "19 questions". The course page shows "Week 2 Quiz (30 min) (10 Questions)" and the score is out of 10. Probably a typo for 10.
 2. The record pairs "00:05 GMT−3" with "Tuesday October 13". The message delivering the record arrived Wednesday 2026-10-14 00:09 UTC−3, so the 00:05 reading may be Wednesday 00:05 (quiz finished late Tuesday) rather than Tuesday 00:05. Confirm which.
+
+
+### Redaction note (Claude, Mon 2026-10-19 ~04:10 UTC−3)
+Timestamp: this entry's Git commit metadata (UTC) is authoritative.
+
+By Albert's instruction, correct options and selections for course questions were removed from this file and from `week-2-quiz-log.md`. This repository is public and answers are never published. Git history was deliberately not rewritten. This is the one sanctioned exception to the append-only rule.
