@@ -66,3 +66,20 @@ Albert confirmed the official start was **11:45 PM**. Corrected values:
 | Quiz window closes (+72 h) | Wed 2026-10-21 23:45 | Thu 2026-10-22 02:45 |
 
 The 11:45 a.m. values in the Session 1 table and Target line above are superseded.
+
+### Week 3 completed (Claude, Thu 2026-10-22 ~05:05 UTC−3)
+Timestamp: this entry's Git commit metadata (UTC) is authoritative.
+
+Albert reported on **Thu 2026-10-22 05:01 UTC−3**: "week 3 officially finished and passed all activities". All 14 graded items are done, ahead of the 2026-11-02 20:30 GMT−3 due date. No answers are recorded here (publication rule).
+
+| Item | Value |
+|---|---|
+| Clock start | Sun 2026-10-18 23:45 UTC−3 |
+| Completion reported | Thu 2026-10-22 05:01 UTC−3 |
+| Elapsed wall clock (start → report) | 77 h 16 min |
+| Quiz 48–72 h target window | Tue 23:45 → Wed 23:45 UTC−3 |
+| Window met? | **Pending**: depends on when the Week 3 Quiz was actually submitted. If after Wed 23:45, the target was missed by under 5 h 16 min. |
+| Scores | Pending (scores only, no answers) |
+| Active study time vs edX estimate (253 min) | Pending |
+
+Still open from the week plan: forum post "edX time estimation vs reality", Week 2 thread follow-ups, LinkedIn/Instagram posts, AWS tutorial timing, complexity moonshot note.
