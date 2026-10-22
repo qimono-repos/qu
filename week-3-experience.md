@@ -83,3 +83,30 @@ Albert reported on **Thu 2026-10-22 05:01 UTC−3**: "week 3 officially finished
 | Active study time vs edX estimate (253 min) | Pending |
 
 Still open from the week plan: forum post "edX time estimation vs reality", Week 2 thread follow-ups, LinkedIn/Instagram posts, AWS tutorial timing, complexity moonshot note.
+
+### Week 3 scores and course standing (Claude, Thu 2026-10-22 ~05:05 UTC−3)
+Timestamp: this entry's Git commit metadata (UTC) is authoritative. Source: two Progress-page screenshots from Albert. Scores only, no answers.
+
+**Week 3: 14/14, a clean sheet.**
+
+| Section | Score |
+|---|---|
+| Quantum Algorithms and Their Potential Speed-Up | 4/4 |
+| Quantum Communication | 2/2 |
+| Case Study: Industry Perspectives | 2/2 |
+| Reflect and Review Activity | 1/1 |
+| Week 3 Quiz | 5/5 |
+
+**Course standing after Week 3: 74% weighted, passing threshold 60%** ("You're currently passing this course").
+
+| Assignment type | Weight | Grade | Weighted |
+|---|---|---|---|
+| Pre-Assessment | 5% | 100% | 5% |
+| Case Study Concept Questions | 5% | 100% | 5% |
+| Post-Assessment | 5% | 0% (not yet available) | 0% |
+| Reflect/Review | 10% | 100% | 10% |
+| Lab Practicum-IBM-Q | 15% | 0% (not yet done) | 0% |
+| Check Your Understanding | 20% | 78.57% | 15.71% |
+| Quizzes (lowest 1 dropped) | 40% | 95.83% | 38.33% |
+
+Reading: 20 of the 26 missing points are ungraded-yet items (Post-Assessment and the IBM-Q Lab Practicum), not lost points. The only real leak is Check Your Understanding at 78.57% (= 11/14 if each item weighs equally). Week 3 CYU was 6/6, so the misses are from Weeks 1–2. Final grades and certificates: 3 business days after 2026-11-02.
