@@ -17,27 +17,27 @@ Time reference: **Paramaribo (America/Paramaribo, UTC−3, no DST)**. Hard deadl
 From the repository root:
 
 ```bash
-uv sync --project week-4
+uv sync --project first-code
 
 # One-time per environment: register the project kernel used by the notebooks.
-uv run --project week-4 python -m ipykernel install --sys-prefix \
-  --name qimono-week-4 --display-name "Qimono Week 4"
+uv run --project first-code python -m ipykernel install --sys-prefix \
+  --name qimono-first-code --display-name "Qimono First Code"
 ```
 
-The notebooks select the `Qimono Week 4` kernel, so they use this project's
+The notebooks select the `Qimono First Code` kernel, so they use this project's
 `qiskit` rather than a global Python. Re-run the install command if you delete
-`week-4/.venv` and recreate it.
+`first-code/.venv` and recreate it.
 
 Smoke test:
 
 ```bash
-uv run --project week-4 python -c "import qiskit; print(qiskit.__version__)"
+uv run --project first-code python -c "import qiskit; print(qiskit.__version__)"
 ```
 
 Open the notebooks:
 
 ```bash
-uv run --project week-4 jupyter lab week-4/notebooks
+uv run --project first-code jupyter lab first-code/notebooks
 ```
 
 The notebooks also work if you launch Jupyter from inside `week-4/`.
@@ -65,20 +65,20 @@ From the repository root:
 
 ```bash
 # Draw and simulate
-uv run --project week-4 python week-4/qasm_check.py week-4/practice/katas/k1.qasm --draw
+uv run --project first-code python first-code/qasm_check.py first-code/practice/katas/k1.qasm --draw
 
 # Check a predicted distribution
-uv run --project week-4 python week-4/qasm_check.py week-4/practice/katas/bell.qasm \
+uv run --project first-code python first-code/qasm_check.py first-code/practice/katas/bell.qasm \
   --expect "00:0.5,11:0.5"
 
 # Compare two circuits up to global phase
-uv run --project week-4 python week-4/qasm_check.py equiv a.qasm b.qasm
+uv run --project first-code python first-code/qasm_check.py equiv a.qasm b.qasm
 ```
 
-Or use the wrapper (it calls `uv run --project week-4` for you):
+Or use the wrapper (it calls `uv run --project first-code` for you):
 
 ```bash
-week-4/qasm-check week-4/practice/katas/k1.qasm --expect "0:1.0"
+first-code/qasm-check first-code/practice/katas/k1.qasm --expect "0:1.0"
 ```
 
 Use `--qasm3` for OpenQASM 3, `--statevector` for exact amplitudes, `--shots`
@@ -88,7 +88,7 @@ and `--seed` for reproducible counts. Exit codes: `0` pass, `1` fail,
 Run the acceptance tests:
 
 ```bash
-uv run --project week-4 pytest week-4/tests
+uv run --project first-code pytest first-code/tests
 ```
 
 ## IBM Quantum (optional)
@@ -102,7 +102,7 @@ export QISKIT_IBM_TOKEN="..."
 
 The guarded cell in notebook 4 only connects when that variable is set. You also
 need `qiskit-ibm-runtime` installed separately (for example
-`uv add --project week-4 qiskit-ibm-runtime`) if you want to run it.
+`uv add --project first-code qiskit-ibm-runtime`) if you want to run it.
 
 ## Composer-era warning
 

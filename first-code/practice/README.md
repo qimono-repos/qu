@@ -13,11 +13,11 @@ Rules from `specs/week-4/qasm-katas.spec.md`:
 Check a kata from the repository root:
 
 ```bash
-uv run --project week-4 python week-4/qasm_check.py week-4/practice/katas/k1.qasm --expect "0:1.0"
+uv run --project first-code python first-code/qasm_check.py first-code/practice/katas/k1.qasm --expect "0:1.0"
 ```
 
-The `week-4/qasm-check` wrapper does the same thing:
+The `first-code/qasm-check` wrapper does the same thing:
 
 ```bash
-week-4/qasm-check week-4/practice/katas/k1.qasm --expect "0:1.0"
+first-code/qasm-check first-code/practice/katas/k1.qasm --expect "0:1.0"
 ```
