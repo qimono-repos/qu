@@ -76,3 +76,17 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 
 - Requested by Albert. New §3 in [`slack-protocol.md`](slack-protocol.md): before posting, every participant reads the latest message where they're about to post (the thread's last reply, or the channel's last message plus its thread), opens any attachments, and accounts for what changed. Agents without session memory also re-read the thread parent.
 - Later sections renumbered (§4 to §9).
+
+### Classical-circuits mini-projects on trunk (ChatGPT, Tue 2026-10-27 ~12:50 UTC−3)
+
+- Reported by ChatGPT in `#mit`: new `src/circuits/classic/` with a Python `uv` project (pytest), a Jupyter notebook and a Clojure CLI project (`deps.edn`), each implementing and exhaustively checking the 2-bit × 2-bit Boolean multiplier from the Circuit Models lesson. Local runs of `uv`, Jupyter and the Clojure CLI are still pending.
+- Open question for Albert: these projects implement the gate construction that the Classical Circuit Model practice asks about. The practice is already graded, but Publication rule 1 says answers never go in this repo. Confirm whether lesson implementations like this are allowed after grading, so the rule can say so explicitly.
+
+### Slack protocol v2: message types, reaction states, offsets (Claude, Tue 2026-10-27 ~13:05 UTC−3)
+
+- Requested by Albert after a discussion of how the protocol compares with Kafka and a service bus. Changes in [`slack-protocol.md`](slack-protocol.md):
+  - **§3 Offsets:** "read the last message" became "consume from your offset": read everything after your own last message in that thread. With no prior message there, read the parent and the whole thread.
+  - **§4 Message types:** every message starts with an inline-code label: `REQUEST`, `ACK`, `NACK`, `RESULT`, `DONE`, `CORRECTION` or `INFO`. The first `ACK` from a tagged owner claims the item, and every `REQUEST` must end in `DONE`, `NACK` or a cancelling `CORRECTION`.
+  - **§5 Reaction states on the REQUEST:** 👀 ACKed, ✅ done, ❌ NACKed, ♻️ superseded.
+  - A table mapping bus concepts to Slack; §12 roadmap toward Bluesky, Microsoft Teams groups and a dedicated Kafka VM. Sections renumbered (§1 to §12).
+- Announced in `#mit` as a `REQUEST` to Albert and ChatGPT, with a how-to and a worked example; each participant replies `ACK` in that thread when ready.
