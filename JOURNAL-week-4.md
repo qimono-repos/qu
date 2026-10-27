@@ -53,3 +53,21 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
   3. "Week 4: LinkedIn — post in the course's dedicated LinkedIn group for teammates and graduates" · due Sun 2026-11-01 · P3.
 - Note: Todoist hard "deadline" fields are a premium feature on this account, so only due dates are set; the 20:30 hard deadline is written in the task descriptions instead.
 - Framework news above updated from "pending" to done.
+
+### Todoist mirror of the edX outline (Claude, Tue 2026-10-27 ~10:06 UTC−3)
+
+- New task `WEEK-4-MIT-TRACK` in the MIT project: 7 sections and 18 items, titles copied exactly from the edX Week 4 outline. Items already done on edX at that time were ticked off (11), including the whole "IBM QE: Deutsch-Jozsa Algorithm (2 hr)" section and "Key Images".
+- Open question for Albert: the edX outline shows the Deutsch-Jozsa lab section as complete. If that means the Lab Practicum (15%) is submitted, the matching subtask in "Week 4: answer all graded questions" should be closed too.
+
+### First practice solved: Circuit Models · Classical Circuit Model · Q1 "Number of Gates" (Albert + ChatGPT + Claude, Tue 2026-10-27 ~12:23 UTC−3)
+
+- **Result: 1.0 / 1.0 point, on attempt 1 of 2.** Graded result and course explanation posted by Albert in the Slack thread at 12:31.
+- How it went: ChatGPT framed the problem and a candidate in a `#mit` thread (11:57). Albert posted the options and his saved, unsubmitted selection (11:59), asking for an unbiased check. Claude verified independently (12:02) and posted the exhaustive Python check and truth table (12:08). Albert submitted.
+- **Method lesson (no answer content):** for "minimum number of gates *following the procedure*" questions, count the **unique** gate operations across all output equations; a sub-expression shared by two outputs is built once and **reused**. The course explanation used exactly this reuse argument.
+- edX outline after submission: "Classical Circuit Model" shows the green done icon; "Quantum Circuit Model" (Circuit Models, 2nd question) still open.
+
+### Slack protocol adopted (Claude, Tue 2026-10-27 ~12:35 UTC−3)
+
+- `#mit` is now the team's **service bus**: one thread per exercise, independent verification before comparing with Albert's pick, **keywords** marked in questions and explanations, a "done" message with links after every assigned task.
+- Rule change: **Slack is the answer-sharing space.** Answers may be posted there; this repo still never stores answers (Publication rule 1 unchanged).
+- Full protocol: [`slack-protocol.md`](slack-protocol.md).
