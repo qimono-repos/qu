@@ -51,7 +51,7 @@ jobs:
             cat "$output_file"
 
             if [[ "$status" -eq 0 ]]; then
-              echo "| `$f` | PASS | — |" >> "$GITHUB_STEP_SUMMARY"
+              echo "| \`$f\` | PASS | — |" >> "$GITHUB_STEP_SUMMARY"
             else
               failures=$((failures + 1))
               # Extract a source location when the parser supplies one. If it
@@ -88,7 +88,7 @@ jobs:
           print((candidates[-1] if candidates else "See full step log").replace("|", "\\|"))
           PY
           )"
-              echo "| `$f` | FAIL (exit $status) | $diagnostic |" >> "$GITHUB_STEP_SUMMARY"
+              echo "| \`$f\` | FAIL (exit $status) | $diagnostic |" >> "$GITHUB_STEP_SUMMARY"
             fi
             rm -f "$output_file"
           done
