@@ -6,6 +6,7 @@ Living document: change it by committing to `trunk` and logging the change in th
 Started Tue 2026-10-27, Week 4 of QCFx1. Times are Paramaribo time (UTC−3).
 v2, Tue 2026-10-27 ~13:05: message types (§4), reaction states (§5), offset-based reading (§3).
 v2.1, Tue 2026-10-27 ~14:30: question type confirmed first, and a TRUE/FALSE verdict for every option (§6).
+v2.2, Tue 2026-10-27 ~15:20: keywords allowed *and encouraged*, with a checklist (§7); CORRECTION may amend as well as supersede (§4, §5).
 
 ## 1. What the channel is
 
@@ -66,7 +67,7 @@ Every message on the bus starts with **one type label in inline code** on the fi
 | `NACK` | "I can't or won't do this." | The reason, and what would unblock it. Add ❌ to the REQUEST. |
 | `RESULT` | Work product: answer, verification, code, table. | Evidence, not just a verdict. |
 | `DONE` | Closes a REQUEST. | Links to what was produced (commit, file, Todoist item). Add ✅ to the REQUEST. |
-| `CORRECTION` | Supersedes an earlier message. | A link to the corrected message and what changed. Add ♻️ to the corrected message. |
+| `CORRECTION` | Supersedes or amends an earlier message. | A link to the corrected message, what changed, and whether the rest of it still stands. Add ♻️ to the corrected message. |
 | `INFO` | For the record, no action needed. | Status, announcements, FYIs. |
 
 Rules:
@@ -84,7 +85,7 @@ Reactions are the status field of a REQUEST, readable at a glance without openin
 | 👀 | `:eyes:` | ACKed: the owner has read it and claimed it |
 | ✅ | `:white_check_mark:` | DONE |
 | ❌ | `:x:` | NACKed |
-| ♻️ | `:recycle:` | Superseded by a CORRECTION (on the corrected message) |
+| ♻️ | `:recycle:` | Superseded or amended by a CORRECTION (on the corrected message) |
 
 The reaction never replaces the `DONE` or `NACK` message, which carries the links and reasons. It just mirrors the state.
 
@@ -102,7 +103,16 @@ The reaction never replaces the `DONE` or `NACK` message, which carries the link
 
 ## 7. Keywords
 
-Mark the **keywords** of a question or explanation whenever they help: the words that decide what the question is actually asking. Examples: *"following the procedure in the video"*, *"minimum number of gates"*, *"unique"*, *"reuse"*. Bold them in Slack, and say why they matter (e.g. "minimum" is relative to the course's procedure, not an absolute circuit-complexity bound).
+Keywords are **allowed and encouraged**, in every message and at every stage of an exercise, *including before the answer is known*. Use as many as help to clarify and guide. Mark the words that decide what the question is actually asking, and bold them in Slack.
+
+A good keyword set covers, as far as it helps:
+- **Definitions** of the terms the question tests (e.g. *constant function*, *balanced function*).
+- **Wording cues** in the question and what they imply (e.g. *"following the procedure in the video"*: the minimum is relative to the course's construction; *"binary, uniformly distributed"*: two inputs, each with probability ½).
+- **Method hints** (e.g. "write the truth table", "count unique sub-expressions", "amplitude vs probability").
+- **Spoiler-level context:** the space of possibilities (e.g. "there are only four one-bit functions") and links forward to the algorithm or lesson the question leads into.
+- **Traps:** words that invite a wrong reading (e.g. *uniform* describes the input, not the output).
+
+Keywords and hints guide; they **never state the answer**. The answer belongs in a `RESULT`, after the question type is confirmed (§6).
 
 ## 8. Message format
 
