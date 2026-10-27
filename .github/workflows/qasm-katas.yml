@@ -4,9 +4,13 @@ on:
   pull_request:
     branches: [ trunk ]
     paths:
+      - '.github/workflows/qasm-katas.yml'
       - 'first-code/practice/katas/**'
   push:
     branches: [ qasm-katas-ci ]
+    paths:
+      - '.github/workflows/qasm-katas.yml'
+      - 'first-code/practice/katas/**'
 
 jobs:
   check:
@@ -21,10 +25,40 @@ jobs:
         run: uv python install 3.12
       - name: Sync dependencies
         run: uv sync --project first-code
-      - name: Run qasm-check on katas
+      - name: Check QASM katas
+        shell: bash
         run: |
-          set -e
+          set -euo pipefail
+
           for f in first-code/practice/katas/*.qasm; do
             echo "=== CHECKING $f ==="
-            uv run --project first-code python first-code/qasm_check.py "$f" || true
+
+            # This file is deliberately malformed for the Syntax Error II
+            # teaching exercise. CI should pass only if the parser rejects it
+            # for the expected missing-semicolon error.
+            if [[ "$f" == "first-code/practice/katas/syntax_error2.qasm" ]]; then
+              output_file="$(mktemp)"
+              set +e
+              uv run --project first-code python first-code/qasm_check.py "$f" >"$output_file" 2>&1
+              status=$?
+              set -e
+              cat "$output_file"
+
+              if [[ "$status" -ne 2 ]]; then
+                echo "::error file=$f::Expected qasm_check.py to reject this intentional syntax-error fixture with exit code 2; got $status."
+                rm -f "$output_file"
+                exit 1
+              fi
+              if ! grep -Fq "needed ';'" "$output_file" || ! grep -Fq "measure" "$output_file"; then
+                echo "::error file=$f::Parser rejected the fixture, but not for the expected missing-semicolon-before-measure error."
+                rm -f "$output_file"
+                exit 1
+              fi
+              rm -f "$output_file"
+              echo "PASS: expected missing-semicolon error detected."
+            else
+              # Every other kata must parse and run successfully. No blanket
+              # '|| true': an unexpected parser or simulator failure fails CI.
+              uv run --project first-code python first-code/qasm_check.py "$f"
+            fi
           done
