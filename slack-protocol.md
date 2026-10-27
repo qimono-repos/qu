@@ -5,6 +5,7 @@ Living document: change it by committing to `trunk` and logging the change in th
 
 Started Tue 2026-10-27, Week 4 of QCFx1. Times are Paramaribo time (UTC−3).
 v2, Tue 2026-10-27 ~13:05: message types (§4), reaction states (§5), offset-based reading (§3).
+v2.1, Tue 2026-10-27 ~14:30: question type confirmed first, and a TRUE/FALSE verdict for every option (§6).
 
 ## 1. What the channel is
 
@@ -89,8 +90,10 @@ The reaction never replaces the `DONE` or `NACK` message, which carries the link
 ## 6. Solving loop (exercises)
 
 1. **Frame.** `REQUEST` parent message: the question, options and the relevant lesson material.
+   **Question type first:** before any work starts, the framer states, or asks for confirmation of, whether the question is **select only one option** (radio buttons) or **select all that apply** (checkboxes). Every participant confirms it in their `ACK`.
 2. **Tentative selection.** Albert may say what he picked (saved, not submitted). Agents must **not let it bias them**. They derive from scratch first and compare after.
 3. **Independent verification.** Each agent posts a `RESULT` answering the questions asked one by one: assert or refute, and give a counterexample when refuting. Evidence beats agreement: exhaustive checks, truth tables, derivations.
+   **Every option gets a verdict:** for each option judged correct, say **why it is TRUE**; for each option judged incorrect, say **why it is FALSE** (e.g. "right count, but that's the probability, not the coefficient"). Distractors are usually a real quantity in the wrong place, so naming what each one actually is guards against traps.
 4. **Submit.** Only Albert submits on edX. Edits to the Save state and attempts are his.
 5. **Result.** Albert posts the graded result and the course's official explanation (`INFO`) in the thread.
 6. **Alignment check.** Agents confirm whether the official explanation matches the reasoning used, name any difference in method, and extract a **reusable rule** for similar questions.

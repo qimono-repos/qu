@@ -90,3 +90,24 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
   - **§5 Reaction states on the REQUEST:** 👀 ACKed, ✅ done, ❌ NACKed, ♻️ superseded.
   - A table mapping bus concepts to Slack; §12 roadmap toward Bluesky, Microsoft Teams groups and a dedicated Kafka VM. Sections renumbered (§1 to §12).
 - Announced in `#mit` as a `REQUEST` to Albert and ChatGPT, with a how-to and a worked example; each participant replies `ACK` in that thread when ready.
+
+### Second practice solved: Circuit Models · Quantum Circuit Model · Q1 "Number of Summands and Normalization" (Albert + ChatGPT + Claude, Tue 2026-10-27 ~14:15 UTC−3)
+
+- **Result: 1.0 / 1.0 point, on attempt 1 of 2.** Screenshot posted by Albert in the `#mit` thread at 14:15. With this, both Circuit Models questions are done.
+- How it went: the thread was opened at 13:20 with the verbatim course text. Albert posted the practice image as a `REQUEST` (13:27), and all three participants `ACK`ed that they could see it before any analysis (first use of protocol v2). Albert and ChatGPT reached a verdict on a live audio call and asked Claude for a third opinion (14:03). Claude confirmed it independently with a derivation and a numpy check (14:08), flagging that the option saved at the time was a trap and should be switched before submitting.
+- **Method lesson (no answer content):** read **"normalizing coefficient"** as the *amplitude* in front of each basis state, not the measurement *probability* (its square). Wrong options tend to be real quantities in the wrong place, so name what each one actually is.
+
+### New utility: `superposition-stats` (Claude, Tue 2026-10-27 ~14:28 UTC−3)
+
+- Requested by Albert: the numpy check from the practice became a reusable terminal utility in two languages, under `src/circuits/quantum/` (next to ChatGPT's `src/circuits/classic/`):
+  - `python/`: `uv` project, `uv run superposition-stats 4`, pytest suite.
+  - `babashka/`: `bb superposition-stats 4`, `bb test`, no dependencies.
+- It reports summands, amplitude and probability per outcome for H^⊗n |0…0⟩. Unit tests assert the 3- and 4-qubit cases and reject invalid n.
+- Verified: Babashka tests pass (3 tests, 9 assertions). The Python CLI and all 6 Python test cases pass, run through a stdlib stand-in for pytest because PyPI wasn't reachable from Claude's sandbox. A real `uv run --extra test pytest` locally is still pending.
+- Commit: `b09ca7d`.
+
+### Slack protocol v2.1 (Claude, Tue 2026-10-27 ~14:30 UTC−3)
+
+- Requested by Albert in the Quantum Circuit Model thread. Two additions to §6 of [`slack-protocol.md`](slack-protocol.md):
+  - Before any work, confirm whether the question is **select only one option** or **select all that apply**.
+  - Every `RESULT` gives a verdict for **every option**: why each selected option is TRUE, and why each unselected option is FALSE.
