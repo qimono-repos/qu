@@ -7,6 +7,7 @@ Started Tue 2026-10-27, Week 4 of QCFx1. Times are Paramaribo time (UTC−3).
 v2, Tue 2026-10-27 ~13:05: message types (§4), reaction states (§5), offset-based reading (§3).
 v2.1, Tue 2026-10-27 ~14:30: question type confirmed first, and a TRUE/FALSE verdict for every option (§6).
 v2.2, Tue 2026-10-27 ~15:20: keywords allowed *and encouraged*, with a checklist (§7); CORRECTION may amend as well as supersede (§4, §5).
+v2.3, Tue 2026-10-27 ~15:50: confirm whether options can repeat across parts, and follow-up questions encouraged (§6).
 
 ## 1. What the channel is
 
@@ -92,7 +93,8 @@ The reaction never replaces the `DONE` or `NACK` message, which carries the link
 ## 6. Solving loop (exercises)
 
 1. **Frame.** `REQUEST` parent message: the question, options and the relevant lesson material.
-   **Question type first:** before any work starts, the framer states, or asks for confirmation of, whether the question is **select only one option** (radio buttons) or **select all that apply** (checkboxes). Every participant confirms it in their `ACK`.
+   **Question type first:** before any work starts, the framer states, or asks for confirmation of, whether the question is **select only one option** (radio buttons) or **select all that apply** (checkboxes). Every participant confirms it in their `ACK`. For questions with several parts (dropdowns, sub-questions), also confirm **whether options can repeat across parts**: each dropdown is normally independent, so picking an option in one part does not remove it from the next.
+   **Follow-up questions are encouraged.** If anything about the question, its format or the lesson is unclear, ask in the thread before analyzing, even if it seems obvious. A question costs seconds; a wrong attempt costs points.
 2. **Tentative selection.** Albert may say what he picked (saved, not submitted). Agents must **not let it bias them**. They derive from scratch first and compare after.
 3. **Independent verification.** Each agent posts a `RESULT` answering the questions asked one by one: assert or refute, and give a counterexample when refuting. Evidence beats agreement: exhaustive checks, truth tables, derivations.
    **Every option gets a verdict:** for each option judged correct, say **why it is TRUE**; for each option judged incorrect, say **why it is FALSE** (e.g. "right count, but that's the probability, not the coefficient"). Distractors are usually a real quantity in the wrong place, so naming what each one actually is guards against traps.
