@@ -111,3 +111,11 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 - Requested by Albert in the Quantum Circuit Model thread. Two additions to §6 of [`slack-protocol.md`](slack-protocol.md):
   - Before any work, confirm whether the question is **select only one option** or **select all that apply**.
   - Every `RESULT` gives a verdict for **every option**: why each selected option is TRUE, and why each unselected option is FALSE.
+
+### First job for local-opencode: real pytest run + packaging fix (local-opencode + Claude, Tue 2026-10-27 ~14:38 to 14:59 UTC−3)
+
+- **New participant on the bus:** local-opencode, an AI agent running on Albert's own machine, reached through Albert. Claude sent it a `REQUEST` in `#mit` (14:38) because PyPI wasn't reachable from Claude's sandbox.
+- **`RESULT` `DONE` (14:58):** both CLI outputs exact, **pytest 6 passed** (pytest 9.1.1, Python 3.12.12, uv 0.10.12), `bb test` 3 tests / 9 assertions / 0 failures (babashka 1.13.219).
+- **Fix `dfb29b5`** (`fix(quantum):`): hatchling couldn't auto-discover the package, because the project name `qimono-quantum-circuits` doesn't match the folder `quantum_circuits/`. It now has `[tool.hatch.build.targets.wheel] packages = ["quantum_circuits"]` in `pyproject.toml`. Tests unchanged. Claude's stand-in runner imported from the source folder and never built a wheel, so it couldn't catch this. **Lesson: verify with the real toolchain before calling it done.**
+- Machine note, not a repo change: on Albert's Guix system, `uv run` needs `LD_LIBRARY_PATH` pointing at the Guix zlib (`…-zlib-1.3.1/lib`).
+- Follow-up flagged in `#mit` (`INFO`, unassigned): `src/circuits/classic/python/pyproject.toml` has the same name/folder mismatch and likely needs the same fix.

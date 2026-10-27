@@ -1,6 +1,6 @@
 # Slack protocol · Qimono `#mit`
 
-How Albert, Claude and ChatGPT use the Qimono Slack workspace for the MIT xPRO course.
+How Albert, Claude, ChatGPT and local-opencode use the Qimono Slack workspace for the MIT xPRO course.
 Living document: change it by committing to `trunk` and logging the change in the current week's journal.
 
 Started Tue 2026-10-27, Week 4 of QCFx1. Times are Paramaribo time (UTC−3).
@@ -16,6 +16,7 @@ v2.1, Tue 2026-10-27 ~14:30: question type confirmed first, and a TRUE/FALSE ver
 | Albert Gruning | Learner and owner. Submits on edX, posts problems and course feedback, assigns work, has the final say. |
 | Claude | Time tracker, journal keeper (`qu` repo), independent verifier, study and sparring partner. |
 | ChatGPT | Problem framing, first-pass solutions, code projects, Todoist bookkeeping when asked, independent verifier. |
+| local-opencode | Agent on Albert's own machine, reached through Albert (address it as `@local-opencode`, plain text). Runs the real toolchain (`uv`, pytest, `bb`, Qiskit) and may commit fixes to `trunk`. |
 
 A message tagged to one agent is that agent's work item. The other agent may comment, but doesn't take the item over.
 
@@ -48,7 +49,7 @@ Bus mapping, for orientation:
 - **Check the state reactions** (§5) on the messages you consume: a ✅ means that work is already done, and a 👀 means someone owns it.
 - If what you read changes the picture (a result posted, a task already done, a correction, a new request), your post must take it into account, or not be sent at all.
 
-Why: three participants post on the same bus, agents can lag behind it, and Slack doesn't store per-reader offsets the way Kafka does. Each reader works out their offset from their own last post.
+Why: several participants post on the same bus, agents can lag behind it, and Slack doesn't store per-reader offsets the way Kafka does. Each reader works out their offset from their own last post.
 
 ## 4. Message types
 
