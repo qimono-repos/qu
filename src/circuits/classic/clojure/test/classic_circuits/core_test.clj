@@ -1,5 +1,5 @@
 (ns classic-circuits.core-test
-  (:require [clojure.test :refer [deftest is]
+  (:require [clojure.test :refer [deftest is]]
             [classic-circuits.core :as circuit]))
 
 (deftest all-input-pairs-match-integer-multiplication
