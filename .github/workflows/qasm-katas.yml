@@ -32,10 +32,8 @@ jobs:
         run: |
           set -uo pipefail
 
-          failed=0
+          failures=0
           checked=0
-          summary_file="$(mktemp)"
-          trap 'rm -f "$summary_file"' EXIT
 
           echo "| Kata | Result | Diagnostic |" >> "$GITHUB_STEP_SUMMARY"
           echo "|---|---|---|" >> "$GITHUB_STEP_SUMMARY"
@@ -55,7 +53,7 @@ jobs:
             if [[ "$status" -eq 0 ]]; then
               echo "| `$f` | PASS | — |" >> "$GITHUB_STEP_SUMMARY"
             else
-              failed=1
+              failures=$((failures + 1))
               # Extract a source location when the parser supplies one. If it
               # doesn't, still emit a file-level annotation with its diagnostic.
               python - "$f" "$output_file" <<'PY'
@@ -96,11 +94,12 @@ jobs:
           done
 
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "**Checked:** $checked QASM file(s). **Failed:** $((failed != 0 ? 1 : 0)) or more; see annotations and logs for per-file results." >> "$GITHUB_STEP_SUMMARY"
+          echo "**Checked:** $checked QASM file(s). **Failed:** $failures; see annotations and logs for per-file results." >> "$GITHUB_STEP_SUMMARY"
 
           if [[ "$checked" -eq 0 ]]; then
             echo "::warning::No QASM kata files were found."
           fi
 
           # Keep checking every file to expose all diagnostics, then fail once.
-          exit "$failed"
+          if [[ "$failures" -gt 0 ]]; then exit 1; fi
+          exit 0
