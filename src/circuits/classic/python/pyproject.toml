@@ -1,0 +1,17 @@
+[project]
+name = "qimono-classic-circuits"
+version = "0.1.0"
+description = "Tiny Boolean-gate circuit exercises for Qimono"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+classic-multiplier = "classic_circuits.multiplier:main"
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
