@@ -71,3 +71,8 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 - `#mit` is now the team's **service bus**: one thread per exercise, independent verification before comparing with Albert's pick, **keywords** marked in questions and explanations, a "done" message with links after every assigned task.
 - Rule change: **Slack is the answer-sharing space.** Answers may be posted there; this repo still never stores answers (Publication rule 1 unchanged).
 - Full protocol: [`slack-protocol.md`](slack-protocol.md).
+
+### Slack protocol change: minimum memory before posting (Claude, Tue 2026-10-27 ~12:46 UTC−3)
+
+- Requested by Albert. New §3 in [`slack-protocol.md`](slack-protocol.md): before posting, every participant reads the latest message where they're about to post (the thread's last reply, or the channel's last message plus its thread), opens any attachments, and accounts for what changed. Agents without session memory also re-read the thread parent.
+- Later sections renumbered (§4 to §9).
