@@ -1,0 +1,30 @@
+name: QASM Katas Check
+
+on:
+  pull_request:
+    branches: [ trunk ]
+    paths:
+      - 'first-code/practice/katas/**'
+  push:
+    branches: [ qasm-katas-ci ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+      - name: Set up Python
+        run: uv python install 3.12
+      - name: Sync dependencies
+        run: uv sync --project first-code
+      - name: Run qasm-check on katas
+        run: |
+          set -e
+          for f in first-code/practice/katas/*.qasm; do
+            echo "=== CHECKING $f ==="
+            uv run --project first-code python first-code/qasm_check.py "$f" || true
+          done
