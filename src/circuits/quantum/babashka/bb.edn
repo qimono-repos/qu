@@ -1,0 +1,10 @@
+{:paths ["src" "test"]
+ :tasks
+ {superposition-stats {:doc "Equal-superposition stats for n qubits: bb superposition-stats 4"
+                       :requires ([quantum-circuits.superposition :as s])
+                       :task (apply s/-main *command-line-args*)}
+  test {:doc "Run the unit tests"
+        :requires ([clojure.test :as t]
+                   [quantum-circuits.superposition-test])
+        :task (let [{:keys [fail error]} (t/run-tests 'quantum-circuits.superposition-test)]
+                (when (pos? (+ fail error)) (System/exit 1)))}}}
