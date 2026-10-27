@@ -23,7 +23,19 @@ A message tagged to one agent is that agent's work item. The other agent may com
 - Everything about that exercise stays in the thread: verification, code, tables, the result, the course explanation and lessons learned.
 - New exercise, new thread. Don't continue an exercise in the main channel.
 
-## 3. Solving loop
+## 3. Minimum memory before posting
+
+**Before posting anything, read the latest message where you're about to post.** This is a hard requirement for every participant, human or agent.
+
+- **Replying in a thread:** read the thread's last message, or every reply since your own last message in that thread if there's more than one.
+- **Posting in the channel:** read the channel's last message, and open its thread if it has replies.
+- **Files count:** if that message has attachments (screenshots, code), open them before replying.
+- If the latest message changes the picture (a result posted, a task already done, a correction, a new request), your post must take it into account, or not be sent at all.
+- Agents with no memory of earlier sessions also re-read the thread parent, so they know what the exercise is.
+
+Why: three participants post on the same bus, and agents can lag behind it. Reading the last message first prevents duplicate work, contradicting a result that's already known, or answering a question that has moved on.
+
+## 4. Solving loop
 
 1. **Frame.** The parent message gives the question, options and the relevant lesson material.
 2. **Tentative selection.** Albert may say what he picked (saved, not submitted). Agents must **not let it bias them**. They derive from scratch first and compare after.
@@ -31,20 +43,20 @@ A message tagged to one agent is that agent's work item. The other agent may com
 4. **Submit.** Only Albert submits on edX. Edits to the Save state and attempts are his.
 5. **Result.** Albert posts the graded result and the course's official explanation in the thread.
 6. **Alignment check.** Agents confirm whether the official explanation matches the reasoning used, name any difference in method, and extract a **reusable rule** for similar questions.
-7. **Close.** Claude logs the outcome in the week's journal (score and attempt only, see §6), and the Todoist item is marked done by whoever was tagged.
+7. **Close.** Claude logs the outcome in the week's journal (score and attempt only, see §7), and the Todoist item is marked done by whoever was tagged.
 
-## 4. Keywords
+## 5. Keywords
 
 Mark the **keywords** of a question or explanation whenever they help: the words that decide what the question is actually asking. Examples: *"following the procedure in the video"*, *"minimum number of gates"*, *"unique"*, *"reuse"*. Bold them in Slack, and say why they matter (e.g. "minimum" is relative to the course's procedure, not an absolute circuit-complexity bound).
 
-## 5. Message format
+## 6. Message format
 
 - Slack renders Markdown: **bold**, `code`, fenced code blocks with a language tag, and pipe tables. Use tables for truth tables and comparisons, and code blocks for runnable snippets.
 - Snippets must run as posted (imports included, stdlib preferred) and print a clear pass/fail line.
 - Agents sign their messages ("Claude here", "Iam Chat GPT", or the app's "Sent using" footer) so the bus stays readable.
 - **Done messages:** when an agent finishes a task assigned on the bus, it posts a short "done" message in the same thread with links to whatever it produced (commit, file, Todoist item).
 
-## 6. What may be posted where
+## 7. What may be posted where
 
 | Content | Slack `#mit` | `qu` repo | Todoist |
 |---|---|---|---|
@@ -53,11 +65,11 @@ Mark the **keywords** of a question or explanation whenever they help: the words
 | Scores, attempts used, timestamps | Yes | Yes | In task comments if useful |
 | Names of anyone other than Albert Gruning | **No**: use roles ("an instructor", "a teammate") and ask Albert first if a name seems needed | **No** | **No** |
 
-## 7. Clock
+## 8. Clock
 
 Slack message timestamps and Git commit timestamps are both machine clocks. The journal's times are learner reports. When they disagree, Git commit metadata wins for the journal, and Slack timestamps are supporting evidence.
 
-## 8. Where things live
+## 9. Where things live
 
 - Weekly journal: `JOURNAL-week-<n>.md` (current: [`JOURNAL-week-4.md`](JOURNAL-week-4.md))
 - Earlier weeks: `week-2-experience.md`, `week-3-experience.md`
