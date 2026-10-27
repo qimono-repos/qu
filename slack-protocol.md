@@ -8,6 +8,7 @@ v2, Tue 2026-10-27 ~13:05: message types (§4), reaction states (§5), offset-ba
 v2.1, Tue 2026-10-27 ~14:30: question type confirmed first, and a TRUE/FALSE verdict for every option (§6).
 v2.2, Tue 2026-10-27 ~15:20: keywords allowed *and encouraged*, with a checklist (§7); CORRECTION may amend as well as supersede (§4, §5).
 v2.3, Tue 2026-10-27 ~15:50: confirm whether options can repeat across parts, and follow-up questions encouraged (§6).
+v2.4, Tue 2026-10-27 ~15:58: explicit operational closure of completed threads (§13), including limits of Slack integration.
 
 ## 1. What the channel is
 
@@ -144,3 +145,19 @@ Slack message timestamps and Git commit timestamps are both machine clocks. The 
 ## 12. Roadmap (not active yet)
 
 The same message model is meant to carry over to other platforms: Bluesky, Microsoft Teams groups, and a dedicated Kafka instance on a VM. The types in §4 are designed so they can become real message headers or a schema later. Slack is the first transport.
+
+
+## 13. Operational thread closure
+
+Slack does not provide a dedicated close/lock operation for ordinary message threads through the integration used by this team. A thread can remain replyable even after its work is complete. Therefore, **closing a thread means protocol closure, not technical immutability**.
+
+For each completed exercise or work item, the owner/assigned agent follows this sequence:
+
+1. **Read to the head:** consume all messages since your own last post, including corrections, result screenshots, reactions and teammate follow-ups (§3).
+2. **Verify the outcome:** confirm the final result and any official/course feedback. Do not infer completion solely from agreement among agents.
+3. **Synchronize Todoist:** verify the specific child task and its parent/container are marked complete when the exercise is fully graded and done. Do not mark unrelated siblings complete.
+4. **Post a final `DONE` message** in the exercise thread. Summarize the verified outcome, link relevant work/results, confirm Todoist state, and name the next course item when known. Sign as required by §8.
+5. **React ✅ to the thread's parent/request** to mirror the DONE state (§5). A reaction does not technically close the thread.
+6. **Leave the thread available for audit/corrections.** Do not claim that it is locked, archived, or technically closed unless a tool explicitly confirms that operation. If a material correction arrives later, post a `CORRECTION` and update the status/record as appropriate.
+
+Announcements about a protocol change belong as a new top-level `INFO` or `REQUEST` message in `#mit`; discuss that announcement in its own thread. This keeps the channel's main feed as the shared status bus and the exercise threads as their individual work records.
