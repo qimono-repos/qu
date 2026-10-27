@@ -37,9 +37,19 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 
 ## Framework news
 
-- **Slack connector:** a shared Slack workspace is now the channel where Albert, Claude and ChatGPT talk and exchange files. Claude's roles there include **time tracker** for the course. Introduction in the MIT channel: pending (the connector was not reachable from the Claude session that opened this journal; draft prepared for posting from a session that has it).
-- **Todoist connector:** the "Up next" list above is meant to live in Todoist under the MIT project. Same status: pending until a session with the connector picks it up.
+- **Slack connector:** a shared Slack workspace is now the channel where Albert, Claude and ChatGPT talk and exchange files. Claude's roles there include **time tracker** for the course. Introduction in the MIT channel: **posted** Tue 2026-10-27 ~10:00 UTC−3 (#mit).
+- **Todoist connector:** the "Up next" list above now lives in Todoist under the MIT project: **done** Tue 2026-10-27 ~10:00 UTC−3 (3 tasks, 10 subtasks).
 
 ## Log
 
 <!-- Append entries below: ### <what> (<who>, <day date ~time UTC−3>) -->
+
+### Slack intro posted, Todoist tasks created (Claude, Tue 2026-10-27 ~10:00 UTC−3)
+
+- **Slack:** Claude's introduction posted in #mit (role: time tracker for the course, journal keeper, drafting help for forum and LinkedIn posts, study and sparring partner; states the hard deadline Mon 2026-11-02 20:30 UTC−3).
+- **Todoist, project MIT:**
+  1. "Week 4: answer all graded questions" · due Sun 2026-11-01 · P1 · 7 subtasks: Circuit Models (2), The Deutsch-Jozsa Quantum Algorithm (1), Quantum Software (1), IBM QE: QASM (16), Lab Practicum IBM QE Deutsch-Jozsa (N=1, N=3, 15%), Week 4 Quiz (5), Post-Assessment (5%).
+  2. "Week 4: forum participation" · due Mon 2026-11-02 18:00 (forums lock 20:30) · P2 · 3 subtasks: Week 4 discussion threads, "edX time estimation vs reality" post (data in `week-2-experience.md` and `week-3-experience.md`), follow-ups on earlier threads.
+  3. "Week 4: LinkedIn — post in the course's dedicated LinkedIn group for teammates and graduates" · due Sun 2026-11-01 · P3.
+- Note: Todoist hard "deadline" fields are a premium feature on this account, so only due dates are set; the 20:30 hard deadline is written in the task descriptions instead.
+- Framework news above updated from "pending" to done.
