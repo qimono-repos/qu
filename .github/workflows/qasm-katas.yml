@@ -7,7 +7,7 @@ on:
       - '.github/workflows/qasm-katas.yml'
       - 'first-code/practice/katas/**'
   push:
-    branches: [ qasm-katas-ci ]
+    branches: [ trunk, qasm-katas-ci ]
     paths:
       - '.github/workflows/qasm-katas.yml'
       - 'first-code/practice/katas/**'
@@ -27,10 +27,80 @@ jobs:
         run: uv sync --project first-code
       - name: Check QASM katas
         shell: bash
+        env:
+          PYTHONUNBUFFERED: "1"
         run: |
-          set -euo pipefail
+          set -uo pipefail
+
+          failed=0
+          checked=0
+          summary_file="$(mktemp)"
+          trap 'rm -f "$summary_file"' EXIT
+
+          echo "| Kata | Result | Diagnostic |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|---|" >> "$GITHUB_STEP_SUMMARY"
 
           for f in first-code/practice/katas/*.qasm; do
+            [[ -f "$f" ]] || continue
+            checked=$((checked + 1))
             echo "=== CHECKING $f ==="
-            uv run --project first-code python first-code/qasm_check.py "$f"
+
+            output_file="$(mktemp)"
+            set +e
+            PYTHONUNBUFFERED=1 uv run --project first-code python -u first-code/qasm_check.py "$f" >"$output_file" 2>&1
+            status=$?
+            set -e
+            cat "$output_file"
+
+            if [[ "$status" -eq 0 ]]; then
+              echo "| `$f` | PASS | — |" >> "$GITHUB_STEP_SUMMARY"
+            else
+              failed=1
+              # Extract a source location when the parser supplies one. If it
+              # doesn't, still emit a file-level annotation with its diagnostic.
+              python - "$f" "$output_file" <<'PY'
+          import re
+          import sys
+          from pathlib import Path
+
+          path, output_path = sys.argv[1:]
+          text = Path(output_path).read_text(encoding="utf-8", errors="replace")
+          location = re.search(r"<input>:(\d+),(\d+):\s*(.*)", text)
+          if location:
+              line, col, message = location.groups()
+          else:
+              line, col = None, None
+              candidates = [s.strip() for s in text.splitlines() if "error" in s.lower() or "exception" in s.lower()]
+              message = candidates[-1] if candidates else "QASM check failed; see the step log for full output"
+
+          # Escape GitHub workflow-command metacharacters in the annotation message.
+          message = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+          message = message.replace(":", "%3A").replace(",", "%2C")
+          props = f"file={path}"
+          if line:
+              props += f",line={line},col={col}"
+          print(f"::error {props}::{message}")
+          PY
+              diagnostic="$(python - "$output_file" <<'PY'
+          import sys
+          from pathlib import Path
+          text = Path(sys.argv[1]).read_text(encoding="utf-8", errors="replace")
+          lines = [s.strip() for s in text.splitlines() if s.strip()]
+          candidates = [s for s in lines if "error" in s.lower() or "exception" in s.lower()]
+          print((candidates[-1] if candidates else "See full step log").replace("|", "\\|"))
+          PY
+          )"
+              echo "| `$f` | FAIL (exit $status) | $diagnostic |" >> "$GITHUB_STEP_SUMMARY"
+            fi
+            rm -f "$output_file"
           done
+
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "**Checked:** $checked QASM file(s). **Failed:** $((failed != 0 ? 1 : 0)) or more; see annotations and logs for per-file results." >> "$GITHUB_STEP_SUMMARY"
+
+          if [[ "$checked" -eq 0 ]]; then
+            echo "::warning::No QASM kata files were found."
+          fi
+
+          # Keep checking every file to expose all diagnostics, then fail once.
+          exit "$failed"
