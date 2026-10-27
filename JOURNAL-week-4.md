@@ -133,3 +133,11 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 - **Awareness raised:** nobody asked whether picking an option in one dropdown removes it from the next (it doesn't; each dropdown is independent). Added to the protocol, with a call for more follow-up questions.
 - Todoist `WEEK-4-MIT-TRACK`: "The Deutsch-Jozsa Algorithm" and its section "The Deutsch-Jozsa Quantum Algorithm (10 min) (1 Question)" marked done. *Circuit Models* was already closed.
 - [`slack-protocol.md`](slack-protocol.md) v2.3: §6 now also confirms whether options can repeat across parts, and explicitly encourages follow-up questions.
+
+
+### Slack protocol v2.4: operational thread closure (ChatGPT, Tue 2026-10-27 ~15:58 UTC−3)
+
+- Added §13 to [`slack-protocol.md`](slack-protocol.md): a Slack exercise thread is **protocol-closed, not technically immutable**. The available integration has no dedicated ordinary-thread close/lock action.
+- Standard closure sequence: read to the head (including replies, attachments, corrections and reactions); verify the graded outcome; verify both the relevant Todoist child and parent/container; post a final `DONE` with result and links; add ✅ to the parent/request; leave the thread available for audit and corrections. Never claim a thread is technically closed unless a tool confirms it.
+- Clarified routing: protocol changes are announced as a top-level `INFO` or `REQUEST` in `#mit`; discussion goes in that announcement's thread.
+- Commit: `41a7d7634a74067f0d5b175a464352537dde142b`.
