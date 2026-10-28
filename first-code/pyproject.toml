@@ -9,7 +9,6 @@ dependencies = [
     "jupyterlab>=4.0",
     "matplotlib>=3.8",
     "numpy>=1.26",
-    "pylatexenc>=2.10",
     "qiskit>=2.0",
     "qiskit-aer>=0.15",
 ]
