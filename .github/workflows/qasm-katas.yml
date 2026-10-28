@@ -25,7 +25,7 @@ jobs:
         run: uv python install 3.12
       - name: Sync dependencies
         run: uv sync --project first-code
-      - name: Check QASM katas and render circuits
+      - name: Check QASM katas and print circuit diagrams
         shell: bash
         env:
           PYTHONUNBUFFERED: "1"
@@ -33,18 +33,20 @@ jobs:
           set -uo pipefail
           failures=0
           checked=0
-          mkdir -p "$RUNNER_TEMP/qasm-circuit-diagrams"
-          diagram_index=0
-          printf '| Kata | Result | Diagnostic | Circuit diagram |\n|---|---|---|---|\n' >> "$GITHUB_STEP_SUMMARY"
+          printf '| Kata | Result | Diagnostic |\n|---|---|---|\n' >> "$GITHUB_STEP_SUMMARY"
 
           for f in first-code/practice/katas/*.qasm; do
             [[ -f "$f" ]] || continue
             checked=$((checked + 1))
-            diagram_index=$((diagram_index + 1))
             echo "=== CHECKING $f ==="
             output_file="$(mktemp)"
-            if PYTHONUNBUFFERED=1 uv run --project first-code python -u first-code/qasm_check.py "$f" >"$output_file" 2>&1; then status=0; else status=$?; fi
+            if PYTHONUNBUFFERED=1 uv run --project first-code python -u first-code/qasm_check.py "$f" >"$output_file" 2>&1; then
+              status=0
+            else
+              status=$?
+            fi
             cat "$output_file"
+
             result="PASS"
             diagnostic="—"
             if [[ "$status" -ne 0 ]]; then
@@ -85,40 +87,27 @@ jobs:
           )"
             fi
 
-            diagram="—"
-            diagram_file="$RUNNER_TEMP/qasm-circuit-diagrams/circuit-${diagram_index}.png"
-            # Only render files that Qiskit can successfully load. A bad kata
-            # remains red and still gets its parser annotation; it has no circuit.
+            printf '| %s | %s | %s |\n' "$f" "$result" "$diagnostic" >> "$GITHUB_STEP_SUMMARY"
+
             if [[ "$status" -eq 0 ]]; then
-              if PYTHONUNBUFFERED=1 uv run --project first-code python - "$f" "$diagram_file" <<'PY'
-          import base64, sys
-          from pathlib import Path
-          import matplotlib
-          matplotlib.use("Agg")
+              if circuit_text="$(uv run --project first-code python - "$f" <<'PY'
+          import sys
           from qiskit import qasm2
-          from qiskit.visualization import circuit_drawer
-          source, target = map(Path, sys.argv[1:])
-          qc = qasm2.load(source)
-          fig = circuit_drawer(qc, output="mpl")
-          fig.savefig(target, dpi=140, bbox_inches="tight", format="png")
-          print(f"Circuit diagram generated: {target}")
-          print("DIAGRAM_DATA_URI=" + base64.b64encode(target.read_bytes()).decode("ascii"))
+          circuit = qasm2.load(sys.argv[1])
+          print(circuit.draw(output="text"))
           PY
-              then
-                diagram_uri="$(python - "$diagram_file" <<'PY'
-          import base64, sys
-          from pathlib import Path
-          print("data:image/png;base64," + base64.b64encode(Path(sys.argv[1]).read_bytes()).decode("ascii"))
-          PY
-          )"
-                diagram="![circuit]($diagram_uri)"
+          )"; then
+                echo "=== CIRCUIT: $f ==="
+                printf '%s\n' "$circuit_text"
+                {
+                  printf '\n<details>\n<summary>Circuit: %s</summary>\n\n' "$f"
+                  printf '%s\n\n' "$circuit_text"
+                  printf '</details>\n'
+                } >> "$GITHUB_STEP_SUMMARY"
               else
-                echo "::warning file=$f::Circuit diagram generation failed; see logs"
+                echo "::warning file=$f::Circuit text rendering failed; see logs"
               fi
             fi
-            # Inline data-URI images are supported by some Markdown renderers but
-            # are not guaranteed in GitHub's job summary. Always upload PNGs too.
-            printf '| `%s` | %s | %s | %s |\n' "$f" "$result" "$diagnostic" "$diagram" >> "$GITHUB_STEP_SUMMARY"
             rm -f "$output_file"
           done
 
@@ -126,11 +115,3 @@ jobs:
           if [[ "$checked" -eq 0 ]]; then echo "::warning::No QASM kata files were found."; fi
           if [[ "$failures" -gt 0 ]]; then exit 1; fi
           exit 0
-
-      - name: Upload circuit diagrams
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: qasm-circuit-diagrams
-          path: ${{ runner.temp }}/qasm-circuit-diagrams/*.png
-          if-no-files-found: ignore
