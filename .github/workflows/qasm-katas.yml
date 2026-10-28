@@ -25,23 +25,20 @@ jobs:
         run: uv python install 3.12
       - name: Sync dependencies
         run: uv sync --project first-code
-      - name: Check QASM katas
+      - name: Check QASM katas and print circuit diagrams
         shell: bash
         env:
           PYTHONUNBUFFERED: "1"
         run: |
           set -uo pipefail
-
           failures=0
           checked=0
-
           printf '| Kata | Result | Diagnostic |\n|---|---|---|\n' >> "$GITHUB_STEP_SUMMARY"
 
           for f in first-code/practice/katas/*.qasm; do
             [[ -f "$f" ]] || continue
             checked=$((checked + 1))
             echo "=== CHECKING $f ==="
-
             output_file="$(mktemp)"
             if PYTHONUNBUFFERED=1 uv run --project first-code python -u first-code/qasm_check.py "$f" >"$output_file" 2>&1; then
               status=0
@@ -50,28 +47,24 @@ jobs:
             fi
             cat "$output_file"
 
-            if [[ "$status" -eq 0 ]]; then
-              printf '| `%s` | PASS | — |\n' "$f" >> "$GITHUB_STEP_SUMMARY"
-            else
+            result="PASS"
+            diagnostic="—"
+            if [[ "$status" -ne 0 ]]; then
               failures=$((failures + 1))
-              # Prefer a parser location when supplied; otherwise annotate the file.
+              result="FAIL (exit $status)"
               python - "$f" "$output_file" <<'PY'
-          import re
-          import sys
+          import re, sys
           from pathlib import Path
-
           path, output_path = sys.argv[1:]
           text = Path(output_path).read_text(encoding="utf-8", errors="replace")
-          location = re.search(r"<input>:(\d+),(\d+):\s*(.*?)\"?\s*$", text, re.MULTILINE)
-          if location:
-              line, zero_based_col, message = location.groups()
-              col = int(zero_based_col) + 1  # GitHub annotation columns are 1-based.
+          match = re.search(r"<input>:(\d+),(\d+):\s*(.*?)\"?\s*$", text, re.MULTILINE)
+          if match:
+              line, col0, message = match.groups()
+              col = int(col0) + 1
           else:
-              line, col = None, None
+              line = col = None
               candidates = [s.strip() for s in text.splitlines() if "error" in s.lower() or "exception" in s.lower()]
-              message = candidates[-1] if candidates else "QASM check failed; see the step log for full output"
-
-          # GitHub workflow-command message escaping: %, CR, LF only.
+              message = candidates[-1] if candidates else "QASM check failed; see step log"
           message = message.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
           props = f"file={path}"
           if line:
@@ -79,8 +72,7 @@ jobs:
           print(f"::error {props}::{message}")
           PY
               diagnostic="$(python - "$output_file" <<'PY'
-          import re
-          import sys
+          import re, sys
           from pathlib import Path
           text = Path(sys.argv[1]).read_text(encoding="utf-8", errors="replace")
           match = re.search(r"<input>:\d+,\d+:\s*(.*?)\"?\s*$", text, re.MULTILINE)
@@ -90,20 +82,36 @@ jobs:
               lines = [s.strip() for s in text.splitlines() if s.strip()]
               candidates = [s for s in lines if "error" in s.lower() or "exception" in s.lower()]
               diagnostic = candidates[-1] if candidates else "See full step log"
-          print(diagnostic.replace("|", "\\|"))
+          print(diagnostic.replace("|", "\\|").replace("\n", " "))
           PY
           )"
-              printf '| `%s` | FAIL (exit %s) | %s |\n' "$f" "$status" "$diagnostic" >> "$GITHUB_STEP_SUMMARY"
+            fi
+
+            printf '| %s | %s | %s |\n' "$f" "$result" "$diagnostic" >> "$GITHUB_STEP_SUMMARY"
+
+            if [[ "$status" -eq 0 ]]; then
+              if circuit_text="$(uv run --project first-code python - "$f" <<'PY'
+          import sys
+          from qiskit import qasm2
+          circuit = qasm2.load(sys.argv[1])
+          print(circuit.draw(output="text"))
+          PY
+          )"; then
+                echo "=== CIRCUIT: $f ==="
+                printf '%s\n' "$circuit_text"
+                {
+                  printf '\n<details>\n<summary>Circuit: %s</summary>\n\n' "$f"
+                  printf '%s\n\n' "$circuit_text"
+                  printf '</details>\n'
+                } >> "$GITHUB_STEP_SUMMARY"
+              else
+                echo "::warning file=$f::Circuit text rendering failed; see logs"
+              fi
             fi
             rm -f "$output_file"
           done
 
           printf '\n**Checked:** %s QASM file(s). **Failed:** %s.\n' "$checked" "$failures" >> "$GITHUB_STEP_SUMMARY"
-
-          if [[ "$checked" -eq 0 ]]; then
-            echo "::warning::No QASM kata files were found."
-          fi
-
-          # Keep checking every file to expose all diagnostics, then fail once.
+          if [[ "$checked" -eq 0 ]]; then echo "::warning::No QASM kata files were found."; fi
           if [[ "$failures" -gt 0 ]]; then exit 1; fi
           exit 0
