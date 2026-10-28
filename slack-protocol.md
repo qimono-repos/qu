@@ -1,6 +1,6 @@
 # Slack protocol · Qimono `#mit`
 
-How Albert, Claude, ChatGPT and local-opencode use the Qimono Slack workspace for the MIT xPRO course.
+How Albert, Claude, ChatGPT, Grok and local-opencode use the Qimono Slack workspace for the MIT xPRO course.
 Living document: change it by committing to `trunk` and logging the change in the current week's journal.
 
 Started Tue 2026-10-27, Week 4 of QCFx1. Times are Paramaribo time (UTC−3).
@@ -9,6 +9,7 @@ v2.1, Tue 2026-10-27 ~14:30: question type confirmed first, and a TRUE/FALSE ver
 v2.2, Tue 2026-10-27 ~15:20: keywords allowed *and encouraged*, with a checklist (§7); CORRECTION may amend as well as supersede (§4, §5).
 v2.3, Tue 2026-10-27 ~15:50: confirm whether options can repeat across parts, and follow-up questions encouraged (§6).
 v2.4, Tue 2026-10-27 ~15:58: explicit operational closure of completed threads (§13), including limits of Slack integration.
+v2.5, Wed 2026-10-28 ~06:45: Grok joins (§1); §6 renumbered; image narration and ugly-art diagrams (§8); distractor taxonomy (§14); conventions and lessons learned (§15).
 
 ## 1. What the channel is
 
@@ -19,6 +20,7 @@ v2.4, Tue 2026-10-27 ~15:58: explicit operational closure of completed threads (
 | Albert Gruning | Learner and owner. Submits on edX, posts problems and course feedback, assigns work, has the final say. |
 | Claude | Time tracker, journal keeper (`qu` repo), independent verifier, study and sparring partner. |
 | ChatGPT | Problem framing, first-pass solutions, code projects, Todoist bookkeeping when asked, independent verifier. |
+| Grok | Joined Tue 2026-10-27 ~22:30 as a native Slack app (`@Grok`, can be mentioned). Independent verifier and sparring partner. **Cannot read images**: everything visual must be narrated or drawn for it (§8). |
 | local-opencode | Agent on Albert's own machine, reached through Albert (address it as `@local-opencode`, plain text). Runs the real toolchain (`uv`, pytest, `bb`, Qiskit) and may commit fixes to `trunk`. |
 
 A message tagged to one agent is that agent's work item. The other agent may comment, but doesn't take the item over.
@@ -98,12 +100,12 @@ The reaction never replaces the `DONE` or `NACK` message, which carries the link
    **Follow-up questions are encouraged.** If anything about the question, its format or the lesson is unclear, ask in the thread before analyzing, even if it seems obvious. A question costs seconds; a wrong attempt costs points.
 2. **Resource-first.** For questions with **≤ 2 attempts**, course-specific wording, or when the answer depends on lesson framing, **ask for supporting material before finalizing a recommendation**. Request image text/OCR, the relevant video transcript or excerpt, earlier lesson transcripts if referenced, the post-submit explanation (if available), or lesson notes. If the material is unavailable, state confidence and assumptions clearly. Never rush to submit—transcripts and explanations are often the source of truth and may only be revealed after submission.
 3. **Tentative selection.** Albert may say what he picked (saved, not submitted). Agents must **not let it bias them**. They derive from scratch first and compare after.
-3. **Independent verification.** Each agent posts a `RESULT` answering the questions asked one by one: assert or refute, and give a counterexample when refuting. Evidence beats agreement: exhaustive checks, truth tables, derivations.
+4. **Independent verification.** Each agent posts a `RESULT` answering the questions asked one by one: assert or refute, and give a counterexample when refuting. Evidence beats agreement: exhaustive checks, truth tables, derivations.
    **Every option gets a verdict:** for each option judged correct, say **why it is TRUE**; for each option judged incorrect, say **why it is FALSE** (e.g. "right count, but that's the probability, not the coefficient"). Distractors are usually a real quantity in the wrong place, so naming what each one actually is guards against traps.
-4. **Submit.** Only Albert submits on edX. Edits to the Save state and attempts are his.
-5. **Result.** Albert posts the graded result and the course's official explanation (`INFO`) in the thread.
-6. **Alignment check.** Agents confirm whether the official explanation matches the reasoning used, name any difference in method, and extract a **reusable rule** for similar questions.
-7. **Close.** Claude logs the outcome in the week's journal (score and attempt only, see §9), the Todoist item is marked done by whoever was tagged, and the parent gets ✅.
+5. **Submit.** Only Albert submits on edX. Edits to the Save state and attempts are his.
+6. **Result.** Albert posts the graded result and the course's official explanation (`INFO`) in the thread.
+7. **Alignment check.** Agents confirm whether the official explanation matches the reasoning used, name any difference in method, and extract a **reusable rule** for similar questions.
+8. **Close.** Claude logs the outcome in the week's journal (score and attempt only, see §9) and closes per §13, the Todoist item is marked done by whoever was tagged, and the parent gets ✅.
 
 ## 7. Keywords
 
@@ -122,6 +124,9 @@ Keywords and hints guide; they **never state the answer**. The answer belongs in
 
 - Slack renders Markdown: **bold**, `code`, fenced code blocks with a language tag, and pipe tables. Use tables for truth tables and comparisons, and code blocks for runnable snippets.
 - Snippets must run as posted (imports included, stdlib preferred) and print a clear pass/fail line.
+- **Narrate every image** for agents that can't read images (Grok, local-opencode): transcribe all text verbatim (question, options, code, table values, attempts, saved state) and describe every figure. A narrator states which choice is saved only when that can't bias anyone (§6).
+- **Diagrams as "ugly art"**, not prose: draw circuits and graphs in a code block, time flowing left to right, `[X]`/`[H]` for gates, `[M]` for measurements, `║` down to the classical bus, and the destination digit printed under its column. Draw **every option in full** (no compressed summaries) so the thread works as documentation. Generating the art with a small script keeps the columns aligned.
+- **Math:** Slack does not render LaTeX. Use Unicode inline (|ψ⟩ = (|0⟩+|1⟩)/√2); share longer LaTeX or TikZ as a source file that each agent compiles in its own engine, and post a rendered image when someone can upload it.
 - Agents sign their messages ("Claude here", "Iam Chat GPT", or the app's "Sent using" footer) so the bus stays readable. All agents currently post through Albert's account, so the signature is the only way to tell senders apart.
 
 ## 9. What may be posted where
@@ -162,3 +167,47 @@ For each completed exercise or work item, the owner/assigned agent follows this 
 6. **Leave the thread available for audit/corrections.** Do not claim that it is locked, archived, or technically closed unless a tool explicitly confirms that operation. If a material correction arrives later, post a `CORRECTION` and update the status/record as appropriate.
 
 Announcements about a protocol change belong as a new top-level `INFO` or `REQUEST` message in `#mit`; discuss that announcement in its own thread. This keeps the channel's main feed as the shared status bus and the exercise threads as their individual work records.
+
+## 14. Distractors
+
+Keywords (§7) guide; **distractors** do the opposite: they are the options, details and wording designed to create noise. Name the role of every distractor in a `RESULT` (§6). The families seen so far in Week 4:
+
+| Family | What it looks like | Defence |
+|---|---|---|
+| **Real quantity, wrong place** | The probability offered where the amplitude is asked; a 3-qubit value in a 4-qubit question | Say what each number actually *is* |
+| **Fragment of the right answer** | An option that rewords one aspect of the correct one ("temporal performance" vs noise via coherence time) | Check whether it is a separate concept or a subset |
+| **Reported ≠ source** | A parser reports the error on the line *after* the real mistake, or cascades errors onto later lines | Map the first diagnostic back to the line that caused it |
+| **One character** | A space, `;`, `{` vs `[`, `\\` vs `//` | Test the exact bytes (§15) |
+| **Off-by-one / indexing** | Indices shifted by one wire; `c[n]` used when the valid range is `0…n−1`; "3 indexes" vs "index 3" | Count from 0; size n gives indices 0…n−1 |
+| **Crossed wiring** | Right gates, swapped measurement destinations | Wire = source qubit, digit = destination bit |
+| **Order** | Right pairs drawn in the reverse time order | Diagram left→right = statement order |
+| **Notation (ket vs label)** | A table row read as if it were a ket | Translate through the wiring and the conventions (§15) |
+| **Wrong context** | An option valid on another backend described earlier on the same page; an undirected reading of a directed map | Re-read which backend or context the prompt names |
+| **Visual noise** | Gates that don't affect the property being asked about (e.g. single-qubit gates in a CNOT-validity question) | Identify the one line that decides |
+| **Duplicated options** | Two options that are identical | In a single-answer question neither can be *the* answer: eliminate both, and flag it to staff |
+| **Title or eye autocorrect** | "Syntax Error" in the title when "no error" is a real option; "this is a comment" after `\\` | The parser doesn't read titles or English |
+
+## 15. Conventions and lessons learned (Week 4)
+
+Method-level only; no graded answers (§9).
+
+**Conventions confirmed by the course itself**
+- **Kets** are written in qubit order, textbook style: |q[0] q[1] q[2] …⟩.
+- **Classical labels** (IBM / Qiskit) are printed with the highest bit on the left: `c[n−1] … c[1] c[0]`. With identity wiring (q[i]→c[i]) a label is the ket reversed; with any other wiring, translate through the `measure` lines. Qiskit documents this as little-endian bit ordering.
+- **4×4 gate matrices** depend on the basis order: the course's CNOT assumes |control target⟩; Qiskit's `cx(0,1)` matrix looks different for the same gate.
+- **Shots = sum of all counts.** Shot counts don't have to be powers of 2.
+- The course grades against "the current instance of IBMQ": its OpenQASM 2 parser is the reference, Qiskit `qasm2` is the closest local stand-in, and VS Code (QDK, an OpenQASM 3 front-end) is a second opinion.
+- **Coupling maps are directed:** `cx control,target` is valid only if that arrow exists on the named backend.
+
+**Evidence hygiene**
+- **Byte-exact inputs:** a test or kata must match the question character for character; a single added space once made a parser run test the wrong line.
+- **Ask for the text paste** whenever characters are ambiguous in an image (`\\` vs `//`, `1` vs `l`, `[` vs `{`). The paste beats any OCR.
+- **Line numbers:** edX snippets show display numbers that are not code; a local `OPENQASM 2.0;` header shifts every line by +1.
+- **CI proves what it computes:** a script that hard-codes our convention confirms the arithmetic, not the convention. To make CI an independent witness, prepare the state with gates and assert the printed label.
+- **Post-submit explanations** are evidence of the author's framing; record them, and note when there is none.
+
+**Reasoning tools**
+- **Elimination by structure:** when the wiring is a permutation, distinct states give distinct labels, so related questions must have distinct answers. It holds for this structure, not as a universal quiz rule.
+- **Check the conventions against the options:** if a convention makes an answer impossible (e.g. a count of 0 that isn't offered), that convention is probably not the course's.
+- **Physics sanity checks:** a gate on qubit k should change the outcome of qubit k; an unmeasured gate is invisible in the results.
+- **Course errata exist** (e.g. a phase-gate dagger entry in a gate table): verify against the standard definition, and share it on the forum as a hint, never as an answer.
