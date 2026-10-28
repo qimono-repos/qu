@@ -1,4 +1,4 @@
-name: QASM Katas Check
+name: Quantum Katas CI
 
 on:
   pull_request:
@@ -13,7 +13,8 @@ on:
       - 'first-code/practice/katas/**'
 
 jobs:
-  check:
+  quantum-katas:
+    name: Check Quantum Katas
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
