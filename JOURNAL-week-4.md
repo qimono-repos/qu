@@ -182,3 +182,11 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 - Slack thread: https://qimonoworkspace.slack.com/archives/C0CC0G03PH8/p1793246620644359
 - ChatGPT review message: https://qimonoworkspace.slack.com/archives/C0CC0G03PH8/p1793258991113569?thread_ts=1793246620.644359&cid=C0CC0G03PH8
 - Question archive commit: `40a6d341cbaa2dc1b4976d3503a69071d6236d92`
+
+
+### Finale Quiz Q5 · Process Tomography vs Randomized Benchmarking (ChatGPT, 2026-10-29)
+
+- Archived the exact Q5 prompt and candidate options only in [`first-code/analysis/mit-finale-q5-process-tomography-question.md`](first-code/analysis/mit-finale-q5-process-tomography-question.md). No selected choices or correctness verdict are stored in that question file or this journal.
+- Narrated Albert's attached image study aid in [`first-code/analysis/process-tomography-vs-randomized-benchmarking-cheatsheet.md`](first-code/analysis/process-tomography-vs-randomized-benchmarking-cheatsheet.md) so local command-line agents can use its contents without image-reading support. The note preserves the graphic's terminology and flags the course transcript's use of “gate-set tomography (GST)” versus the quiz's “process (gate) tomography.”
+- ChatGPT's option-by-option proposal and reasoning remain in the Finale Quiz Slack thread: https://qimonoworkspace.slack.com/archives/C0CC0G03PH8/p1793259347873139?thread_ts=1793246620.644359&cid=C0CC0G03PH8
+- A request was sent to local-opencode to independently assess every option, create `first-code/analysis/local-opencode-q5.md`, include a narration of the image, and push directly to `trunk` ASAP. Awaiting its commit/report; do not claim that work is complete until verified.
