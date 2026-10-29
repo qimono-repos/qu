@@ -20,7 +20,7 @@ You are my agent in Chrome. Do the work yourself, be information hungry, and don
 
 ## What to do
 
-1. **Check Issue I.** On the Qimono page, confirm that "Bridging Information IV" is published or scheduled in the newsletter **The Quantum Chapter by Qimono**. If it isn't, finish it first with `HANDOFF-PROMPT.md`, then come back.
+1. **Issue I status:** "Bridging Information IV" is already scheduled on the Qimono page for Monday 2 Nov 2026. Just glance at it to confirm, and don't touch it.
 2. **Pick the content.**
    - If I named a source, open it and copy the full text as it is.
    - If I left it blank, look through my activity feed for older posts on quantum, information theory or Q# that aren't in the newsletter yet (the earlier "Bridging Information" parts are the first candidates). Pick the best one and tell me in one line which and why.
@@ -31,18 +31,20 @@ You are my agent in Chrome. Do the work yourself, be information hungry, and don
    - My original text, unchanged
    - Optional "Quantum news this week" with 2–4 lines and a link
    - Footer: "First shared on LinkedIn, <month year>." plus a link to the blog post, if one exists
-4. **Save the draft to GitHub** in the GitHub tab: Add file → Create new file → `newsletter/the-quantum-chapter/issue-02-<slug>.md`, with front matter like Issue I. Commit it to `trunk` with the message "newsletter: Issue II draft".
-5. **Show me the draft once in chat**: title, intro, news lines, caption, schedule. Wait for my yes.
+4. **Save it to GitHub** in the GitHub tab: Add file → Create new file → `newsletter/the-quantum-chapter/issue-02-<slug>.md`, with front matter like Issue I. Commit it to `trunk` with the message "newsletter: Issue II".
+5. **Show me the text once in chat**: title, intro, news lines, caption, schedule. Wait for my yes.
 6. **After my yes, publish on LinkedIn** as the Qimono (TM) page, in **The Quantum Chapter by Qimono**:
-   - Schedule it for the next weekday at 09:00 GMT-3, one week after Issue I (Fri 6 Nov 2026), unless I say otherwise.
+   - Schedule it for Monday 9 Nov 2026, 09:00 GMT-3, one week after Issue I, unless I say otherwise.
    - Feed caption: one line plus hashtags from the original post.
    - Cover: an image I give you, or none. Don't use photos of people found on the web.
    - Code goes in a code block.
-7. **Report** in 3 lines: LinkedIn link or "scheduled", GitHub file link, anything that differed.
+7. **Blog:** in a WordPress tab (qimono76.wordpress.com, I'm admin), publish the same text as a new post. **Text only, no images.** Put the blog link in the GitHub file's footer.
+8. **Report** in 3 lines: LinkedIn "scheduled" plus the time, the blog link, and the GitHub file link.
 
 ## Rules
 
 - Never post as Albert Gruning unless the page truly can't, and tell me first.
 - Don't change Issue I, the page settings or the newsletter settings.
-- If a step fails, work around it or save a draft, and tell me in one line what's left.
+- No drafts and no cutting content. Go all the way and schedule. If a step fails, work around it and tell me in one line what's left.
+- WordPress gets text only, no images (the storage is limited).
 - If the browser tools fail with "anchor tab group not established", tell me to reopen the side panel from the LinkedIn tab. Retry at most twice.
