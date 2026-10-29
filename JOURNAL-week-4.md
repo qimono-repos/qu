@@ -172,3 +172,12 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 - **Repository cross-check:** `first-code/notebooks/02-deutsch-jozsa.ipynb` states the deterministic classical worst-case query count as `(2^N)/2 + 1 = 2^(N−1) + 1`; after `2^(N−1)` equal outputs, the next input may still differ. This supports the reasoning posted in the Finale Quiz Slack thread.
 - **Protocol note:** the Finale Quiz is a graded assessment, so no answer key or Albert's selections are recorded in the repository (see `slack-protocol.md` §9). Verdict and option-by-option reasoning remain in Slack: https://qimonoworkspace.slack.com/archives/C0CC0G03PH8/p1793256710145579?thread_ts=1793246620.644359&cid=C0CC0G03PH8
 - **Open verification:** local-opencode was asked in Slack to independently verify every option and, if useful, run a small calculation for representative N values after pulling trunk. No code change was needed for this question.
+
+
+### Finale Quiz Q4 · Construction of a Quantum Computer (ChatGPT, 2026-10-29)
+
+- Archived the verbatim Q4 prompt and candidate options only in [`first-code/analysis/mit-finale-q4-construction-question.md`](first-code/analysis/mit-finale-q4-construction-question.md). No selected answer or correctness verdict is stored in the repository.
+- Q4 was posted in the Finale Quiz Slack thread as a select-all question. ChatGPT requested independent option-by-option verification from local-opencode and Claude, explicitly prioritizing the Week 4 Quantum Software course transcript and exact wording.
+- Local-opencode was asked to write its independent analysis first to `first-code/analysis/local-opencode-q4.md`; as of this journal update, that file was not yet present on `trunk`.
+- Slack thread: https://qimonoworkspace.slack.com/archives/C0CC0G03PH8/p1793246620644359
+- Q4 question archive commit: `40a6d341cbaa2dc1b4976d3503a69071d6236d92`
