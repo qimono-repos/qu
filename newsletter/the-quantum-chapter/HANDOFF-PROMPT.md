@@ -12,7 +12,7 @@ You are my agent in Chrome. Do the work yourself. Don't give me instructions and
 - Article (Markdown, front matter at top = all settings):
   https://github.com/qimono-repos/qu/blob/trunk/newsletter/the-quantum-chapter/bridging-information-iv.md
   Raw text: https://raw.githubusercontent.com/qimono-repos/qu/trunk/newsletter/the-quantum-chapter/bridging-information-iv.md
-- Same article already live on the Qimono blog (WordPress, no images): https://qimono76.wordpress.com/2026/10/29/bridging-information-iv/
+- Same article already live on the Qimono blog (WordPress, with the map): https://qimono76.wordpress.com/2026/10/29/bridging-information-iv/
 - Folder with this brief and the history: https://github.com/qimono-repos/qu/tree/trunk/newsletter/the-quantum-chapter
 
 Read the raw article in the GitHub tab with get_page_text. That text is what gets published, word for word. Don't rewrite it, shorten it or "improve" it.
@@ -28,8 +28,9 @@ Read the raw article in the GitHub tab with get_page_text. That text is what get
 | Frequency | Weekly |
 | Newsletter logo | Qimono logo (the page's own logo is fine) |
 | Article title | Bridging Information IV |
-| Cover | Not required, so publish without images if needed. Optional: the Qimono logo. Don't search the web for photos. |
-| Body | Everything in the .md after the front matter: the italic intro, then Introduction, The Intersection of Information Theory and Deep Learning, the C# code, Additional Resources, footer |
+| Cover | **shannons-gaylord.png**, Qimono's own illustrated map of Shannon's Gaylord. Albert has it from the chat (check Downloads). Preview: https://cdn.jsdelivr.net/gh/qimono-repos/qu@ec4e7224220b7396c865e4ef032963b9caae3dd6/newsletter/the-quantum-chapter/shannons-gaylord.svg. If it can't be uploaded, publish without a cover. Don't search the web for photos. |
+| Map in body | Skip the image line in the body if the cover already shows the map. Keep the Gaylord paragraph. |
+| Body | Everything in the .md after the front matter: the italic intro, the Gaylord paragraph, then Introduction, The Intersection of Information Theory and Deep Learning, the C# code, Additional Resources, footer |
 | Code | Use LinkedIn's code-block if the editor has one. Otherwise paste it as plain monospace lines. Keep the line breaks. |
 | Feed caption | Bridging Information IV: what Shannon's information theory teaches us about AI, now in The Quantum Chapter by Qimono. #AI #MobileApps |
 | Timing | **Schedule** for Fri 30 Oct 2026, 09:00 GMT-3. If that time has passed, use the next weekday at 09:00 GMT-3. If LinkedIn can't schedule, save as draft and tell me. |
@@ -42,7 +43,7 @@ Read the raw article in the GitHub tab with get_page_text. That text is what get
 3. Create → **Write article** (or "Write an article" in the page's Create menu).
 4. In the article editor, open the publisher/identity selector and make sure it says Qimono (TM).
 5. Newsletter: if "The Quantum Chapter by Qimono" exists, select it. If not, create it with the name, description, weekly frequency and logo above. If a newsletter with a **different** name already exists on the page, stop and tell me its name.
-6. Cover: skip it, or use the Qimono logo if the editor offers it easily. Don't spend time on images.
+6. Cover: upload shannons-gaylord.png (see the table). If it isn't reachable, skip the cover. Don't spend long on images.
 7. Title: Bridging Information IV.
 8. Paste the body section by section. Headings become editor headings (H2), italic stays italic, bullets stay bullets, code goes in a code block.
 9. Compare the editor against the GitHub text: every section is there, nothing is duplicated, the code is intact.

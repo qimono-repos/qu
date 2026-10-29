@@ -3,11 +3,12 @@ newsletter: The Quantum Chapter by Qimono
 publisher: Qimono (TM) LinkedIn page (company id 145379127) — never Albert Gruning's personal profile
 title: Bridging Information IV
 subtitle: What can we learn from the challenges in telecommunications to apply into the AI era
-cover: none required. Optional: Qimono logo, or Albert's own AI Shannon image if he uploads it himself. No third-party photos.
+cover: shannons-gaylord.png, Qimono's own illustrated map (1280x720, in this folder as .svg; the .png is in Albert's chat downloads). If it can't be uploaded, use no cover. No third-party photos.
+cover_svg_url: https://cdn.jsdelivr.net/gh/qimono-repos/qu@ec4e7224220b7396c865e4ef032963b9caae3dd6/newsletter/the-quantum-chapter/shannons-gaylord.svg
 feed_caption: "Bridging Information IV: what Shannon's information theory teaches us about AI, now in The Quantum Chapter by Qimono. #AI #MobileApps"
 schedule: 2026-10-30 09:00 GMT-3 (America/Buenos_Aires); if LinkedIn cannot schedule, save as draft
 origin: LinkedIn document post (PDF) on Albert Gruning's personal profile, 17 Nov 2024
-wordpress: https://qimono76.wordpress.com/2026/10/29/bridging-information-iv/ (published 2026-10-29, no images)
+wordpress: https://qimono76.wordpress.com/2026/10/29/bridging-information-iv/ (published 2026-10-29; map hotlinked from jsDelivr, uses no WordPress storage)
 status: ready to publish on LinkedIn
 ---
 
@@ -16,6 +17,10 @@ status: ready to publish on LinkedIn
 *What can we learn from the challenges in telecommunications to apply into the AI era*
 
 *In 1948 Claude Shannon showed that any message can be reduced to bits, the zeros and ones that every phone, network and neural network still runs on. Quantum computing keeps Shannon's idea of information but changes the unit: a qubit can hold a superposition of 0 and 1 and be entangled with other qubits, so signal, noise and channel capacity all take on new meaning. This piece, first shared on LinkedIn in November 2024, looks at what Shannon's classical theory already teaches us about AI, the bridge we now need to cross into the quantum era.*
+
+![Shannon's Gaylord: an illustrated map of West Main Street, Gaylord, Michigan](shannons-gaylord.svg)
+
+*In Gaylord, Michigan, where Shannon grew up, you can still walk his story: his bronze statue in Claude Shannon Park on West Main Street, one of six the IEEE placed around the world, each holding a different formula, and a few blocks down, the Otsego County Historical Museum's permanent exhibit on his inventions.*
 
 ---
 
