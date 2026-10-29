@@ -12,6 +12,7 @@ You are my agent in Chrome. Do the work yourself. Don't give me instructions and
 - Article (Markdown, front matter at top = all settings):
   https://github.com/qimono-repos/qu/blob/trunk/newsletter/the-quantum-chapter/bridging-information-iv.md
   Raw text: https://raw.githubusercontent.com/qimono-repos/qu/trunk/newsletter/the-quantum-chapter/bridging-information-iv.md
+- Same article already live on the Qimono blog (WordPress, no images): https://qimono76.wordpress.com/2026/10/29/bridging-information-iv/
 - Folder with this brief and the history: https://github.com/qimono-repos/qu/tree/trunk/newsletter/the-quantum-chapter
 
 Read the raw article in the GitHub tab with get_page_text. That text is what gets published, word for word. Don't rewrite it, shorten it or "improve" it.
@@ -60,6 +61,6 @@ Read the raw article in the GitHub tab with get_page_text. That text is what get
 
 ## Background (for the agent, if needed)
 
-- The original is a LinkedIn **document post (PDF, 4 pages)** on Albert's personal profile, 17 Nov 2024. It was never published on the WordPress blog qimono76.wordpress.com. The blog URL is only printed on the cover, so the footer says "First shared on LinkedIn".
+- The original is a LinkedIn **document post (PDF, 4 pages)** on Albert's personal profile, 17 Nov 2024. It was published on the WordPress blog for the first time on 29 Oct 2026 (link above). The LinkedIn footer links to it.
 - Qimono (TM) is Albert's own venture/trademark. The page follows IonQ, Rigetti and IBM Quantum.
 - Albert's GitHub: qimono-repos; this repo: qimono-repos/qu (default branch trunk).

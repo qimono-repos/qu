@@ -7,7 +7,8 @@ cover: none required. Optional: Qimono logo, or Albert's own AI Shannon image if
 feed_caption: "Bridging Information IV: what Shannon's information theory teaches us about AI, now in The Quantum Chapter by Qimono. #AI #MobileApps"
 schedule: 2026-10-30 09:00 GMT-3 (America/Buenos_Aires); if LinkedIn cannot schedule, save as draft
 origin: LinkedIn document post (PDF) on Albert Gruning's personal profile, 17 Nov 2024
-status: ready to publish
+wordpress: https://qimono76.wordpress.com/2026/10/29/bridging-information-iv/ (published 2026-10-29, no images)
+status: ready to publish on LinkedIn
 ---
 
 # Bridging Information IV
@@ -76,4 +77,4 @@ Console.WriteLine($"Predicted class: {predictions.PredictedLabel}");
 
 ---
 
-*First shared on LinkedIn, November 2024. More from Qimono (TM): qimono76.wordpress.com*
+*First shared on LinkedIn, November 2024. Also on the Qimono blog: https://qimono76.wordpress.com/2026/10/29/bridging-information-iv/*
