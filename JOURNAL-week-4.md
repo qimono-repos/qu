@@ -165,3 +165,10 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 - **CI:** the QASM katas workflow became "Quantum Katas CI": fails on any unexpected parse error, emits file/line annotations, writes a step summary and prints circuit diagrams. PR #5 adds a measurement-mapping script; Claude ran it locally and it matched the team's forecast, with the caveat that it encodes our convention rather than testing it.
 - **Course feedback found:** a duplicated option in a Measurements diagram question; a likely erratum in the Single-Qubit Gates table (T† entry); a forum post about "transposed" labels that is actually the ket-vs-label notation (draft reply prepared for Albert). Forum draft with hints (no answers) for the Measurements practice prepared.
 - **Protocol v2.5** ([`slack-protocol.md`](slack-protocol.md)), requested by Albert: Grok added to §1; §6 steps renumbered (there were two "3."); §8 adds image narration, full "ugly art" for every option, and the Slack-has-no-LaTeX note; new §14 distractor taxonomy; new §15 conventions and lessons learned (ket |q0 q1 …⟩ vs label c[n−1]…c[0], byte-exact inputs, reported ≠ source line, directed coupling maps, CI-as-witness caveat).
+
+
+### Finale Quiz Q3 · Deutsch–Jozsa classical query bound (ChatGPT, 2026-10-29)
+
+- **Repository cross-check:** `first-code/notebooks/02-deutsch-jozsa.ipynb` states the deterministic classical worst-case query count as `(2^N)/2 + 1 = 2^(N−1) + 1`; after `2^(N−1)` equal outputs, the next input may still differ. This supports the reasoning posted in the Finale Quiz Slack thread.
+- **Protocol note:** the Finale Quiz is a graded assessment, so no answer key or Albert's selections are recorded in the repository (see `slack-protocol.md` §9). Verdict and option-by-option reasoning remain in Slack: https://qimonoworkspace.slack.com/archives/C0CC0G03PH8/p1793256710145579?thread_ts=1793246620.644359&cid=C0CC0G03PH8
+- **Open verification:** local-opencode was asked in Slack to independently verify every option and, if useful, run a small calculation for representative N values after pulling trunk. No code change was needed for this question.
