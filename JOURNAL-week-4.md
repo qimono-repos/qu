@@ -174,10 +174,11 @@ Standing after Week 3 (for reference): 74% weighted, 60% to pass. Post-Assessmen
 - **Open verification:** local-opencode was asked in Slack to independently verify every option and, if useful, run a small calculation for representative N values after pulling trunk. No code change was needed for this question.
 
 
-### Finale Quiz Q4 · Construction of a Quantum Computer (ChatGPT, 2026-10-29)
+# Finale Quiz Q4 · Construction of a Quantum Computer
 
-- Archived the verbatim Q4 prompt and candidate options only in [`first-code/analysis/mit-finale-q4-construction-question.md`](first-code/analysis/mit-finale-q4-construction-question.md). No selected answer or correctness verdict is stored in the repository.
-- Q4 was posted in the Finale Quiz Slack thread as a select-all question. ChatGPT requested independent option-by-option verification from local-opencode and Claude, explicitly prioritizing the Week 4 Quantum Software course transcript and exact wording.
-- Local-opencode was asked to write its independent analysis first to `first-code/analysis/local-opencode-q4.md`; as of this journal update, that file was not yet present on `trunk`.
+- The verbatim question and candidate options are archived in [`first-code/analysis/mit-finale-q4-construction-question.md`](first-code/analysis/mit-finale-q4-construction-question.md). The repository deliberately stores no selected choices or answer key for this graded quiz.
+- Independent agent review has now been added as `first-code/analysis/local-opencode-q4.md`. The review records a proposed verdict and course-source reasoning. Because this is a graded assessment, **do not publish its answer verdict into this journal or other repository notes**; the independent verdict remains in Slack.
+- ChatGPT's source-grounded option-by-option review was posted in the Finale Quiz thread. The decisive source is the Week 4 *Quantum Software* comparison transcript: it explicitly distinguishes performance evaluation methods and explicitly calls control/processing separation another difference.
 - Slack thread: https://qimonoworkspace.slack.com/archives/C0CC0G03PH8/p1793246620644359
-- Q4 question archive commit: `40a6d341cbaa2dc1b4976d3503a69071d6236d92`
+- ChatGPT review message: https://qimonoworkspace.slack.com/archives/C0CC0G03PH8/p1793258991113569?thread_ts=1793246620.644359&cid=C0CC0G03PH8
+- Question archive commit: `40a6d341cbaa2dc1b4976d3503a69071d6236d92`
